@@ -16,5 +16,13 @@
   "bugs": {
     "url": "https://github.com/NatachaVergara/backEndPortolio/issues"
   },
-  "homepage": "https://github.com/NatachaVergara/backEndPortolio#readme"
+  "homepage": "https://github.com/NatachaVergara/backEndPortolio#readme",
+  "dependencies": {
+    "express": "^4.18.1",    
+    "morgan": "^1.10.0",
+    "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
 }
