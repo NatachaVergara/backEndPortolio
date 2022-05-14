@@ -58,7 +58,7 @@ const deleteProyect = async (id) => {
     return {
         id,
         deleted: data.affectedRows ? true : false,
-        message: deleted ? `Proyect has been deleted` : 'Try again'
+        message: `The proyect has been deleted` 
     }
 }
 
