@@ -32,7 +32,8 @@ const createProyectController = async (req, res) => {
 
 
 const updateProyectController = async (req, res) => {
-    const { id, title, link, logo, img, tec } = req.body
+    const {id} = req.params
+    const { title, link, logo, img, tec } = req.body
 
     try {
         const proyect = await updateProyect({ id, title, link, logo, img, tec })
@@ -43,7 +44,7 @@ const updateProyectController = async (req, res) => {
 };
 
 const deleteProyectController = async (req, res) => {
-    const { id } = req.body
+    const {id} = req.params
     try {
         const proyect = await deleteProyect(id)
         return res.send(proyect)
