@@ -50,9 +50,9 @@ const deleteProyectController = async (req, res) => {
     const {id} = req.params
     try {
         const proyect = await deleteProyect(id)
-        return res.send(proyect)
+        return res.status(200).send(proyect)
     } catch (error) {
-        console.log(error)
+        return res.status(500).send('Not possible to delete proyect')
     }
 };
 
