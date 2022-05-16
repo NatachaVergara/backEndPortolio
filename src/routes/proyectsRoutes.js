@@ -11,7 +11,6 @@ const { allProyectsController,
 router.get('/', allProyectsController)
 router.get('/:id', findProyectController)
 router.post('/', createProyectController)
-//El id va a entrar por el body y no por params
 router.put('/:id', updateProyectController)
 router.delete('/:id', deleteProyectController)
 
