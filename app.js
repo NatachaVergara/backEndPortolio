@@ -30,7 +30,7 @@ const corsOptions = {
 
 
 app.use('/users',cors(corsOptions), usersRoutes)
-app.use('/proyects', proyectsRouter)
+app.use('/proyects', cors(corsOptions), proyectsRouter)
 
 
 
