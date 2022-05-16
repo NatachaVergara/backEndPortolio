@@ -19,3 +19,6 @@ fetch(`http://localhost:3002/proyects`, request)
 .then(response => response.text())
 .then(data => console.log(data))
 .catch(err => console.error(err))
+
+
+
