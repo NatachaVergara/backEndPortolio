@@ -14,7 +14,7 @@ const request = {
 };
 
 
-fetch(`http://localhost:3002/proyects`, request)
+fetch(`https://nv-portfolio.herokuapp.com/proyects`, request)
 .then(response => response.text())
 .then(data => console.log(data))
 .catch(err => console.error(err))

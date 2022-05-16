@@ -1,11 +1,12 @@
 const mysql = require('mysql');
+const config = require('./db.config')
 
 module.exports.request = (query) => new Promise((res,rej) => {
     const connection = mysql.createPool({
-        host: 'localhost',
-        port: 3306,
-        user: 'root',
-        database: 'portfolio'
+        host: config.HOST,
+        user: config.USER,
+        password: config.PASSWORD,
+        database: config.DB
     })
 
     connection.query(query, (error,data,field) =>{
