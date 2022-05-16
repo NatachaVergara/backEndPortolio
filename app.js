@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const logger = require("morgan");
 const createError = require("http-errors");
-
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3002;
 
@@ -14,13 +14,22 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 //middleware
 app.use(logger("dev"));
 app.use(express.json());
+app.use(cors());
 // view engine setup
 app.set("views", path.join(__dirname, "./src/views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
 
-app.use('/users', usersRoutes)
+const corsOptions = {
+  origin: '*',
+  credentials:true,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+
+
+app.use('/users',cors(corsOptions), usersRoutes)
 app.use('/proyects', proyectsRouter)
 
 
