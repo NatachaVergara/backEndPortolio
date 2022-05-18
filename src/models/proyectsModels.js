@@ -27,7 +27,7 @@ const createProyect = async ({ title, link, logo, img, tec }) => {
     return {
         id: data.insertId,
         proyect: { title, link, logo, img, tec },
-        data,
+        data: [...data],
         message: `New proyect created successfully`
     }
 }
@@ -42,7 +42,7 @@ const updateProyect = async ({ id, title, link, logo, img, tec }) => {
         WHERE id = ${id}    
     `)
     return {
-        data,
+        data: [...data],
         proyect: { title, link, logo, img, tec },
         update: data.affectedRows ? true : false,
         message: `The proyect has been updated`
@@ -56,7 +56,9 @@ const deleteProyect = async (id) => {
     `)
 
     return {
+
         id,
+        data: [...data],
         deleted: data.affectedRows ? true : false,
         message: "The proyect has been deleted" 
     }
