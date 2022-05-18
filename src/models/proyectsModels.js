@@ -41,7 +41,7 @@ const updateProyect = async ({ id, title, link, logo, img, tec }) => {
         tec = "${tec}"
         WHERE id = ${id}    
     `)
-    const fulldata = await request(`SELECT * FROM proyects`)   
+    const fulldata = await request(`SELECT * FROM proyects`)
     return {
         data,
         fulldata: [...fulldata],
@@ -55,11 +55,13 @@ const deleteProyect = async (id) => {
     const data = await request(`
     DELETE FROM proyects WHERE id = ${id}
     `)
+    const fulldata = await request(`SELECT * FROM proyects`)
 
     return {
         id,
+        fulldata: [...fulldata],
         deleted: data.affectedRows ? true : false,
-        message: "The proyect has been deleted" 
+        message: "The proyect has been deleted"
     }
 }
 
