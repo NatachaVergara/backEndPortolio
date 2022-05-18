@@ -33,7 +33,7 @@ const createProyect = async ({ title, link, logo, img, tec }) => {
 }
 
 const updateProyect = async ({ id, title, link, logo, img, tec }) => {
-    const data = await request(
+    const updateData = await request(
         `UPDATE proyects SET title = "${title}",
         link = "${link}",
         logo = "${logo}",
@@ -41,9 +41,10 @@ const updateProyect = async ({ id, title, link, logo, img, tec }) => {
         tec = "${tec}"
         WHERE id = ${id}    
     `)
+    const fulldata = await request(`SELECT * FROM proyects`)   
     return {
-        data,
-        updateData: [...data],
+        updateData,
+        fulldata: [...fulldata],
         update: data.affectedRows ? true : false,
         message: `The proyect has been updated`
     }
