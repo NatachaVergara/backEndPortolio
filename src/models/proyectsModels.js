@@ -43,7 +43,7 @@ const updateProyect = async ({ id, title, link, logo, img, tec }) => {
     `)
     return {
         data,
-        proyect: { title, link, logo, img, tec },
+        updateData: [...data],
         update: data.affectedRows ? true : false,
         message: `The proyect has been updated`
     }
