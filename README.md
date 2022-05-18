@@ -14,7 +14,7 @@
 
 |  Dependencia |  Versión  |
 | ------------ | ------------|
-| node  | 17.0.2   |   
+| node  | 16.14.2   |   
 | express | 4.18.1 |   
 | morgan  |  1.10.0  |  
 | mysql | 2.18.1  |
