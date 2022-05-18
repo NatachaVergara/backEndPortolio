@@ -1,7 +1,7 @@
 # BackEnd Portfolio Personal
-![](https://firebasestorage.googleapis.com/v0/b/portfolio-c32fd.appspot.com/o/panel_de_control%2FNV-Portfolio-personal-Google-Chr.gif?alt=media&token=567f1925-bcbe-4511-a37b-e2db3cbc960c)
 
-![](https://github.com/NatachaVergara/backEndPortolio/blob/main/NV-Portfolio-personal-Google-Chr.gif)
+
+![](https://firebasestorage.googleapis.com/v0/b/portfolio-c32fd.appspot.com/o/panel_de_control%2FNV-Portfolio-personal-Google-Chr.gif?alt=media&token=a23f04ca-6950-4f73-a35b-179efa1a8b47)
 
 ![](https://firebasestorage.googleapis.com/v0/b/portfolio-c32fd.appspot.com/o/panel_de_control%2FcontrolPanel_main.png?alt=media&token=249861c3-3567-478f-bf16-f0ba4389d744)
 ![](https://firebasestorage.googleapis.com/v0/b/portfolio-c32fd.appspot.com/o/panel_de_control%2FcontrolPanel_add.png?alt=media&token=e45e81d2-2fe9-4a7c-ac81-74b7f3d088d2)
