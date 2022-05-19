@@ -14,12 +14,12 @@ const loginController = async (req, res) => {
 
 
 const createUserControllers = async (req, res) => {
-    const { user, password, type } = req.body
+    const { user, password } = req.body
     console.log(req.body)
     try {
-        const users = await createUser(user, password, type)
+        const users = await createUser({user, password})
         return res.status(200).send(users)
-        
+
     } catch (error) {
         return res.status(500).send(`Se produjo un error`)
     }
