@@ -2,9 +2,24 @@ const { request } = require('../db/request')
 
 
 
-const findUser = async (email) => {
-    const data = await request(`SELECT FROM users WHERE email = ${email}`)
-    return data[0]
+const findUser = async (email, password, type) => {
+    const data = await request(`
+    SELECT
+        email AS user,
+        password
+    FROM users 
+    WHERE email = "${email}"
+    AND type = "${type}" `)
+
+    if (data.length) {
+        return {
+            user: data[0],
+            isUser: true
+        }
+    } else {
+        return { isUser: false }
+    }
+
 }
 
 
