@@ -24,38 +24,38 @@ const createUserControllers = async (req, res) => {
 }
 
 
-// const allUsersControllers = async (req, res) => {
-//     try {
-//         const users = await allUsers()
-//         return res.send(users)
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+const allUsersControllers = async (req, res) => {
+    try {
+        const users = await allUsers()
+        return res.send(users)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 
 
 
-// const updateUserController = async (req, res) => {
-//     const { id } = req.params
-//     try {
-//         const user = await updateUser(id)
-//         return res.send(user)
-//     } catch (error) {
+const updateUserController = async (req, res) => {
+    const { id } = req.params
+    try {
+        const user = await updateUser(id)
+        return res.send(user)
+    } catch (error) {
 
-//     }
-// }
-// const deleteUserController = async (req, res) => {
-//     const { id } = req.params
-//     try {
-//         const user = await deleteUser(id)
-//         return res.send(user)
-//     } catch (error) {
+    }
+}
+const deleteUserController = async (req, res) => {
+    const { id } = req.params
+    try {
+        const user = await deleteUser(id)
+        return res.send(user)
+    } catch (error) {
 
-//     }
-// }
+    }
+}
 
 
 
-module.exports = { loginController, createUserControllers }
+module.exports = { loginController, createUserControllers, deleteUserController, updateUserController, allUsersControllers }
