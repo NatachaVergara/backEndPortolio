@@ -1,6 +1,6 @@
 const { request } = require('../db/request')
 
-const hashPassword = require('../utils/password')
+const {hashPassword} = require('../utils/password')
 
 
 const findUser = async (user, password) => {
