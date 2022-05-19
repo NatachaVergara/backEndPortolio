@@ -3,14 +3,14 @@ const { request } = require('../db/request')
 const hashPassword = require('../utils/password')
 
 
-const findUser = async (user, password, type) => {
+const findUser = async (user, password) => {
     const data = await request(`
     SELECT
         email AS user,
         password
     FROM users 
     WHERE email = "${user}"
-    AND type = "${type}" `)
+    AND type = "ADMIN" `)
 
     if (data.length) {
         return {
