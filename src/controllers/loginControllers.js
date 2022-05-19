@@ -17,9 +17,9 @@ const createUserControllers = async (req, res) => {
     const { user, password, type } = req.body
     try {
         const users = await createUser(user, password, type)
-        return res.send(users)
+        return res.status(200).send(users)
     } catch (error) {
-        console.log(error)
+        return res.status(500).send(`Se produjo un error`)
     }
 }
 
