@@ -8,7 +8,7 @@ const cors = require("cors");
 const PORT = process.env.PORT || 3002;
 
 //Routes
-const usersRoutes = require('./src/routes/usersRoutes')
+const loginRoutes = require('./src/routes/loginRoute')
 const proyectsRouter = require('./src/routes/proyectsRoutes')
 
 //middleware
@@ -29,7 +29,7 @@ const corsOptions = {
 
 
 
-app.use('/users',cors(corsOptions), usersRoutes)
+app.use('/login',cors(corsOptions), loginRoutes)
 app.use('/proyects', cors(corsOptions), proyectsRouter)
 
 

@@ -1,6 +1,17 @@
 const { request } = require('../db/request')
 
 
+
+const findUser = async (email) => {
+    const data = await request(`SELECT FROM users WHERE email = ${email}`)
+    return data[0]
+}
+
+
+
+
+
+
 const allUsers = async () => {
 
     const data = await request(`SELECT * FROM users`)
@@ -8,11 +19,6 @@ const allUsers = async () => {
     return { data }
 
 }
-const findUser = async (email) => {
-    const data = await request(`SELECT FROM users WHERE email = ${email}`)
-    return data[0]
-}
-
 
 
 const createUser = async ({ email, password }) => {
