@@ -35,8 +35,7 @@ const createUser = async (user, password, type) => {
 
     return {
         id: data.insertId,
-        user,
-        message: `New user created`
+        user
     }
 }
 
