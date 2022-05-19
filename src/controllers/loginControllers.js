@@ -15,6 +15,7 @@ const loginController = async (req, res) => {
 
 const createUserControllers = async (req, res) => {
     const { user, password, type } = req.body
+    
     try {
         const users = await createUser(user, password, type)
         return res.status(200).send(users)
