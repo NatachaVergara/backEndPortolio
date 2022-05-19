@@ -4,8 +4,8 @@ const { allUsers, findUser, createUser, updateUser, deleteUser } = require('../m
 const loginController = async (req, res) => {
     const { user, password, type } = req.body
     try {
-        const user = await findUser(user, password, type)
-        return res.status(200).send(user)
+        const users = await findUser(user, password, type)
+        return res.status(200).send(users)
     } catch (error) {
         return res.status(500).send(`Se produjo un error`)
     }
