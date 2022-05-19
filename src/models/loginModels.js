@@ -11,13 +11,15 @@ const findUser = async (email, password, type) => {
     WHERE email = "${email}"
     AND type = "${type}" `)
 
-    if (data.length) {
+    if (data) {
         return {
             user: data[0],
             isUser: true
         }
     } else {
-        return { isUser: false }
+        return {
+            isUser: false
+        }
     }
 
 }

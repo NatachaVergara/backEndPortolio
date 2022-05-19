@@ -2,7 +2,7 @@ const { allUsers, findUser, createUser, updateUser, deleteUser } = require('../m
 
 
 const loginController = async (req, res) => {
-    const { email, password, type } = req.params
+    const { email, password, type } = req.body
     try {
         const user = await findUser(email, password, type)
         return res.status(200).send(user)
