@@ -13,7 +13,15 @@ const loginController = async (req, res) => {
 
 
 
-
+const createUserControllers = async (req, res) => {
+    const { email, password, type } = req.body
+    try {
+        const users = await createUser(email, password, type)
+        return res.send(users)
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 
 // const allUsersControllers = async (req, res) => {
@@ -26,15 +34,7 @@ const loginController = async (req, res) => {
 // }
 
 
-// const createUserControllers = async (req, res) => {
-//     const { email, password } = req.params
-//     try {
-//         const users = await createUser(email, password)
-//         return res.send(users)
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
+
 
 
 // const updateUserController = async (req, res) => {
@@ -58,4 +58,4 @@ const loginController = async (req, res) => {
 
 
 
-module.exports = { loginController }
+module.exports = { loginController, createUserControllers }

@@ -1,14 +1,15 @@
 const { request } = require('../db/request')
 
+const hashPassword = require('../utils/password')
 
 
-const findUser = async (email, password, type) => {
+const findUser = async (user, password, type) => {
     const data = await request(`
     SELECT
         email AS user,
         password
     FROM users 
-    WHERE email = "${email}"
+    WHERE email = "${user}"
     AND type = "${type}" `)
 
     if (data) {
@@ -25,6 +26,20 @@ const findUser = async (email, password, type) => {
 }
 
 
+const createUser = async (user, password, type) => {
+    const hasedPassword = hashPassword(password)
+    const data = await request(
+        `INSERT INTO users(email, password, type)
+            VALUES("${user}", "${hasedPassword}", "${type}")
+        `)
+
+    return {
+        id: data.insertId,
+        user,
+        message: `New user created`
+    }
+}
+
 
 
 
@@ -37,20 +52,6 @@ const allUsers = async () => {
 
 }
 
-
-const createUser = async ({ email, password }) => {
-
-    const data = await request(
-        `INSERT INTO users(email, password)
-            VALUES('${email}', '${password}');        `
-    )
-
-    return {
-        id: data.insertId,
-        data,
-        message: `New user created`
-    }
-}
 
 const updateUser = async ({ id, email, password }) => {
 
