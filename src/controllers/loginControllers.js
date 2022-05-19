@@ -7,7 +7,7 @@ const loginController = async (req, res) => {
         const users = await findUser(user, password)
         return res.status(200).send(users)
     } catch (error) {
-        return res.status(500).send(`Se produjo un error`)
+        return res.status(500).send(`Se produjo un error,   ${error}`)
     }
 }
 
@@ -21,7 +21,7 @@ const createUserControllers = async (req, res) => {
         return res.status(200).send(users)
 
     } catch (error) {
-        return res.status(500).send(`Se produjo un error` + error)
+        return res.status(500).send(`Se produjo un error,   ${error}` )
     }
 }
 
@@ -31,7 +31,7 @@ const allUsersControllers = async (req, res) => {
         const users = await allUsers()
         return res.send(users)
     } catch (error) {
-        console.log(error)
+        return res.status(500).send(`Se produjo un error:   ${error}` )
     }
 }
 
@@ -45,7 +45,7 @@ const updateUserController = async (req, res) => {
         const user = await updateUser(id)
         return res.send(user)
     } catch (error) {
-
+        return res.status(500).send(`Se produjo un error:   ${error}` )
     }
 }
 const deleteUserController = async (req, res) => {
@@ -54,7 +54,7 @@ const deleteUserController = async (req, res) => {
         const user = await deleteUser(id)
         return res.send(user)
     } catch (error) {
-
+        return res.status(500).send(`Se produjo un error:   ${error}` )
     }
 }
 

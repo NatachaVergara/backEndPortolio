@@ -1,6 +1,6 @@
 const { request } = require('../db/request')
 
-const {hashPassword} = require('../utils/password')
+const {hashPassword, comparePassword} = require('../utils/password')
 
 
 const findUser = async (user, password) => {
@@ -12,7 +12,8 @@ const findUser = async (user, password) => {
     WHERE email = "${user}"
     AND type = "ADMIN" `)
 
-    if (data.length) {
+    if (data.length && comparePassword(password, data[0].password)) {
+        delete data[0].password
         return {
             user: data[0],
             isUser: true
