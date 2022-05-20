@@ -8,6 +8,7 @@ const signIn = async (user, password) => {
     SELECT
         email AS user,
         password
+        id
     FROM users 
     WHERE email = "${user}"
     AND type = "ADMIN" `)
