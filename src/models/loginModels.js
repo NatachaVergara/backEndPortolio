@@ -3,7 +3,7 @@ const { request } = require('../db/request')
 const {hashPassword, comparePassword} = require('../utils/password')
 
 
-const findUser = async (user, password) => {
+const signIn = async (user, password) => {
     const data = await request(`
     SELECT
         email AS user,
@@ -27,7 +27,7 @@ const findUser = async (user, password) => {
 }
 
 
-const createUser = async ({user, password}) => {
+const signUp = async ({user, password}) => {
     const hasedPassword = hashPassword(password)
     const data = await request(
         `INSERT INTO users(email, password, type)
@@ -45,11 +45,8 @@ const createUser = async ({user, password}) => {
 
 
 const allUsers = async () => {
-
     const data = await request(`SELECT * FROM users`)
-
     return { data }
-
 }
 
 
@@ -85,8 +82,8 @@ const deleteUser = async (id) => {
 
 module.exports = {
     allUsers,
-    findUser,
-    createUser,
+    signIn,
+    signUp,
     updateUser,
     deleteUser
 

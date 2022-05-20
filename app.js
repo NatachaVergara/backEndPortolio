@@ -4,6 +4,11 @@ const path = require("path");
 const logger = require("morgan");
 const createError = require("http-errors");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+
+
+
+
 
 const PORT = process.env.PORT || 3002;
 
@@ -15,6 +20,7 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 app.use(logger("dev"));
 app.use(express.json());
 app.use(cors());
+app.use(cookieParser());
 // view engine setup
 app.set("views", path.join(__dirname, "./src/views"));
 app.set("view engine", "ejs");
