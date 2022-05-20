@@ -9,7 +9,7 @@ const signInController = async (req, res) => {
             res.cookie("session", user)
             return res.status(200).send(user)
         } else {
-            return res.status(204).send("No existe este usuario")
+            return res.status(200).send(user)
         }
     } catch (error) {
         return res.status(500).send(`Se produjo un error,   ${error}`)

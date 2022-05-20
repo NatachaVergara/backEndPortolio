@@ -15,12 +15,12 @@ const signIn = async (user, password) => {
     if (data.length && comparePassword(password, data[0].password)) {
         delete data[0].password
         return {
-
             user: data[0],
             isUser: true
         }
     } else {
         return {
+            message:'user not found. ¿El email o password son correctos?',
             isUser: false
         }
     }
