@@ -13,7 +13,8 @@ const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3002;
 
 //Routes
-const loginRoutes = require('./src/routes/loginRoute')
+const signinRoutes = require('./src/routes/signinRoutes')
+const signupRoutes = require('./src/routes/signupRoutes')
 const proyectsRouter = require('./src/routes/proyectsRoutes')
 
 //middleware
@@ -35,7 +36,8 @@ const corsOptions = {
 
 
 
-app.use('/login', cors(corsOptions), loginRoutes)
+app.use('/signin', cors(corsOptions), signinRoutes)
+app.use('/signup', cors(corsOptions), signupRoutes)
 app.use('/proyects', cors(corsOptions), proyectsRouter)
 
 
