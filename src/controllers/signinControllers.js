@@ -1,13 +1,14 @@
 const { allUsers, signIn, updateUser, deleteUser } = require('../models/signinModels')
 
 const {generateCookieDaysDurationInMin} = require('../utils/cookieTime')
+const {createToken} = require('../utils/token')
 
 const signInController = async (req, res) => {
     const { email, password } = req.body
     try {
         const user = await signIn(email, password)
         if (user) {
-            res.cookie("session", user,{
+            res.cookie("session", createToken(user),{
                 maxAge: generateCookieDaysDurationInMin(3) //3 dias conectado
             })
             return res.status(200).send(user)
