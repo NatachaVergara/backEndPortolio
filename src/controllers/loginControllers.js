@@ -5,7 +5,7 @@ const signInController = async (req, res) => {
     const { email, password } = req.body
     try {
         const user = await signIn(email, password)
-        if (user.existUser) {
+        if (user) {
             res.cookie("session", user)
             return res.status(200).send(user)
         } else {
