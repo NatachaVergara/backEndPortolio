@@ -7,7 +7,7 @@ const signIn = async (user, password) => {
     const data = await request(`
     SELECT
         email AS user,
-        password
+        password,
         id
     FROM users 
     WHERE email = "${user}"
