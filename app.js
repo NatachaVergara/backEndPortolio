@@ -21,7 +21,7 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 
 /***************** */
 const corsOptions = {
-  origin:'http://localhost:3002', 
+  origin: "https://nvergara-portfolio.netlify.app/", 
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
