@@ -19,12 +19,16 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 
 
 
-/***************** */
 const corsOptions = {
-  origin: '*',
-  credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+  origin: function(origin, callback) {
+    if(!origin || listaRutas.indexOf(origin) !== -1){
+        callback(null, true)
+    } else {
+      callback(new Error("No soportable por CORS"))
+    }
+  },
+  credentials: true
+};
 
 
 //middleware
