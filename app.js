@@ -21,7 +21,7 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 
 /***************** */
 const corsOptions = {
-  origin: 'http://localhost:3000' || process.env.PORT,
+  origin: '*',
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
