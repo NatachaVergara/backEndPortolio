@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 /***************** */
 const corsOptions = {
-  origin: '*',
+  origin: process.env.PORT || 3002,
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
