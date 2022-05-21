@@ -19,12 +19,12 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 
 
 
-/***************** */
-const corsOptions = {
-  origin: '*',
-  credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
+// /***************** */
+// const corsOptions = {
+//   origin: '*',
+//   credentials: true,
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
 
 
 //middleware
@@ -40,9 +40,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
-app.use('/signin', cors(corsOptions), signinRoutes)
-app.use('/signup', cors(corsOptions), signupRoutes)
-app.use('/proyects', cors(corsOptions), proyectsRouter)
+app.use('/signin', cors(), signinRoutes)
+app.use('/signup', cors(), signupRoutes)
+app.use('/proyects', cors(), proyectsRouter)
 
 
 
