@@ -17,6 +17,16 @@ const signinRoutes = require('./src/routes/signinRoutes')
 const signupRoutes = require('./src/routes/signupRoutes')
 const proyectsRouter = require('./src/routes/proyectsRoutes')
 
+
+
+/***************** */
+const corsOptions = {
+  origin: '*',
+  credentials: true,
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+}
+
+
 //middleware
 app.use(logger("dev"));
 app.use(express.json());
@@ -27,12 +37,6 @@ app.set("views", path.join(__dirname, "./src/views"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "public")));
 
-/***************** */
-const corsOptions = {
-  origin: process.env.PORT || 3002,
-  credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
 
 
 
