@@ -20,17 +20,16 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 
 
 /***************** */
-const corsOptions = {
-  origin: '*' ,
+const corsConfig = {
+  origin: true,
   credentials: true,
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-}
-
+};
 
 //middleware
 app.use(logger("dev"));
 app.use(express.json());
 app.use(cors());
+app.options('*', cors(corsConfig));
 app.use(cookieParser());
 // view engine setup
 app.set("views", path.join(__dirname, "./src/views"));
@@ -40,9 +39,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 
-app.use('/signin', cors(), signinRoutes)
-app.use('/signup', cors(), signupRoutes)
-app.use('/proyects', cors(), proyectsRouter)
+app.use('/signin', cors(corsConfig), signinRoutes)
+app.use('/signup', cors(corsConfig), signupRoutes)
+app.use('/proyects', cors(corsConfig), proyectsRouter)
 
 
 
