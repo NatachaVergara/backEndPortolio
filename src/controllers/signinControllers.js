@@ -7,6 +7,7 @@ const signInController = async (req, res) => {
     const { email, password } = req.body
     try {
         const user = await signIn(email, password)
+        console.log(user)
         if (user) {
             res.cookie("session", createToken(user),{
                 maxAge: generateCookieDaysDurationInMin(3) //3 dias conectado
