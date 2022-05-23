@@ -21,7 +21,7 @@ const signIn = async (user, password) => {
         }
     } else {
         return {
-            message:'user not found. ¿El email o password son correctos?',
+            message:'Usuario no encontrado. ¿El email o password son correctos?',
             isUser: false
         }
     }
