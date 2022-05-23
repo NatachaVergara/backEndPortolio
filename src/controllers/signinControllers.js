@@ -13,7 +13,7 @@ const signInController = async (req, res) => {
             })
             return res.status(200).send(user)
         } else {
-            return res.status(200).send(user)
+            return res.status(401).send('No se encontro el usuario. Revise la información ingresada')
         }
     } catch (error) {
         return res.status(500).send(`Se produjo un error,   ${error}`)
