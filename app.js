@@ -7,21 +7,18 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
 
-
-
-
 const PORT = process.env.PORT || 3002;
 
 //Routes
 const signinRoutes = require('./src/routes/signinRoutes')
 const signupRoutes = require('./src/routes/signupRoutes')
 const proyectsRouter = require('./src/routes/proyectsRoutes')
-
+const contactoRouter = require('./src/routes/contactoRoutes')
 
 
 /***************** */
 const corsOptions = {
-  origin: "*", 
+  origin: "*",
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -35,14 +32,15 @@ app.use(cookieParser());
 // view engine setup
 app.set("views", path.join(__dirname, "./src/views"));
 app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "public/index")));
 
 
-
+//Routes
 
 app.use('/signin', cors(corsOptions), signinRoutes)
 app.use('/signup', cors(corsOptions), signupRoutes)
 app.use('/proyects', cors(corsOptions), proyectsRouter)
+app.use('/contacto', cors(corsOptions), contactoRouter)
 
 
 
