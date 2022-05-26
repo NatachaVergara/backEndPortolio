@@ -38,11 +38,11 @@ const createLinkController = async (req, res) => {
 
 
 const linkUpdateController = async (req, res) => {
-    const { link, name } = req.body
+    const { link, name, img } = req.body
     const { id } = req.params
 
     try {
-        const data = await updateLinkModel(id, link, name)
+        const data = await updateLinkModel(id, link, name, img)
         return res.status(200).send(data)
     } catch (error) {
         return res.status(500).send(error)
