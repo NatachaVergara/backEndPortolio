@@ -54,7 +54,7 @@ const updateLinkModel = async (id, link, name, img) => {
     return {
         linkData,
         newInfo: [...newInfo],
-        update: data.affectedRows ? true : false,
+        update: linkData.affectedRows ? true : false,
         message: `Your footer link has been updated`
     }
 };
