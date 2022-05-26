@@ -5,7 +5,7 @@ const allProyectsController = async (req, res) => {
         const proyects = await allProyects()
         return res.status(200).send(proyects)
     } catch (error) {
-        console.log(error)
+        return res.status(500).send(error)
     }
 };
 
@@ -15,7 +15,7 @@ const findProyectController = async (req, res) => {
         const proyect = await findProyect(id)
         return res.send(proyect)
     } catch (error) {
-        console.log(error)
+        return res.status(500).send(error)
     }
 };
 
@@ -26,7 +26,7 @@ const createProyectController = async (req, res) => {
         return res.status(200).send(proyect)
     } catch (error) {
         console.log(error)
-        return res.status(500).send('Not possible to create proyect')
+        return res.status(500).send(error)
         
     }
 };
@@ -42,7 +42,7 @@ const updateProyectController = async (req, res) => {
         return res.status(200).send(proyect)
     } catch (error) {
         console.log(error)
-        return res.status(500).send('Not possible to update proyect')
+        return res.status(500).send(error)
     }
 };
 
@@ -52,7 +52,7 @@ const deleteProyectController = async (req, res) => {
         const proyect = await deleteProyect(id)
         return res.status(200).send(proyect)
     } catch (error) {
-        return res.status(500).send('Not possible to delete proyect')
+        return res.status(500).send(error)
     }
 };
 
