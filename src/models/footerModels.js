@@ -46,7 +46,7 @@ const updateLinkModel = async (id, link, name, img) => {
         `UPDATE footerLinks SET 
         link = "${link}",
         name = "${name}",
-        img = "${img}"
+        img = "<${img}/>"
         WHERE id = ${id}
         `)
 
