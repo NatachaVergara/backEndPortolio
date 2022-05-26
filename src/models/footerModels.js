@@ -24,7 +24,7 @@ const linkModel = async (id) => {
 const createLinkModel = async (link, name, img) => {
     const data = await request(
 
-        `INSERT INTO footerLinks(link, name)
+        `INSERT INTO footerLinks(link, name, img)
         VALUES("${link}", "${name}", "${img}")`
     )
 
