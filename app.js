@@ -41,7 +41,7 @@ app.use('/signin', cors(corsOptions), signinRoutes)
 app.use('/signup', cors(corsOptions), signupRoutes)
 app.use('/proyects', cors(corsOptions), proyectsRouter)
 app.use('/contacto', cors(corsOptions), contactoRouter)
-app.use('/footer', footerRouter )
+app.use('/footer',cors(corsOptions), footerRouter )
 
 
 
