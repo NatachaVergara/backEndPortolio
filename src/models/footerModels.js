@@ -65,9 +65,9 @@ const deleteLinkModel = async (id) => {
     const newInfo = await request(`SELECT * FROM footerLinks`)
 
     return {
-        linkDeleted,
+        id,
         newInfo: [...newInfo],
-        deleted: data.affectedRows ? true : false,
+        deleted: linkDeleted.affectedRows ? true : false,
         message: `Your footer link has been deleted`
     }
 
