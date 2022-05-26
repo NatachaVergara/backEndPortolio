@@ -1,15 +1,21 @@
 const express = require('express');
 const router = express.Router();
 
-
+const { sendMail } = require('../utils/mail')
 
 router.get('/')
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const { name, email, razon, msg } = req.body
     console.log(name, email, razon, msg)
 
-    return res.send({ sended: true })
 
+    try {
+        const sended = await (sendMail({ to: email, subject: `${name} - ${email}`, text: msg }))
+        return res.send({ sended: true })
+
+    } catch (error) {
+        return res.send({ sended: false })
+    }
 })
 
 
