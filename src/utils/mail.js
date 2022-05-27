@@ -4,7 +4,7 @@ const { credentials_MAIL_USERNAME, credentials_MAIL_PASSWORD, credentials_OAUTH2
 //const credentials = require('../config/mail_credentials.config.js')
 
 
-module.exports.sendMail = ({to, subject, text}) => new Promise((resolve, reject) => {
+module.exports.sendMail = ({to, subject, text}) => new Promise((res, rej) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
