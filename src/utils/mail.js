@@ -11,7 +11,7 @@ module.exports.sendMail = ({to, subject, text}) => new Promise((res, rej) => {
             type: 'OAuth2',
             user: credentials.MAIL_USERNAME,
             pass: credentials.MAIL_PASSWORD,
-            clienteId: credentials.OAUTH2_CLIENTID,
+            clientId: credentials.OAUTH2_CLIENTID,
             clientSecret: credentials.OAUTH2_CLIENT_SECRET,
             refreshToken: credentials.OAUTH2_REFRESH_TOKEN
         }
