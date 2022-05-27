@@ -13,7 +13,7 @@ router.post('/', async (req, res) => {
 
     } catch (error) {
         console.log(error)
-        return res.send({ sended: false, error:error.response })
+        return res.send({ sended: false, error: error })
     }
 })
 
