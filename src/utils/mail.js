@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const credentials = require('../config/mail_credentials.config.js')
 
 
-module.exports.sendMail = ({to, subject, text}) => new Promise((res, rej) => {
+module.exports.sendMail = ({from, subject, text}) => new Promise((res, rej) => {
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -18,7 +18,7 @@ module.exports.sendMail = ({to, subject, text}) => new Promise((res, rej) => {
     });
 
     let mailOptions = {
-        from: to,
+        from,
         to: 'ntchvergara@gmail.com',
         subject,
         text
