@@ -1,4 +1,5 @@
-const nodemailer = require('nodemailer')
+const nodemailer = require('nodemailer');
+const { credentials_MAIL_USERNAME, credentials_MAIL_PASSWORD, credentials_OAUTH2_CLIENTID, credentials_OAUTH2_CLIENT_SECRET, credentials_OAUTH2_REFRESH_TOKEN } = require('../config/mail_credentials.config');
 
 //const credentials = require('../config/mail_credentials.config.js')
 
@@ -8,11 +9,11 @@ module.exports.sendMail = ({to, subject, text}) => new Promise((resolve, reject)
         service: 'gmail',
         auth: {
             type: 'OAuth2',
-            user: "ntchvergara@gmail.com",
-            pass: "Elisabet1986",
-            clienteId: '383376051581-9ja3sovb4l5cti1dbv30paog2icv9m4o.apps.googleusercontent.com',
-            clientSecret: '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',
-            refreshToken: '1//04HRr29E1fwSKCgYIARAAGAQSNwF-L9IrTdY19pyUS5NziqyA2qxGarebb8LtjQlVIZZu1jFYlKOwE9KPDqY6ex9_pXYSyfY4L_E'
+            user: credentials_MAIL_USERNAME,
+            pass: credentials_MAIL_PASSWORD,
+            clienteId: credentials_OAUTH2_CLIENTID,
+            clientSecret: credentials_OAUTH2_CLIENT_SECRET,
+            refreshToken: credentials_OAUTH2_REFRESH_TOKEN
         }
     });
 
