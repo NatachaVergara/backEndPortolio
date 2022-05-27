@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
-const { credentials_MAIL_USERNAME, credentials_MAIL_PASSWORD, credentials_OAUTH2_CLIENTID, credentials_OAUTH2_CLIENT_SECRET, credentials_OAUTH2_REFRESH_TOKEN } = require('../config/mail_credentials.config');
 
-//const credentials = require('../config/mail_credentials.config.js')
+
+const credentials = require('../config/mail_credentials.config.js')
 
 
 module.exports.sendMail = ({to, subject, text}) => new Promise((res, rej) => {
@@ -9,11 +9,11 @@ module.exports.sendMail = ({to, subject, text}) => new Promise((res, rej) => {
         service: 'gmail',
         auth: {
             type: 'OAuth2',
-            user: credentials_MAIL_USERNAME,
-            pass: credentials_MAIL_PASSWORD,
-            clienteId: credentials_OAUTH2_CLIENTID,
-            clientSecret: credentials_OAUTH2_CLIENT_SECRET,
-            refreshToken: credentials_OAUTH2_REFRESH_TOKEN
+            user: credentials.MAIL_USERNAME,
+            pass: credentials.MAIL_PASSWORD,
+            clienteId: credentials.OAUTH2_CLIENTID,
+            clientSecret: credentials.OAUTH2_CLIENT_SECRET,
+            refreshToken: credentials.OAUTH2_REFRESH_TOKEN
         }
     });
 
@@ -25,7 +25,7 @@ module.exports.sendMail = ({to, subject, text}) => new Promise((res, rej) => {
     
     }
     
-    transporter.sendMail(mailOptions, function(err,data) {
+    transporter.sendMail(mailOptions, function(err, data) {
         if(err){
             rej(err)
         }else{
