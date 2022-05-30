@@ -6,8 +6,8 @@ const signUp = async (user, password) => {
     const hasedPassword = hashPassword(password)
 
 
-    const exist = await request(`SELECT * FROM users WHERE email = ${email}`)
-    if (exist.length > 0) {
+    const existe = await request(`SELECT * FROM users WHERE email = ${email}`)
+    if (existe.length > 0) {
         return 'El usuario ya existe'
     } else {
         const data = await request(
