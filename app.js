@@ -15,6 +15,7 @@ const signupRoutes = require('./src/routes/signupRoutes')
 const proyectsRouter = require('./src/routes/proyectsRoutes')
 const contactoRouter = require('./src/routes/contactoRoutes')
 const footerRouter = require('./src/routes/footerRoutes')
+const imageRouter = require('./src/routes/imagesRoutes')
 
 /***************** */
 const corsOptions = {
@@ -41,7 +42,8 @@ app.use('/signin', cors(corsOptions), signinRoutes)
 app.use('/signup', cors(corsOptions), signupRoutes)
 app.use('/proyects', cors(corsOptions), proyectsRouter)
 app.use('/contacto', cors(corsOptions), contactoRouter)
-app.use('/footer',cors(corsOptions), footerRouter )
+app.use('/footer', cors(corsOptions), footerRouter)
+app.use('/image', cors(corsOptions), imageRouter)
 
 
 

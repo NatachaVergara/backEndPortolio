@@ -3,7 +3,7 @@ const router = express.Router();
 
 const {signUpControllers} = require('../controllers/signupController')
 
-router.post('/',signUpControllers )
+router.post('/', signUpControllers )
 
 
 

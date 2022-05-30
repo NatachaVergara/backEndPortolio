@@ -23,7 +23,7 @@ const createProyectController = async (req, res) => {
     const { title, link, logo, img, tec } = req.body
     try {
         const proyect = await createProyect({ title, link, logo, img, tec })
-        return res.status(200).send(proyect)
+        return res.status(201).send(proyect)
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)
