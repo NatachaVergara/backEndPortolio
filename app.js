@@ -19,7 +19,7 @@ const imageRouter = require('./src/routes/imagesRoutes')
 
 /***************** */
 const corsOptions = {
-  origin: "*",
+  origin: "http://localhost:3000/" || "https://nvergara-portfolio.netlify.app/",
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -38,12 +38,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Routes
 
-app.use('/signin',  signinRoutes)
-app.use('/signup',  signupRoutes)
-app.use('/proyects',  proyectsRouter)
-app.use('/contacto',  contactoRouter)
-app.use('/footer', footerRouter )
-app.use('/image',  imageRouter)
+app.use('/signin', signinRoutes)
+app.use('/signup', cors(corsOptions), signupRoutes)
+app.use('/proyects', cors(corsOptions), proyectsRouter)
+app.use('/contacto', cors(corsOptions), contactoRouter)
+app.use('/footer', cors(corsOptions), footerRouter)
+app.use('/image', cors(corsOptions), imageRouter)
 
 
 
