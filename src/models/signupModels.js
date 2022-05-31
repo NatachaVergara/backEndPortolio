@@ -6,7 +6,7 @@ const signUp = async (user, password) => {
     const hasedPassword = hashPassword(password)
 
 
-    const existe = await request(`SELECT * FROM users WHERE email = ${email}`)
+    const existe = await request(`SELECT * FROM users WHERE email = ${user}`)
     if (existe.length > 0) {
         return 'El usuario ya existe'
     } else {
