@@ -4,35 +4,27 @@ const { comparePassword } = require('../utils/password')
 
 
 const signIn = async (user, password) => {
-    const existe = await request(`SELECT * FROM users WHERE email = ${email}`)
+    const data = await request(`
+    SELECT
+        email AS user,
+        password,
+        id
+    FROM users 
+    WHERE email = "${user}"
+    AND type = "ADMIN" `)
 
-    if (existe.length === 0) {
-        return 'El usuario no existe'
+    if (data.length && comparePassword(password, data[0].password)) {
+        delete data[0].password
+        return {
+            user: data[0],
+            isUser: true
+        }
     } else {
-        const data = await request(`
-        SELECT
-            email AS user,
-            password,
-            id
-        FROM users 
-        WHERE email = "${user}"
-        AND type = "ADMIN" `)
-
-        if (data.length && comparePassword(password, data[0].password)) {
-            delete data[0].password
-            return {
-                user: data[0],
-                isUser: true
-            }
-        } else {
-            return {
-                message: 'Usuario no encontrado. ¿El email o password son correctos?',
-                isUser: false
-            }
+        return {
+            message:'Usuario no encontrado. ¿El email o password son correctos?',
+            isUser: false
         }
     }
-
-
 
 }
 
