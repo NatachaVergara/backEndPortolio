@@ -1,5 +1,6 @@
-const mysql = require('mysql');
 const config = require('./db.config')
+const mysql = require('mysql');
+
 
 module.exports.request = (query) => new Promise((res,rej) => {
     const connection = mysql.createPool({
