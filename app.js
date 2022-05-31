@@ -19,7 +19,7 @@ const imageRouter = require('./src/routes/imagesRoutes')
 
 /***************** */
 const corsOptions = {
-  origin: "http://localhost:3000/" || "https://nvergara-portfolio.netlify.app/",
+  origin: "*",
   credentials: true,
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }
@@ -28,7 +28,7 @@ const corsOptions = {
 //middleware
 app.use(logger("dev"));
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 // view engine setup
 app.set("views", path.join(__dirname, "./src/views"));
@@ -38,12 +38,12 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Routes
 
-app.use('/signin', cors(corsOptions), signinRoutes)
-app.use('/signup', cors(corsOptions), signupRoutes)
-app.use('/proyects', cors(corsOptions), proyectsRouter)
-app.use('/contacto', cors(corsOptions), contactoRouter)
-app.use('/footer', cors(corsOptions), footerRouter)
-app.use('/image', cors(corsOptions), imageRouter)
+app.use('/signin', signinRoutes)
+app.use('/signup', signupRoutes)
+app.use('/proyects', proyectsRouter)
+app.use('/contacto', contactoRouter)
+app.use('/footer', footerRouter)
+app.use('/image', imageRouter)
 
 
 
