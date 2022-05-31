@@ -4,7 +4,7 @@ const { comparePassword } = require('../utils/password')
 
 
 const signIn = async (user, password) => {
-    const existe = await request(`SELECT * FROM users WHERE email = ${user}`)
+    const existe = await request(`SELECT * FROM users WHERE email = '${user}'`)
 
     if (existe.length === 0) {
         return 'No existe el usuario'
