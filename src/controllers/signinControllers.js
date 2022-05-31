@@ -5,6 +5,7 @@ const {createToken} = require('../utils/token')
 
 const signInController = async (req, res) => {
     const { email, password } = req.body
+    
     try {
         const user = await signIn(email, password)
         console.log(user)
