@@ -38,7 +38,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 //Routes
 
-app.use('/signin', signinRoutes)
+app.use('/signin', cors(corsOptions), signinRoutes)
 app.use('/signup', cors(corsOptions), signupRoutes)
 app.use('/proyects', cors(corsOptions), proyectsRouter)
 app.use('/contacto', cors(corsOptions), contactoRouter)
