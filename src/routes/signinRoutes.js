@@ -6,7 +6,7 @@ const { signInController, usersControllers, updateUserController, deleteUserCont
 
 router.get('/', usersControllers) //get all users
 router.post('/', signInController) //signIn
-router.put('/', updateUserController) //update user information
-router.delete('/', deleteUserController)//delete user
+router.put('/:id', updateUserController) //update user information
+router.delete('/:id', deleteUserController)//delete user
 
 module.exports = router
