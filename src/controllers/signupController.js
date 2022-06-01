@@ -2,10 +2,10 @@ const {signUp} = require('../models/signupModels')
 
 
 const signUpControllers = async (req, res) => {
-    const { user, password } = req.body
+    const { email, password, type } = req.body
     console.log(req.body)
     try {
-        const users = await signUp( user, password )
+        const users = await signUp( email, password, type )
         return res.status(201).send(users)
 
     } catch (error) {
