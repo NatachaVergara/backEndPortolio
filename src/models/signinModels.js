@@ -41,7 +41,7 @@ const updateUser = async (id, email, password) => {
 
     const data = await request(
         `UPDATE users
-            SET email = "${email}"
+            SET email = "${email}",
             password = "${password}"
             WHERE email = "${id}"`
     )
