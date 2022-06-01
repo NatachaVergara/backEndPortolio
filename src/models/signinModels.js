@@ -37,7 +37,7 @@ const allUsers = async () => {
 }
 
 
-const updateUser = async ({ id, email, password }) => {
+const updateUser = async ( id, email, password ) => {
 
     const data = await request(
         `UPDATE users
