@@ -16,7 +16,7 @@ const signUp = async (email, password, type) => {
 
         return {
             id: data.insertId,
-            user
+            data
         }
     }
 
