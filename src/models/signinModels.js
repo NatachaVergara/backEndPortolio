@@ -4,13 +4,12 @@ const { comparePassword } = require('../utils/password')
 
 
 const signIn = async (email, password, type) => {
-
-
     const data = await request(`
     SELECT
         email,
         password,
-        id
+        id,
+        type
     FROM users 
     WHERE email = "${email}"
     AND type = "${type}" `)
@@ -19,6 +18,7 @@ const signIn = async (email, password, type) => {
         delete data[0].password
         return {
             user: data[0],
+            userType: data[0].type,
             isUser: true
         }
     } else {
