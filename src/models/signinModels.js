@@ -3,17 +3,17 @@ const { request } = require('../db/request')
 const { comparePassword } = require('../utils/password')
 
 
-const signIn = async (user, password) => {
+const signIn = async (email, password, type) => {
    
 
     const data = await request(`
     SELECT
-        email AS user,
+        email,
         password,
         id
     FROM users 
-    WHERE email = "${user}"
-    AND type = "ADMIN" `)
+    WHERE email = "${email}"
+    AND type = "${type}" `)
 
     if (data.length && comparePassword(password, data[0].password)) {
         delete data[0].password

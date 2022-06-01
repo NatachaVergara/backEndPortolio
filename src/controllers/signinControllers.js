@@ -4,10 +4,10 @@ const {generateCookieDaysDurationInMin} = require('../utils/cookieTime')
 const {createToken} = require('../utils/token')
 
 const signInController = async (req, res) => {
-    const { email, password } = req.body
+    const { email, password, type } = req.body
     
     try {
-        const user = await signIn(email, password)
+        const user = await signIn(email, password, type)
         console.log(user)
         if (user.isUser) {
             res.cookie("session", createToken(user),{
