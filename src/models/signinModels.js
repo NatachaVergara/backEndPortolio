@@ -43,7 +43,7 @@ const updateUser = async (id, email, password) => {
         `UPDATE users
             SET email = "${email}",
             password = "${password}"
-            WHERE email = "${id}"`
+            WHERE email = ${id}`
     )
 
     return {
