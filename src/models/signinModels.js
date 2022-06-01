@@ -4,7 +4,7 @@ const { comparePassword } = require('../utils/password')
 
 
 const signIn = async (email, password, type) => {
-   
+
 
     const data = await request(`
     SELECT
@@ -23,7 +23,7 @@ const signIn = async (email, password, type) => {
         }
     } else {
         return {
-            message:'Usuario no encontrado. ¿El email o password son correctos?',
+            message: 'Usuario no encontrado. ¿El email o password son correctos?',
             isUser: false
         }
     }
@@ -37,13 +37,13 @@ const allUsers = async () => {
 }
 
 
-const updateUser = async ( id, email, password ) => {
+const updateUser = async (id, email, password) => {
 
     const data = await request(
         `UPDATE users
-            SET email = ${email}
-            password = ${password}
-            WHERE email =${id}`
+            SET email = "${email}"
+            password = "${password}"
+            WHERE email = "${id}"`
     )
 
     return {

@@ -39,6 +39,7 @@ const usersControllers = async (req, res) => {
 const updateUserController = async (req, res) => {
     const { id } = req.params
     const { email, password } = req.body
+    console.log(id, email, password)
     try {
         const user = await updateUser(id, email, password)
         return res.send(user)
