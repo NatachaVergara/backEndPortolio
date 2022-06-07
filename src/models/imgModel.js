@@ -18,6 +18,7 @@ const getImgs = async () => {
 // }
 
 const createImg = async (files) => {
+    console.log(files)
     const img = await request(`
         INSERT INTO skill_img(path , upload_date)
         VALUES ${files.map(file => `( '${file.path}', NOW())`).toString()}
