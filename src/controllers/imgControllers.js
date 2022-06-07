@@ -4,7 +4,7 @@ const imgsController = async (req, res) => {
     try {
         const img = await uploadImgs.getImgs()
 
-        if (img.length > 0) {
+        if (img) {
             return res.status(201).send(img)
         } else {
             return res.status(204).send('Imagenes no disponibles')
