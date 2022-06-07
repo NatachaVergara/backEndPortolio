@@ -8,7 +8,7 @@ const {createImgController} = require('../controllers/imgControllers')
 router.get('/')
 //router.get('/:id')
 
-router.post('/upload', upload.single('images') , createImgController )
+router.post('/upload', upload.single('images'), createImgController )
 
 
 
