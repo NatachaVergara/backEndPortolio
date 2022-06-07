@@ -11,12 +11,6 @@ const getImgs = async () => {
     }
 }
 
-
-// const getImgId = async (id) => {
-//     const img = await request(`SELECT * FROM  skill_img WHERE id = ${id}`)
-//     return img[0]
-// }
-
 const createImg = async (files) => {
     console.log(files)
     const img = await request(`
@@ -55,7 +49,6 @@ const deleteImg = async (id) => {
 
 module.exports = {
     getImgs,
-    // getImgId,
     createImg,
     deleteImg
 }
