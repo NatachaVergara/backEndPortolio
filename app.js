@@ -43,7 +43,7 @@ app.use('/signup', signupRoutes)
 app.use('/proyects', proyectsRouter)
 app.use('/contacto', contactoRouter)
 app.use('/footer', footerRouter)
-app.use('/image', imageRouter)
+app.use('/images', imageRouter)
 
 
 

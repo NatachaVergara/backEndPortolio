@@ -3,7 +3,7 @@ const router = express.Router();
 
 const { sendMail } = require('../utils/mail')
 
-router.get('/')
+
 router.post('/', async (req, res) => {
     const { name, email, razon, msg } = req.body
     console.log(name, email, razon, msg)
