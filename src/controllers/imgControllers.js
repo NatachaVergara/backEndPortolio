@@ -23,7 +23,7 @@ const imgsController = async (req, res) => {
 
 const createImgController = async (req, res) => {
     const { files } = req.files
-
+    console.log(files)
     try {
         const img = await uploadImgs.createImg(files)
 
