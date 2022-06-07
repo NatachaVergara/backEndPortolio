@@ -1,10 +1,7 @@
 const uploadImgs = require('../models/imgModel')
 
 const imgsController = async (req, res) => {
-    // const {files} = req.files
-
     try {
-
         const img = await uploadImgs.getImgs()
 
         if (img.length > 0) {
@@ -16,8 +13,6 @@ const imgsController = async (req, res) => {
     } catch (error) {
         return res.status(500).send(error)
     }
-
-
 }
 
 
