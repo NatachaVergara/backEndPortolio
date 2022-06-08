@@ -17,12 +17,12 @@ const imgsController = async (req, res) => {
 
 
 const createImgController = async (req, res) => {
-    const { images } = req.files
-    console.log(images)    
+    // const { images } = req.files
+    // console.log(images)    
     console.log(req.files)
 
     try {
-        const img = await uploadImgs.createImg(images)
+        const img = await uploadImgs.createImg(req.files)
 
         if (img) {
             return res.status(201).send(img)
