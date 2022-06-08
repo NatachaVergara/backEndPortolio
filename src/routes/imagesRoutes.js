@@ -14,7 +14,4 @@ router.get('/', imgsController)
 router.post('/upload', upload.single('images'), createImgController )
 
 
-
-
-
 module.exports = router

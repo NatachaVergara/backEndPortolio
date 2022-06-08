@@ -1,13 +1,12 @@
 const path = require('path');
-const fs = require('fs');
+//const fs = require('fs');
 const multer = require('multer');
 
 
 const storage = multer.diskStorage({
-    // destination: (req, file, cb) => {
-    //     console.log("destination: ", file)
-    //     cb(null, path.join(__dirname, './public/images'))
-    // },
+    destination: (req, file, cb) => {
+      cb(null, '../../public/images')
+    },
 
     filename: (req, file, cb) => {
         console.log("storage fileName: ", file)
