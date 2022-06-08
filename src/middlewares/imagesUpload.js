@@ -5,7 +5,7 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, 'C:\Users\todom\OneDrive\Escritorio\portfolioFullstack\imagenes');
+        cb(null, '\Users\todom\OneDrive\Escritorio\portfolioFullstack\imagenes');
       },
 
     filename: (req, file, cb) => {        
