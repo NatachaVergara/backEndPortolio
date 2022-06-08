@@ -5,13 +5,11 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null,path.join(__dirname, '/Images'));
+        cb(null, path.join(__dirname + "public/images"));
       },
 
     filename: (req, file, cb) => {        
-        let temp = file.originalname.split('.');
-        const filename = temp[0] + '-' + hash.generateHash({length: 5}) + '.' + temp[1]
-        callback(null, filename);
+        cb(null, `${Date.now()}${path.extname(file.originalname)}`);
 
         console.log("storage fileName: ", file)
     }
