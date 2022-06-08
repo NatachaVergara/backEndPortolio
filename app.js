@@ -34,7 +34,7 @@ app.use(cookieParser());
 // app.set("views", path.join(__dirname, "./src/views"));
 // app.set("view engine", "ejs");
 // app.use(express.static(path.join(__dirname, "public")));
-app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("/image", express.static(path.join(__dirname, "public/image")));
 
 //Routes
 
