@@ -1,7 +1,9 @@
 const express = require('express');
 const router = express.Router()
+const multer  = require('multer')
+const upload = multer({ dest: '../../public/images' })
 
-const {upload} = require('../middlewares/imagesUpload')
+// const {upload} = require('../middlewares/imagesUpload')
 const {createImgController, imgsController} = require('../controllers/imgControllers')
 
 
