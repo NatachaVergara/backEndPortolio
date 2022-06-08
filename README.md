@@ -21,3 +21,7 @@
 | mysql | 2.18.1  |
 | cors | 2.8.5 | |
 | nodemon  |  2.0.16 | 
+| bcrypt  |  5.0.1 | 
+| dotenv  | 16.0.1 | 
+| multer  | 1.4.5-lts.1 | 
+| nodemailer  | ^6.7.5 | 
