@@ -5,7 +5,7 @@ const uploadImgs = require('../models/imgModel')
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, path.join(__dirname, '../img'))
+        cb(null, path.join(__dirname, '../../img'))
     },
 
     filename: (req, file, cb) => {
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
         console.log("storage fileName: ", file)
     }
 })
-const upload = multer({storage:storage})
+const upload = multer({ storage: storage })
 
 
 
@@ -39,7 +39,7 @@ const imgsController = async (req, res) => {
 
 
 const createImgController = async (req, res) => {
-    
+
     console.log(req.file)
     console.log(req.body)
 
@@ -62,5 +62,5 @@ const createImgController = async (req, res) => {
 module.exports = {
     imgsController,
     createImgController,
-    upload : upload.single('images')
+    upload: upload.single('images')
 }
