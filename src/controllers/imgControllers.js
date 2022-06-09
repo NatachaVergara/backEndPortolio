@@ -1,4 +1,26 @@
+
+const multer = require('multer');
 const uploadImgs = require('../models/imgModel')
+
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'img')
+    },
+
+    filename: (req, file, cb) => {
+        cb(null, `${Date.now()}-${file.originalname}`);
+
+        console.log("storage fileName: ", file)
+    }
+})
+const upload = multer({storage:storage})
+exports.upload = upload.single('images')
+
+
+
+
+
 
 const imgsController = async (req, res) => {
     try {
