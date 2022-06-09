@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({storage:storage})
-exports.upload = upload.single('images')
+
 
 
 
@@ -62,6 +62,6 @@ const createImgController = async (req, res) => {
 
 module.exports = {
     imgsController,
-    createImgController
-
+    createImgController,
+    upload : upload.single('images')
 }
