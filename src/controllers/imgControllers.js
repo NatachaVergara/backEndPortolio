@@ -9,12 +9,12 @@ const storage = multer.diskStorage({
     },
 
     filename: (req, file, cb) => {
-        cb(null, new Date().toISOString() + file.originalname);
+        cb(null, `${Date.now()}-${file.originalname}`);
 
         console.log("storage fileName: ", file)
     }
 })
-const upload = multer({ storage: storage })
+const upload = multer({storage:storage})
 
 
 
@@ -39,7 +39,7 @@ const imgsController = async (req, res) => {
 
 
 const createImgController = async (req, res) => {
-
+    
     console.log(req.file)
     console.log(req.body)
 
@@ -62,5 +62,5 @@ const createImgController = async (req, res) => {
 module.exports = {
     imgsController,
     createImgController,
-    upload: upload.single('images')
+    upload : upload.single('images')
 }
