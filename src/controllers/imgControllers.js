@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
         cb(null, path.resolve(__dirname, '../img/'))
     },
 
+
     filename: (req, file, cb) => {
         cb(null, `${Date.now()}-${file.originalname}`);
 
@@ -33,6 +34,7 @@ const imgsController = async (req, res) => {
         }
 
     } catch (error) {
+        console.log(error)
         return res.status(500).send(error)
     }
 }
@@ -52,6 +54,8 @@ const createImgController = async (req, res) => {
             return res.status(304).send('La imagen no pudo ser guardada')
         }
     } catch (error) {
+
+        console.log(error)
         return res.status(500).send(error)
     }
 }
