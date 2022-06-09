@@ -41,7 +41,7 @@ const imgsController = async (req, res) => {
 }
 
 
-const createImgController = async (req, res) => {    
+const createImgController = async (req, res) => {
     console.log(`Controller: ${req.file}`)
    
 
