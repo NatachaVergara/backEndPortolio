@@ -11,7 +11,7 @@ const {createImgController, imgsController} = require('../controllers/imgControl
 router.get('/', imgsController)
 //router.get('/:id')
 
-router.post('/upload', upload.single('images'), createImgController )
+router.post('/', upload.single('images'), createImgController )
 
 
 module.exports = router
