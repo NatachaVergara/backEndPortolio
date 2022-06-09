@@ -4,9 +4,10 @@ const uploadImgs = require('../models/imgModel')
 
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
+
+    destination: function (req, file, cb) {
         cb(null, path.join(__dirname, '../img/'))
-    },
+      },   
 
 
     filename: (req, file, cb) => {
