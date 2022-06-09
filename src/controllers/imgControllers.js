@@ -1,11 +1,11 @@
-
+const path = require('path');
 const multer = require('multer');
 const uploadImgs = require('../models/imgModel')
 
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './img')
+        cb(null, path.join(__dirname, './img'))
     },
 
     filename: (req, file, cb) => {
