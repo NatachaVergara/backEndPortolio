@@ -42,7 +42,7 @@ const imgsController = async (req, res) => {
 
 
 const createImgController = async (req, res) => {    
-    console.log(req.file.file)
+    console.log(`Controller: ${req.file}`)
    
 
     try {
