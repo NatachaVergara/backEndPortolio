@@ -1,22 +1,30 @@
 const path = require('path');
-const multer = require('multer');
 const uploadImgs = require('../models/imgModel')
 
-const folder = path.resolve(__dirname, './img')
-const storage = multer.diskStorage({
 
-    destination: function (req, file, cb) {
-        cb(null, folder)
-      },   
+const fs = require('fs');
+const multer = require('multer');
+const upload = multer({ dest: 'public/images/' })
 
 
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`);
 
-        console.log("storage fileName: ", file)
-    }
-})
-const upload = multer({storage:storage})
+// const folder = path.resolve(__dirname, './img')
+// const storage = multer.diskStorage({
+
+//     destination: function (req, file, cb) {
+//         cb(null, folder)
+//       },   
+
+
+//     filename: (req, file, cb) => {
+//         cb(null, `${Date.now()}-${file.originalname}`);
+
+//         console.log("storage fileName: ", file)
+//     }
+// })
+
+
+
 
 
 
@@ -42,8 +50,8 @@ const imgsController = async (req, res) => {
 
 
 const createImgController = async (req, res) => {
-    console.log(`Controller: ${req.file}`)
-   
+    fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
+    console.log(req.file)
 
     try {
         const img = await uploadImgs.createImg(req.file)
@@ -61,10 +69,8 @@ const createImgController = async (req, res) => {
 }
 
 
-
-
 module.exports = {
     imgsController,
     createImgController,
-    upload : upload.single('images')
+    upload: upload.single('images')
 }
