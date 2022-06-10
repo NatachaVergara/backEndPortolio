@@ -49,5 +49,5 @@ const createImgController = async (req, res) => {
 module.exports = {
     imgsController,
     createImgController,
-    upload: upload.single('image')
+    upload
 }
