@@ -50,7 +50,7 @@ const imgsController = async (req, res) => {
 
 
 const createImgController = async (req, res) => {
-    console.log(req.file)
+    console.log("Controller: ", req.file)
     fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
    
 
