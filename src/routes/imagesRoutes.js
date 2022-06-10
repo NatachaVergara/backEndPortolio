@@ -10,7 +10,7 @@ router.get('/', controller.imgsController)
 
 
 
-router.post('/', controller.upload, controller.createImgController )
+router.post('/', controller.upload.single('image'), controller.createImgController )
 
 
 module.exports = router
