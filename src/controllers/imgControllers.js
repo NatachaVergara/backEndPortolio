@@ -1,9 +1,6 @@
 const uploadImgs = require('../models/imgModel')
 
 
-const fs = require('fs');
-const multer = require('multer');
-const upload = multer({ dest: 'public/images/' })
 
 
 
@@ -25,10 +22,10 @@ const imgsController = async (req, res) => {
 }
 
 
-const createImgController = async (req, res) => {
+const createImgController =  async  (req, res) => {
     console.log("Controller: ", req.file)
-    fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
-   console.log(req.file.path)
+  
+    console.log(req.file.path)
 
     // try {
     //     const img = await uploadImgs.createImg(req.file)
@@ -48,6 +45,5 @@ const createImgController = async (req, res) => {
 
 module.exports = {
     imgsController,
-    createImgController,
-    upload
+    createImgController    
 }
