@@ -8,29 +8,6 @@ const upload = multer({ dest: 'public/images/' })
 
 
 
-// const folder = path.resolve(__dirname, './img')
-// const storage = multer.diskStorage({
-
-//     destination: function (req, file, cb) {
-//         cb(null, folder)
-//       },   
-
-
-//     filename: (req, file, cb) => {
-//         cb(null, `${Date.now()}-${file.originalname}`);
-
-//         console.log("storage fileName: ", file)
-//     }
-// })
-
-
-
-
-
-
-
-
-
 
 const imgsController = async (req, res) => {
     try {
@@ -73,5 +50,5 @@ const createImgController = async (req, res) => {
 module.exports = {
     imgsController,
     createImgController,
-    upload: upload.single('images')
+    upload: upload.single('image')
 }
