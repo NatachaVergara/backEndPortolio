@@ -50,22 +50,23 @@ const imgsController = async (req, res) => {
 
 
 const createImgController = async (req, res) => {
-    fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
     console.log(req.file)
+    fs.renameSync(req.file.path, req.file.path + '.' + req.file.mimetype.split('/')[1]);
+   
 
-    try {
-        const img = await uploadImgs.createImg(req.file)
+    // try {
+    //     const img = await uploadImgs.createImg(req.file)
 
-        if (img) {
-            return res.status(201).send(img)
-        } else {
-            return res.status(304).send('La imagen no pudo ser guardada')
-        }
-    } catch (error) {
+    //     if (img) {
+    //         return res.status(201).send(img)
+    //     } else {
+    //         return res.status(304).send('La imagen no pudo ser guardada')
+    //     }
+    // } catch (error) {
 
-        console.log(error)
-        return res.status(500).send(error)
-    }
+    //     console.log(error)
+    //     return res.status(500).send(error)
+    // }
 }
 
 
