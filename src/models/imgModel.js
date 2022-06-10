@@ -21,7 +21,7 @@ const createImg = async (file) => {
 
 
     return {
-        id: img.insertId ? true : false,
+        // id: img.insertId ? true : false,
         allImgs: [...allImgs],
         message: `Nueva agregada satisfactoriamente`
     }
