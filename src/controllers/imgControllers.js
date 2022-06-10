@@ -27,7 +27,7 @@ const createImgController =  async  (req, res) => {
     
 
     try {
-        const img = await uploadImgs.createImg(req.file.path)
+        const img = await uploadImgs.createImg(req.file.filename)
 
         if (img) {
             return res.status(201).send(img)
