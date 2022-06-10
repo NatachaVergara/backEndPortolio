@@ -12,6 +12,7 @@ const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3002;
 
 //Routes
+var indexRouter = require('./src/routes/index');
 const signinRoutes = require('./src/routes/signinRoutes')
 const signupRoutes = require('./src/routes/signupRoutes')
 const proyectsRouter = require('./src/routes/proyectsRoutes')
@@ -44,7 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Routes
-
+app.use('/', indexRouter);
 app.use('/signin', signinRoutes)
 app.use('/signup', signupRoutes)
 app.use('/proyects', proyectsRouter)
