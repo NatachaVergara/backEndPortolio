@@ -13,9 +13,9 @@ const getImgs = async () => {
 
 const createImg = async (file) => {
     console.log(`Modelo: ${file}`)
-//     const img = await request(`
-//         INSERT INTO skill_img(path , upload_date)
-//         VALUES ('${file}', NOW()) `)
+    const img = await request(`
+        INSERT INTO skill_img(path , upload_date)
+        VALUES ('${file}', NOW()) `)
 // //// ${files.map(file => `( '${file.path}', `).toString()}
     const allImgs = await request(`SELECT * FROM  skill_img`)
 
