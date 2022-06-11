@@ -1,10 +1,5 @@
 const uploadImgs = require('../models/imgModel')
 
-
-
-
-
-
 const imgsController = async (req, res) => {
     try {
         const img = await uploadImgs.getImgs()
@@ -27,7 +22,7 @@ const createImgController =  async  (req, res) => {
     
 
     try {
-        const img = await uploadImgs.createImg(req.file.filename)
+        const img = await uploadImgs.createImg(req.file)
 
         if (img) {
             return res.status(201).send(img)

@@ -1,8 +1,5 @@
 const { request } = require('../db/request')
 
-
-
-
 const getImgs = async () => {
     const imgs = await request(`SELECT * FROM  skill_img`)
     return {
