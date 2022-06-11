@@ -26,19 +26,19 @@ const createImgController =  async  (req, res) => {
     console.log("Controller: ", req.file)
     
 
-    try {
-        const img = await uploadImgs.createImg(req.file.filename)
+    // try {
+    //     const img = await uploadImgs.createImg(req.file.filename)
 
-        if (img) {
-            return res.status(201).send(img)
-        } else {
-            return res.status(304).send('La imagen no pudo ser guardada')
-        }
-    } catch (error) {
+    //     if (img) {
+    //         return res.status(201).send(img)
+    //     } else {
+    //         return res.status(304).send('La imagen no pudo ser guardada')
+    //     }
+    // } catch (error) {
 
-        console.log(error)
-        return res.status(500).send(error)
-    }
+    //     console.log(error)
+    //     return res.status(500).send(error)
+    // }
 }
 
 
