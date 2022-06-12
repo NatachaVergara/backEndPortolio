@@ -42,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 //Routes
-app.use('/', indexRouter);
+// app.use('/', indexRouter);
 app.use('/signin', signinRoutes)
 app.use('/signup', signupRoutes)
 app.use('/proyects', proyectsRouter)
