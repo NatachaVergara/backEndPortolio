@@ -1,8 +1,12 @@
 const express = require('express');
 const router = express.Router()
+
 const controller = require('../controllers/imgControllers')
-const path = require("path");
+
+
+// const path = require("path");
 // const fs = require('fs');
+
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -13,15 +17,16 @@ const storage = multer.diskStorage({
     console.log("File name: ", file)
     cb(null, `${Date.now()}-${file.originalname}`)
   }
-});
-const upload = multer({ storage: storage })
+})
 
+const upload = multer({ storage: storage })
+router.get('/', controller.imgsController)
 router.post('/', upload.single('image'), controller.createImgController)
 
 
 
 
-router.get('/', controller.imgsController)
+
 
 
 
