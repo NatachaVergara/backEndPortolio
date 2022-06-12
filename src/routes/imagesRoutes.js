@@ -22,7 +22,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 console.log(upload)
 router.get('/', controller.imgsController)
-router.post('/', upload.single('image'), controller.createImgController)
+router.post('/upload', upload.single('image'), controller.createImgController)
 
 
 
