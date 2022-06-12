@@ -12,7 +12,7 @@ const cookieParser = require("cookie-parser");
 const PORT = process.env.PORT || 3002;
 
 //Routes
-var indexRouter = require('./src/routes/index');
+// var indexRouter = require('./src/routes/index');
 const signinRoutes = require('./src/routes/signinRoutes')
 const signupRoutes = require('./src/routes/signupRoutes')
 const proyectsRouter = require('./src/routes/proyectsRoutes')
@@ -30,8 +30,9 @@ const corsOptions = {
 
 //middleware
 // view engine setup
-app.set("views", path.join(__dirname, "./src/views"));
-app.set("view engine", "ejs");
+// app.set("views", path.join(__dirname, "./src/views"));
+// app.set("view engine", "ejs");
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(cors(corsOptions));
