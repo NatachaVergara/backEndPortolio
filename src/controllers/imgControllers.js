@@ -18,7 +18,7 @@ const imgsController = async (req, res) => {
 
 
 const createImgController =  async  (req, res) => {
-    console.log("Controller: ", req.file)
+    console.log("Controller: ", req)
     
 
     try {
@@ -31,7 +31,7 @@ const createImgController =  async  (req, res) => {
         }
     } catch (error) {
         console.log(error)
-        return res.status(500).send(error)
+        return res.status(500).send('Error ' , error)
     }
 }
 

@@ -6,9 +6,6 @@ const createError = require("http-errors");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
-
-
-
 const PORT = process.env.PORT || 3002;
 
 //Routes
