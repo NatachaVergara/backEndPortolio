@@ -4,7 +4,7 @@ const router = express.Router()
 const controller = require('../controllers/imgControllers')
 
 
-// const path = require("path");
+const path = require("path");
 // const fs = require('fs');
 
 const multer = require('multer');
@@ -13,8 +13,7 @@ const storage = multer.diskStorage({
     console.log("Destination: ", file)
     cb(null, 'C:/Users/todom/OneDrive/Escritorio/portfolioFullstack/portfolio_back/public/images')
   },
-  filename: function (req, file, cb) {
-  
+  filename: function (req, file, cb) {  
     cb(null, `${Date.now()}${path.extname(file.originalname)}`)
   }
 })
