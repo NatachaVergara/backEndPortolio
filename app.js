@@ -41,9 +41,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 
-// app.use(express.static(path.join(__dirname, "public")));
-
-
 //Routes
 app.use('/', indexRouter);
 app.use('/signin', signinRoutes)
