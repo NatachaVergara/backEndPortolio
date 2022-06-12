@@ -4,18 +4,18 @@ const router = express.Router()
 const controller = require('../controllers/imgControllers')
 
 
-// const path = require("path");
+const path = require("path");
 // const fs = require('fs');
 
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     console.log("Destination: ", file)
-    cb(null, __dirname+'../../public/images')
+    cb(null, 'public/images')
   },
   filename: function (req, file, cb) {
     console.log("File name: ", file)
-    cb(null, `${Date.now()}-${file.originalname}`)
+    cb(null, `${Date.now()}${path.extname(file.originalname)}`)
   }
 })
 
