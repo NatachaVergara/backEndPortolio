@@ -30,7 +30,6 @@ const createImgController =  async  (req, res) => {
             return res.status(304).send('La imagen no pudo ser guardada')
         }
     } catch (error) {
-
         console.log(error)
         return res.status(500).send(error)
     }
