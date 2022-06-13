@@ -12,7 +12,7 @@ const storage = multer.diskStorage({
     console.log("Destination: ", file)
     cb(null, 'C:/Users/todom/OneDrive/Escritorio/portfolioFullstack/portfolio_back/public/images')
     cb(null, '../../public/images')
-    cb(null, path.join(__dirname, '../../public/images'))
+    cb(null, path.join(__dirname+'public/images'))
   },
   filename: function (req, file, cb) {  
     console.log("FileName: ", file)
