@@ -17,7 +17,7 @@ const storage = multer.diskStorage({
     // cb(null, 'C:/Users/todom/OneDrive/Escritorio/portfolioFullstack/portfolio_back/public/images')
     // cb(null, path.join(__dirname+'public/images'))
 
-    let imagesSkills = './public/files'
+    let imagesSkills = 'files'
     fs.mkdirSync(imagesSkills, { recursive: true })
     cb(null, imagesSkills)
 
