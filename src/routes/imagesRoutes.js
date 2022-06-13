@@ -7,7 +7,7 @@ const path = require("path");
 // const fs = require('fs');
 
 const multer = require('multer');
-upload = multer({ dest: "../../public/images" });
+upload = multer({ dest: "public/images" });
 
 // const storage = multer.diskStorage({
 //   // destination: function (req, file, cb) {
