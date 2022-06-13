@@ -22,13 +22,13 @@ const createImgController =  async  (req, res) => {
 
     try {
         console.log("Controller try: ", req.file) 
-        // const img = await uploadImgs.createImg(req.file)
+        const img = await uploadImgs.createImg(req.file)
 
-        // if (img) {
-        //     return res.status(201).send(img)
-        // } else {
-        //     return res.status(304).send('La imagen no pudo ser guardada')
-        // }
+        if (img) {
+            return res.status(201).send(img)
+        } else {
+            return res.status(304).send('La imagen no pudo ser guardada')
+        }
     } catch (error) {
         console.log(error)
         return res.status(500).send('Error ' , error)
