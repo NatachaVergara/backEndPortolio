@@ -19,11 +19,11 @@ const imgsController = async (req, res) => {
 
 const createImgController =  async  (req, res) => {
     console.log("Controller: ", req.file)   
-    const file = `${req.file.path}-${req.file.originalname}`
-    console.log(file)
+    // const file = `${req.file.path}-${req.file.originalname}`
+    // console.log(file)
     try {
         console.log("Controller try: ", req.file) 
-        const img = await uploadImgs.createImg(file)
+        const img = await uploadImgs.createImg( req.file)
 
         if (img) {
             return res.status(201).send(img)
