@@ -11,16 +11,16 @@ const multer = require('multer');
 
 const storage = multer.diskStorage({
 
-  destination: '',
-  // destination: function (req, file, cb) {
-  //   console.log("Destination: ", file)
-  //   // cb(null, 'C:/Users/todom/OneDrive/Escritorio/portfolioFullstack/portfolio_back/public/images')
-  //   // cb(null, path.join(__dirname+'public/images'))
+  // destination: '',
+  destination: function (req, file, cb) {
+    console.log("Destination: ", file)
+    // cb(null, 'C:/Users/todom/OneDrive/Escritorio/portfolioFullstack/portfolio_back/public/images')
+    cb(null, `${__dirname}`)
 
-  //   let imagesSkills = './public/files'
-  //   fs.mkdirSync(imagesSkills, { recursive: true })
-  //   cb(null, imagesSkills)
-//}
+    // let imagesSkills = './public/files'
+    // fs.mkdirSync(imagesSkills, { recursive: true })
+    // cb(null, imagesSkills)
+},
   
   filename: function (req, file, cb) {
     console.log("FileName: ", file)
