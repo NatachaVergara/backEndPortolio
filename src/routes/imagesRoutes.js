@@ -10,20 +10,22 @@ const multer = require('multer');
 // upload = multer({ dest: "./public/images" });
 
 const storage = multer.diskStorage({
+
   //destination: './public/files',
-  
   destination: function (req, file, cb) {
     console.log("Destination: ", file)
-   // cb(null, 'C:/Users/todom/OneDrive/Escritorio/portfolioFullstack/portfolio_back/public/images')
-   let imagesSkills = './public/files'
-   fs.mkdirSync(imagesSkills,{recursive: true})
+    // cb(null, 'C:/Users/todom/OneDrive/Escritorio/portfolioFullstack/portfolio_back/public/images')
+    // cb(null, path.join(__dirname+'public/images'))
+
+    let imagesSkills = '../public/files'
+    fs.mkdirSync(imagesSkills, { recursive: true })
     cb(null, imagesSkills)
-   // cb(null, path.join(__dirname+'public/images'))
+
   },
-  filename: function (req, file, cb) {  
+  filename: function (req, file, cb) {
     console.log("FileName: ", file)
     cb(null, `${Date.now()}-${file.originalname}`)
-      // cb(null, `${Date.now()}${path.extname(file.originalname)}`)
+    // cb(null, `${Date.now()}${path.extname(file.originalname)}`)
   }
 })
 
