@@ -3,8 +3,16 @@ const router = express.Router()
 const controller = require('../controllers/imgControllers')
 
 
+
+const fs = require('fs');
+let dir = './skilImg';
+
+if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+}
+
 const multer = require('multer');
-const upload = multer({ dest: `skilImg` });
+const upload = multer({ dest: dir });
 
 router.get('/', controller.imgsController)
 router.post('/', upload.single('image'), controller.createImgController)
