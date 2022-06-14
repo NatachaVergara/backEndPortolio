@@ -1,5 +1,5 @@
 const uploadImgs = require('../models/imgModel')
-
+const path = require("path");
 const imgsController = async (req, res) => {
     try {
         const img = await uploadImgs.getImgs()
