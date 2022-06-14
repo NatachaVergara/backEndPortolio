@@ -4,7 +4,7 @@ const controller = require('../controllers/imgControllers')
 
 
 const multer = require('multer');
-const upload = multer({ dest: `./${__dirname}/imagenes` });
+const upload = multer({ dest: `/skilImg` });
 
 router.get('/', controller.imgsController)
 router.post('/', upload.single('image'), controller.createImgController)
