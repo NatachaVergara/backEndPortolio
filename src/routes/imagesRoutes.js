@@ -7,7 +7,7 @@ const path = require("path");
 const fs = require('fs');
 
 const multer = require('multer');
-const upload = multer({ dest: "images/" });
+const upload = multer({ dest: "imagenes/" });
 
 router.get('/', controller.imgsController)
 router.post('/', upload.single('image'), controller.createImgController)
