@@ -8,7 +8,7 @@ const fs = require('fs');
 let dir = './skilImg';
 
 if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir);
+    fs.mkdirSync(dir, { recursive: true });
 }
 
 const multer = require('multer');
