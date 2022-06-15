@@ -10,7 +10,7 @@ const imgsController = async (req, res) => {
     readStream.pipe(res)
 
     try {
-        const img = await uploadImgs.getImgs(img)
+        const img = await uploadImgs.getImgs()
         if (img) {
             return res.status(201).send(img)
         } else {
