@@ -1,10 +1,10 @@
 const uploadImgs = require('../models/imgModel')
 const path = require("path");
-const {uploadFile, getFileStream} = require('../utils/s3')
+const { uploadFile, getFileStream } = require('../utils/s3')
 
 
 const imgsController = async (req, res) => {
-    
+
 
     try {
         const img = await uploadImgs.getImgs()
@@ -20,24 +20,25 @@ const imgsController = async (req, res) => {
     }
 }
 
-const imgControler = async (req,res) => {
-    console.log(req.body)
-    const key = req.body
+const imgControler = async (req, res) => {
+    console.log(req.params)
+    const key = req.params.key
     const readStream = getFileStream(key)
+
     readStream.pipe(res)
 }
 
 
-const createImgController =  async  (req, res) => {    
-    console.log("Controller: ", req.file)       
+const createImgController = async (req, res) => {
+    console.log("Controller: ", req.file)
     const file = req.file
-    const image = await uploadFile(file)    
-    console.log("Controller image: ", image) 
+    const image = await uploadFile(file)
+    console.log("Controller image: ", image)
 
     try {
-        console.log("Controller try: ", image) 
+        console.log("Controller try: ", image)
         const key = image.Key
-        const img = await uploadImgs.createImg( key)
+        const img = await uploadImgs.createImg(key)
 
         if (img) {
             return res.status(201).send(img)
@@ -46,7 +47,7 @@ const createImgController =  async  (req, res) => {
         }
     } catch (error) {
         console.log(error)
-        return res.status(500).send('Error ' , error)
+        return res.status(500).send('Error ', error)
     }
 }
 
@@ -54,5 +55,5 @@ const createImgController =  async  (req, res) => {
 module.exports = {
     imgsController,
     imgControler,
-    createImgController    
+    createImgController
 }
