@@ -59,8 +59,8 @@ const deleteImg = async (req, res) => {
 
     try {
         const img = await uploadImgs.deleteImg(key)
-        const { success, data } = await deleteFile(filename)
-        console.log(success, data)
+         await deleteFile(filename)
+       
         return res.status(200).send(img)
     } catch (error) {
         console.log(error)
