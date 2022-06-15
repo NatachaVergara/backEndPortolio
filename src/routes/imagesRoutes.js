@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router()
 const controller = require('../controllers/imgControllers')
 
-const fs = require('fs');
+// const fs = require('fs');
 let dir = 'skilImg';
 
-if (!fs.existsSync(dir)){
-    fs.mkdirSync(dir, { recursive: true });
-}
+// if (!fs.existsSync(dir)){
+//     fs.mkdirSync(dir, { recursive: true });
+// }
 
 
 const multer = require('multer');
