@@ -4,10 +4,9 @@ const {uploadFile, getFileStream} = require('../utils/s3')
 
 
 const imgsController = async (req, res) => {
-    console.log(req.params)
-    const key = req.params.key
+    console.log(req)
+    const key = req
     const readStream = getFileStream(key)
-  
     readStream.pipe(res)
 
     // try {
