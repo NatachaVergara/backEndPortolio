@@ -41,15 +41,13 @@ exports.getFileStream = getFileStream
 
 
 function deleteFile(fileKey) {
+  console.log(fileKey)
   const deleteParams = {
     Key: fileKey,
     Bucket: bucketName
   }
 
- return s3.deleteObject(deleteParams, function(err, data) {
-    if (err) console.log(err, err.stack);  // error
-    else     console.log();                 // deleted
-  });
+ return s3.deleteObject(deleteParams).promise()
 }
 
 exports.deleteFile = deleteFile
