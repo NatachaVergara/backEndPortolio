@@ -33,11 +33,12 @@ const createImgController = async (req, res) => {
     console.log("Controller: ", req.file)
     const file = req.file
     const image = await uploadFile(file)
-    console.log("Controller image: ", image)
+    const key = image.Key
+    console.log("Controller image: ", key)
     console.log(req.body)
+
     try {
-        console.log("Controller try: ", image)
-        const key = image.Key
+
         const img = await uploadImgs.createImg(key)
 
         if (img) {
@@ -52,8 +53,22 @@ const createImgController = async (req, res) => {
 }
 
 
+const deleteImg = async (req, res) => {
+    const { id } = req.params
+    try {
+        const img = await uploadImgs.deleteImg(id)
+        return res.status(200).send(img)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
+}
+
+
+
 module.exports = {
     imgsController,
     imgControler,
-    createImgController
+    createImgController,
+    deleteImg
 }
