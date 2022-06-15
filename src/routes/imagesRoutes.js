@@ -2,12 +2,6 @@ const express = require('express');
 const router = express.Router()
 const controller = require('../controllers/imgControllers')
 
-// const fs = require('fs');
-
-// if (!fs.existsSync(dir)){
-//     fs.mkdirSync(dir, { recursive: true });
-// }
-
 const multer = require('multer');
 const upload = multer({ dest: 'skilImg/' });
 
@@ -28,7 +22,11 @@ module.exports = router
 
 
 
+// const fs = require('fs');
 
+// if (!fs.existsSync(dir)){
+//     fs.mkdirSync(dir, { recursive: true });
+// }
 
 
 

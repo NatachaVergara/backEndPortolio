@@ -20,7 +20,7 @@ const imgsController = async (req, res) => {
 const createImgController =  async  (req, res) => {
     console.log("Controller: ", req.file)   
     
-    const imagen =  `${Date.now()}-${req.file.originalname}`  
+    const imagen =  `${req.file.destination}${Date.now()}-${req.file.originalname}`  
     try {
         console.log("Controller try: ",imagen) 
         const img = await uploadImgs.createImg( imagen)
