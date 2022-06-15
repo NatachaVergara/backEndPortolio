@@ -17,7 +17,7 @@ const multer = require('multer');
 const upload = multer({ dest: dir });
 
 router.get('/', controller.imgsController)
-router.post('/', upload.any('image'), controller.createImgController)
+router.post('/', upload.single('image'), controller.createImgController)
 
 
 module.exports = router
