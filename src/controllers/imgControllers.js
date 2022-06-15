@@ -1,11 +1,9 @@
 const uploadImgs = require('../models/imgModel')
-const path = require("path");
+
 const { uploadFile, getFileStream, deleteFile } = require('../utils/s3')
 
 
 const imgsController = async (req, res) => {
-
-
     try {
         const img = await uploadImgs.getImgs()
         if (img) {
@@ -22,9 +20,8 @@ const imgsController = async (req, res) => {
 
 const imgControler = async (req, res) => {
     console.log(req.params)
-    const key = req.params.key
+    const {key} = req.params
     const readStream = getFileStream(key)
-
     readStream.pipe(res)
 }
 
@@ -33,13 +30,12 @@ const createImgController = async (req, res) => {
     console.log("Controller: ", req.file)
     const file = req.file
     const image = await uploadFile(file)
-    const key = image.Key
-    console.log("Controller image: ", key)
-    //console.log(req.body)
+    const path = image.Key
+    console.log("Controller image: ", path)
+    console.log(req.body)
 
     try {
-
-        const img = await uploadImgs.createImg(key)
+        const img = await uploadImgs.createImg(path)
 
         if (img) {
             return res.status(201).send(img)
@@ -53,9 +49,8 @@ const createImgController = async (req, res) => {
 }
 
 
-const deleteImg = async (req, res) => {
+const deleteImgController = async (req, res) => {
     const { key } = req.params
-
 
     try {
         const img = await uploadImgs.deleteImg(key)
@@ -74,5 +69,5 @@ module.exports = {
     imgsController,
     imgControler,
     createImgController,
-    deleteImg
+    deleteImgController
 }
