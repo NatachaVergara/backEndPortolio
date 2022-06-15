@@ -1,6 +1,6 @@
 const uploadImgs = require('../models/imgModel')
 const path = require("path");
-const { uploadFile, getFileStream } = require('../utils/s3')
+const { uploadFile, getFileStream, deleteFile } = require('../utils/s3')
 
 
 const imgsController = async (req, res) => {
@@ -56,7 +56,7 @@ const createImgController = async (req, res) => {
 const deleteImg = async (req, res) => {
     const { id } = req.params
     await deleteFile(id)
-    
+
     try {
         const img = await uploadImgs.deleteImg(id)
         return res.status(200).send(img)
