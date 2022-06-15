@@ -1,21 +1,29 @@
 const uploadImgs = require('../models/imgModel')
 const path = require("path");
-const imgsController = async (req, res) => {
-    try {
-        const img = await uploadImgs.getImgs()
-
-        if (img) {
-            return res.status(201).send(img)
-        } else {
-            return res.status(204).send('Imagenes no disponibles')
-        }
-
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error)
-    }
-}
 const {uploadFile, getFileStream} = require('../utils/s3')
+
+
+const imgsController = async (req, res) => {
+    const key = req.file.key
+    const img = getFileStream(key)
+    console.log(img)
+    img.pipe(res)
+
+    // try {
+    //     const img = await uploadImgs.getImgs()
+
+    //     if (img) {
+    //         return res.status(201).send(img)
+    //     } else {
+    //         return res.status(204).send('Imagenes no disponibles')
+    //     }
+
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).send(error)
+    // }
+}
+
 
 const createImgController =  async  (req, res) => {    
     console.log("Controller: ", req.file)       
