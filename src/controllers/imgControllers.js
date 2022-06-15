@@ -11,7 +11,6 @@ const imgsController = async (req, res) => {
 
     try {
         const img = await uploadImgs.getImgs(img)
-
         if (img) {
             return res.status(201).send(img)
         } else {
