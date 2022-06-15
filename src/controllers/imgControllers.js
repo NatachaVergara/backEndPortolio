@@ -4,10 +4,7 @@ const {uploadFile, getFileStream} = require('../utils/s3')
 
 
 const imgsController = async (req, res) => {
-    // console.log(req.body)
-    // const key = req.body
-    // const readStream = getFileStream(key)
-    // readStream.pipe(res)
+    
 
     try {
         const img = await uploadImgs.getImgs()
@@ -21,6 +18,13 @@ const imgsController = async (req, res) => {
         console.log(error)
         return res.status(500).send(error)
     }
+}
+
+const imgControler = async (req,res) => {
+    console.log(req.body)
+    const key = req.body
+    const readStream = getFileStream(key)
+    readStream.pipe(res)
 }
 
 
@@ -49,5 +53,6 @@ const createImgController =  async  (req, res) => {
 
 module.exports = {
     imgsController,
+    imgControler,
     createImgController    
 }
