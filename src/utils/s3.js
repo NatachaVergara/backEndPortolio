@@ -40,14 +40,31 @@ function getFileStream(fileKey) {
 exports.getFileStream = getFileStream
 
 
-function deleteFile(fileKey) {
-  console.log(fileKey)
+
+// Delete File from S3
+const deleteFile = async (fileKey) => {
   const deleteParams = {
     Key: fileKey,
     Bucket: bucketName
   }
 
- return s3.deleteObject(deleteParams).promise()
+  try {
+    await s3.deleteObject(deleteParams).promise();
+    return { success: true, data: "File deleted Successfully" }
+  } catch (error) {
+    return { success: false, data: null }
+  }
 }
+
+
+// function deleteFile(fileKey) {
+//   console.log(fileKey)
+//   const deleteParams = {
+//     Key: fileKey,
+//     Bucket: bucketName
+//   }
+
+//   return s3.deleteObject(deleteParams).promise()
+// }
 
 exports.deleteFile = deleteFile
