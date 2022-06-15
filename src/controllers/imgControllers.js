@@ -15,25 +15,28 @@ const imgsController = async (req, res) => {
         return res.status(500).send(error)
     }
 }
+const {uploadFile, getFileStream} = require('../utils/s3')
 
-
-const createImgController =  async  (req, res) => {
-    console.log("Controller: ", req.file)   
+const createImgController =  async  (req, res) => {    
+    console.log("Controller: ", req.file)       
+    const file = req.file
+    const image = await uploadFile(file)    
+    image =  `${Date.now()}-${req.file.originalname}`  
+    console.log("Controller image: ", image) 
     
-    const imagen =  `${req.file.destination}${Date.now()}-${req.file.originalname}`  
-    try {
-        console.log("Controller try: ",imagen) 
-        const img = await uploadImgs.createImg( imagen)
+    // try {
+    //     console.log("Controller try: ", image) 
+    //     const img = await uploadImgs.createImg( image)
 
-        if (img) {
-            return res.status(201).send(img)
-        } else {
-            return res.status(304).send('La imagen no pudo ser guardada')
-        }
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send('Error ' , error)
-    }
+    //     if (img) {
+    //         return res.status(201).send(img)
+    //     } else {
+    //         return res.status(304).send('La imagen no pudo ser guardada')
+    //     }
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).send('Error ' , error)
+    // }
 }
 
 
