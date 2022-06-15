@@ -46,7 +46,10 @@ function deleteFile(fileKey) {
     Bucket: bucketName
   }
 
-  return s3.deleteObject(deleteParams).promise()
+  s3.deleteObject(deleteParams, function(err, data) {
+    if (err) console.log(err, err.stack);  // error
+    else     console.log();                 // deleted
+  });
 }
 
 exports.deleteFile = deleteFile
