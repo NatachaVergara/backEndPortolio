@@ -29,6 +29,7 @@ const createImg = async (file) => {
 
 
 const deleteImg = async (path) => {
+    console.log(path)
     const img = await request(`DELETE FROM skill_img WHERE path = ${path} `)
     const allImgs = await request(`SELECT * FROM skill_img`)
 
