@@ -51,15 +51,17 @@ const createImgController = async (req, res) => {
 
 const deleteImgController = async (req, res) => {
     const { key } = req.params
+    console.log(req.params)
+    console.log(key)
 
-    try {
-         await deleteFile(key)
-         const img = await uploadImgs.deleteImg(key)
-        return res.status(200).send(img)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error)
-    }
+    // try {
+    //      await deleteFile(key)
+    //      const img = await uploadImgs.deleteImg(key)
+    //     return res.status(200).send(img)
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).send(error)
+    // }
 }
 
 
