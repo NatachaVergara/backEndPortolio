@@ -12,23 +12,6 @@ const s3 = new S3({
   accessKeyId,
   secretAccessKey
 })
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-
-const upload = multer({
-  storage: multerS3({
-      s3: s3,
-      acl: "public-read",
-      bucket: bucketName,
-      key: function (req, file, cb) {
-          console.log(file);
-          cb(null, file.originalname)
-      }
-  })
-})
-
-
-exports.upload = upload
 
 // uploads a file to s3
 function uploadFile(file) {
@@ -65,7 +48,19 @@ const deleteFile = async (fileKey) => {
     Key: fileKey,
     Bucket: bucketName
   }
-  return s3.deleteObject(deleteParams).promise();
+  await s3.deleteObject(deleteParams).promise();
+
 }
+
+
+// function deleteFile(fileKey) {
+//   console.log(fileKey)
+//   const deleteParams = {
+//     Key: fileKey,
+//     Bucket: bucketName
+//   }
+
+//   return s3.deleteObject(deleteParams).promise()
+// }
 
 exports.deleteFile = deleteFile
