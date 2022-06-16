@@ -15,12 +15,12 @@ const createImg = async (file) => {
         INSERT INTO skill_img(path , upload_date)
         VALUES ('${file}', NOW()) `)
 
-    const allImgs = await request(`SELECT * FROM  skill_img`)
+    const imagenes = await request(`SELECT * FROM  skill_img`)
 
 
     return {
         id: img.insertId ? true : false,
-        allImgs: [...allImgs],
+        imagenes: [...imagenes],
         message: `Nueva agregada satisfactoriamente`
     }
 
@@ -29,18 +29,14 @@ const createImg = async (file) => {
 
 
 const deleteImg = async (path) => {
-    console.log(path)
     const img = await request(`DELETE FROM skill_img WHERE path = "${path}" `)
-    const allImgs = await request(`SELECT * FROM skill_img`)
+    const imagenes = await request(`SELECT * FROM skill_img`)
 
     return {
-        allImgs: [...allImgs],
+        imagenes: [...imagenes],
         deleted: img.affectedRows ? true : false,
         message: "Imagen eliminada satisfactoriamente"
     }
-
-
-
 }
 
 

@@ -2,7 +2,7 @@ const uploadImgs = require('../models/imgModel')
 
 const { uploadFile, getFileStream, deleteFile } = require('../utils/s3')
 
-
+//Me trae todas las imagenes de mi DB
 const imgsController = async (req, res) => {
     try {
         const img = await uploadImgs.getImgs()
@@ -18,17 +18,18 @@ const imgsController = async (req, res) => {
     }
 }
 
+//Me tre solo la imagen por por el path directamente de aws, no necesita ir al modelo
 const imgControler = async (req, res) => {
     console.log(req.params)
-    const {key} = req.params
-    const readStream = getFileStream(key)
+    const {path} = req.params
+    const readStream = getFileStream(path)
     readStream.pipe(res)
 }
 
-
+//Crea la imagen y la guarda en aws y en mysql
 const createImgController = async (req, res) => {
     console.log("Controller: ", req.file)
-    const file = req.file
+    const file = req.file 
     const image = await uploadFile(file)
     const path = image.Key
     console.log("Controller image: ", path)
@@ -48,7 +49,7 @@ const createImgController = async (req, res) => {
     }
 }
 
-
+//Elimino el archivo en mysql y en aws con el path.. no con el id de mysql
 const deleteImgController = async (req, res) => {
     const { path } = req.params
     console.log(req.params)
