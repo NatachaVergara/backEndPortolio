@@ -38,10 +38,10 @@ const createProyectController = async (req, res) => {
 const updateProyectController = async (req, res) => {
     const { id } = req.params
     const { title, link, logo,  tec } = req.body
-    const {image} = req.file
+    
     console.log('Put controller: ')
     console.log('req.file', req.file)
-    console.log('image: ', image)
+    
     console.log(id, title, link, logo,  tec)
 
     // try {
