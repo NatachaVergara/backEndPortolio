@@ -6,7 +6,7 @@ const controller = require('../controllers/imgControllers')
 // const multer = require('multer');
 // const upload = multer({ dest: 'skilImg/' });
 
-const upload = require('../middleware/multer')
+const {upload} = require('../middleware/multer')
 
 router.get('/images', controller.imgsController)
 router.get('/images/:path', controller.imgControler)
