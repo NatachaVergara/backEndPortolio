@@ -1,8 +1,10 @@
-const { allProyects, findProyect, createProyect, updateProyect, deleteProyect } = require('../models/proyectsModels')
+const model = require('../models/proyectsModels')
+
+
 
 const allProyectsController = async (req, res) => {
     try {
-        const proyects = await allProyects()
+        const proyects = await model.allProyects()
         return res.status(200).send(proyects)
     } catch (error) {
         return res.status(500).send(error)
@@ -12,7 +14,7 @@ const allProyectsController = async (req, res) => {
 const findProyectController = async (req, res) => {
     const { id } = req.params
     try {
-        const proyect = await findProyect(id)
+        const proyect = await model.findProyect(id)
         return res.send(proyect)
     } catch (error) {
         return res.status(500).send(error)
@@ -22,34 +24,37 @@ const findProyectController = async (req, res) => {
 const createProyectController = async (req, res) => {
     const { title, link, logo, img, tec } = req.body
     try {
-        const proyect = await createProyect({ title, link, logo, img, tec })
+        const proyect = await model.createProyect({ title, link, logo, img, tec })
         return res.status(201).send(proyect)
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)
-        
+
     }
 };
 
 
 
 const updateProyectController = async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     const { title, link, logo, img, tec } = req.body
-
-    try {
-        const proyect = await updateProyect({ id, title, link, logo, img, tec })
-        return res.status(200).send(proyect)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error)
-    }
+    const pathImagen = req.file
+    console.log('Put controller: ')
+    console.log(pathImagen)
+    console.log(id, title, link, logo, img, tec)
+    // try {
+    //     const proyect = await model.updateProyect({ id, title, link, logo, img, tec })
+    //     return res.status(200).send(proyect)
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).send(error)
+    // }
 };
 
 const deleteProyectController = async (req, res) => {
-    const {id} = req.params
+    const { id } = req.params
     try {
-        const proyect = await deleteProyect(id)
+        const proyect = await model.deleteProyect(id)
         return res.status(200).send(proyect)
     } catch (error) {
         return res.status(500).send(error)

@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router()
+
+//Controler
 const controller = require('../controllers/imgControllers')
-
-
-// const multer = require('multer');
-// const upload = multer({ dest: 'skilImg/' });
-
+//middleware
 const upload = require('../middleware/multer')
 
 router.get('/images', controller.imgsController)

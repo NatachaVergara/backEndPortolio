@@ -1,18 +1,16 @@
 const express = require('express');
 const router = express.Router();
 
-const { allProyectsController,
-    findProyectController,
-    createProyectController,
-    updateProyectController,
-    deleteProyectController } = require('../controllers/proyectsControles')
+//Controler
+const controller = require('../controllers/proyectsControles')
+//Middleware
+const upload = require('../middleware/multer')
 
-
-router.get('/', allProyectsController)
-router.get('/:id', findProyectController)
-router.post('/', createProyectController)
-router.put('/:id', updateProyectController)
-router.delete('/:id', deleteProyectController)
+router.get('/', controller.allProyectsController)
+router.get('/:id', controller.findProyectController)
+router.post('/', upload.single('image'), controller.createProyectController)
+router.put('/:id', upload.single('image'), controller.updateProyectController)
+router.delete('/:id', controller.deleteProyectController)
 
 
 
