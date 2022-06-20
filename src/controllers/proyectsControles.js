@@ -33,14 +33,14 @@ const createProyectController = async (req, res) => {
     console.log('req.body', id, title, link, logo, tec)
 
 
-    try {
-        const proyect = await model.createProyect( title, link, logo, img, tec )
-        return res.status(201).send(proyect)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error)
+    // try {
+    //     const proyect = await model.createProyect( title, link, logo, img, tec )
+    //     return res.status(201).send(proyect)
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).send(error)
 
-    }
+    // }
 };
 
 
