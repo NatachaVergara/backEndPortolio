@@ -18,7 +18,7 @@ const findProyect = async (id) => {
     }
 }
 
-const createProyect = async ( title, link, logo, img, tec ) => {
+const createProyect = async (title, link, logo, img, tec) => {
     const data = await request(
         `INSERT INTO proyects(title, link, logo, img, tec )
         VALUES("${title}","${link}", "${logo}","${img}", "${tec}")`
@@ -32,7 +32,7 @@ const createProyect = async ( title, link, logo, img, tec ) => {
     }
 }
 
-const updateProyect = async ( id, title, link, logo, img, tec) => {
+const updateProyect = async (id, title, link, logo, img, tec) => {
     const data = await request(
         `UPDATE proyects SET title = "${title}",
         link = "${link}",

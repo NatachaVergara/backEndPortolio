@@ -1,6 +1,7 @@
 const model = require('../models/proyectsModels')
 
-const {uploadFile} = require('../utils/s3')
+
+const uploadImgs = require('../utils/s3')
 
 const allProyectsController = async (req, res) => {
     try {
@@ -25,23 +26,19 @@ const createProyectController = async (req, res) => {
     const { title, link, logo,  tec } = req.body
     console.log('Put controller: ')
     const file = req.file 
-    const image = await uploadFile(file)
-    const path = image.Key
+    const image = await uploadImgs.uploadFile(file)
+    const img = image.Key
     console.log("Controller image: ", path)
     console.log('req.body', title, link, logo, tec)   
-  
 
-  
+    try {
+        const proyect = await model.createProyect( title, link, logo, img, tec )
+        return res.status(201).send(proyect)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
 
-
-    // try {
-    //     const proyect = await model.createProyect( title, link, logo, img, tec )
-    //     return res.status(201).send(proyect)
-    // } catch (error) {
-    //     console.log(error)
-    //     return res.status(500).send(error)
-
-    // }
+    }
 };
 
 
@@ -67,9 +64,11 @@ const updateProyectController = async (req, res) => {
 };
 
 const deleteProyectController = async (req, res) => {
-    const { id } = req.params
+    const { path } = req.params
+
     try {
-        const proyect = await model.deleteProyect(id)
+        const img = await uploadImgs.deleteImg(path)
+        const proyect = await model.deleteProyect(img)
         return res.status(200).send(proyect)
     } catch (error) {
         return res.status(500).send(error)
