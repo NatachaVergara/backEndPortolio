@@ -32,8 +32,7 @@ const createImgController = async (req, res) => {
     const file = req.file 
     const image = await uploadFile(file)
     const path = image.Key
-    console.log("Controller image: ", path)
-    console.log(req.body)
+    
 
     try {
         const img = await uploadImgs.createImg(path)

@@ -24,12 +24,12 @@ const findProyectController = async (req, res) => {
 const createProyectController = async (req, res) => {
     const { title, link, logo,  tec } = req.body
     console.log('Put controller: ')
-    console.log('req.file', req.file)
+    const file = req.file 
+    const image = await uploadFile(file)
+    const path = image.Key
+    console.log("Controller image: ", path)
     console.log('req.body', title, link, logo, tec)   
-
-    const imgPath = req.file.filename
-
-    const img = await uploadFile(imgPath)
+  
 
   
 
