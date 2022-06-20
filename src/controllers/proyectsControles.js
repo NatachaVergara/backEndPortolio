@@ -46,7 +46,7 @@ const updateProyectController = async (req, res) => {
     const { title, link, logo,  tec } = req.body
     const imgName = req.file.originalname.split('.')[0]
     
-    const imagen = `${imgName}-${req.file.path}`
+    const imagen = `${imgName}-${req.file.filename}`
     console.log('imagen', imagen)
     console.log('Put controller: ')
     console.log('req.file', req.file)
