@@ -22,7 +22,13 @@ const findProyectController = async (req, res) => {
 };
 
 const createProyectController = async (req, res) => {
-    const { title, link, logo, img, tec } = req.body
+   const { title, link, logo,  tec } = req.body
+    
+    console.log('Put controller: ')
+    console.log('req.file', req.file)
+    console.log('req.body', id, title, link, logo, tec)
+
+
     try {
         const proyect = await model.createProyect({ title, link, logo, img, tec })
         return res.status(201).send(proyect)
@@ -38,7 +44,9 @@ const createProyectController = async (req, res) => {
 const updateProyectController = async (req, res) => {
     const { id } = req.params
     const { title, link, logo,  tec } = req.body
-
+    const imgName = req.file.originalname.split('.')[0]
+    console.log(imgName)
+    const imagen = `${req.file.fieldname}-${req.file.path}`
     console.log('Put controller: ')
     console.log('req.file', req.file)
     console.log('req.body', id, title, link, logo, tec)
