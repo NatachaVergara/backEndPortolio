@@ -22,15 +22,18 @@ const findProyectController = async (req, res) => {
 };
 
 const createProyectController = async (req, res) => {
-   const { title, link, logo,  tec } = req.body
-   const imgName = req.file.originalname.split('.')[0]  
-     
-    const file = `${imgName}-${req.file.filename}`
-    const img = await uploadFile(file)
-
     console.log('Put controller: ')
-    console.log('req.file', img)
+    console.log('req.file', req.file)
     console.log('req.body', id, title, link, logo, tec)
+
+   const { title, link, logo,  tec } = req.body
+
+  // const imgName = req.file.originalname.split('.')[0]  
+     
+    // const file = `${imgName}-${req.file.filename}`
+    // const img = await uploadFile(file)
+
+  
 
 
     // try {
