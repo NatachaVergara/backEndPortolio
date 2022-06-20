@@ -25,14 +25,12 @@ const createProyectController = async (req, res) => {
     const { title, link, logo,  tec } = req.body
     console.log('Put controller: ')
     console.log('req.file', req.file)
-    console.log('req.body', title, link, logo, tec)
+    console.log('req.body', title, link, logo, tec)   
 
-   
+    const imgName = req.file.originalname.split('.')[0]
 
-  // const imgName = req.file.originalname.split('.')[0]  
-     
-    // const file = `${imgName}-${req.file.filename}`
-    // const img = await uploadFile(file)
+    const file = `${imgName}-${req.file.filename}`
+    const img = await uploadFile(file)
 
   
 
