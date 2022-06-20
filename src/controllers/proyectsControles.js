@@ -24,7 +24,7 @@ const findProyectController = async (req, res) => {
 const createProyectController = async (req, res) => {
     console.log('Put controller: ')
     console.log('req.file', req.file)
-    console.log('req.body', id, title, link, logo, tec)
+    console.log('req.body', title, link, logo, tec)
 
    const { title, link, logo,  tec } = req.body
 
