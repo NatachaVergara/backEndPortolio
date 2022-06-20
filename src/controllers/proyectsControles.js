@@ -1,6 +1,6 @@
 const model = require('../models/proyectsModels')
 
-
+const {uploadFile} = require('../utils/s3')
 
 const allProyectsController = async (req, res) => {
     try {
@@ -23,14 +23,18 @@ const findProyectController = async (req, res) => {
 
 const createProyectController = async (req, res) => {
    const { title, link, logo,  tec } = req.body
-    
+   const imgName = req.file.originalname.split('.')[0]  
+     
+    const file = `${imgName}-${req.file.filename}`
+    const img = await uploadFile(file)
+
     console.log('Put controller: ')
     console.log('req.file', req.file)
     console.log('req.body', id, title, link, logo, tec)
 
 
     try {
-        const proyect = await model.createProyect({ title, link, logo, img, tec })
+        const proyect = await model.createProyect( title, link, logo, img, tec )
         return res.status(201).send(proyect)
     } catch (error) {
         console.log(error)
@@ -46,14 +50,14 @@ const updateProyectController = async (req, res) => {
     const { title, link, logo,  tec } = req.body
     const imgName = req.file.originalname.split('.')[0]
     
-    const imagen = `${title}-${req.file.filename}`
-    console.log('imagen', imagen)
+    const img = `${imgName}-${req.file.filename}`
+    console.log('imagen', img)
     console.log('Put controller: ')
     console.log('req.file', req.file)
     console.log('req.body', id, title, link, logo, tec)
 
     // try {
-    //     const proyect = await model.updateProyect({ id, title, link, logo, img, tec })
+    //     const proyect = await model.updateProyect( id, title, link, logo, img, tec)
     //     return res.status(200).send(proyect)
     // } catch (error) {
     //     console.log(error)
