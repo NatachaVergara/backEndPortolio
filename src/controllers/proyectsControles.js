@@ -28,7 +28,7 @@ const createProyectController = async (req, res) => {
     const file = req.file 
     const image = await uploadImgs.uploadFile(file)
     const img = image.Key
-    console.log("Controller image: ", path)
+    console.log("Controller image: ", img)
     console.log('req.body', title, link, logo, tec)   
 
     try {
