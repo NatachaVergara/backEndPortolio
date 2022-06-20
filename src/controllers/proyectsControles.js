@@ -45,8 +45,9 @@ const updateProyectController = async (req, res) => {
     const { id } = req.params
     const { title, link, logo,  tec } = req.body
     const imgName = req.file.originalname.split('.')[0]
-    console.log(imgName)
-    const imagen = `${req.file.fieldname}-${req.file.path}`
+    
+    const imagen = `${imgName}-${req.file.path}`
+    console.log('imagen', imagen)
     console.log('Put controller: ')
     console.log('req.file', req.file)
     console.log('req.body', id, title, link, logo, tec)
