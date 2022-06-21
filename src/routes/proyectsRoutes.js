@@ -7,7 +7,7 @@ const controller = require('../controllers/proyectsControles')
 const upload = require('../middleware/multer')
 
 router.get('/', controller.allProyectsController)
-router.get('/:path', controller.imgControler)
+router.get('/:id', controller.proyectImgControler)
 router.post('/', upload.single('image'), controller.createProyectController)
 router.put('/:id', upload.single('image'), controller.updateProyectController)
 router.delete('/:id', controller.deleteProyectController)
