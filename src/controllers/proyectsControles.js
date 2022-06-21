@@ -16,9 +16,9 @@ const allProyectsController = async (req, res) => {
 
 //Me tre solo la imagen por por el path directamente de aws, no necesita ir al modelo
 const proyectImgControler = async (req, res) => {
-    console.log('img Controller', req.params)
-    const {img} = req.params
-    const readStream = uploadImgs.getFileStream(img)
+    console.log(req.params)
+    const {path} = req.params
+    const readStream = getFileStream(path)
     readStream.pipe(res)
     
 }
