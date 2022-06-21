@@ -22,8 +22,8 @@ const imgsController = async (req, res) => {
 const imgControler = async (req, res) => {
     console.log(req.params)
     const {path} = req.params
-    const readStream = getFileStream(path)
-    readStream.pipe(res)
+    // const readStream = getFileStream(path)
+    // readStream.pipe(res)
 }
 
 //Crea la imagen y la guarda en aws y en mysql
