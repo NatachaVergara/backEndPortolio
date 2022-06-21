@@ -19,12 +19,12 @@ const imgsController = async (req, res) => {
 }
 
 //Me tre solo la imagen por por el path directamente de aws, no necesita ir al modelo
-const imgControler = async (req, res) => {
-    console.log(req.params)
-    const {path} = req.params
-    // const readStream = getFileStream(path)
-    // readStream.pipe(res)
-}
+// const imgControler = async (req, res) => {
+//     console.log(req.params)
+//     const {path} = req.params
+//     // const readStream = getFileStream(path)
+//     // readStream.pipe(res)
+// }
 
 //Crea la imagen y la guarda en aws y en mysql
 const createImgController = async (req, res) => {
