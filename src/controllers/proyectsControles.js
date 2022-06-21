@@ -87,7 +87,7 @@ const deleteProyectController = async (req, res) => {
 
 module.exports = {
     allProyectsController,
-    findProyectController,
+    // findProyectController,
     createProyectController,
     updateProyectController,
     deleteProyectController,
