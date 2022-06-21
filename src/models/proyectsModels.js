@@ -32,12 +32,16 @@ const createProyect = async (title, link, logo, img, tec) => {
     }
 }
 
-const updateProyect = async (id, title, link, logo, img, tec) => {
+const updateProyect = async (id, title, link, logo, img, tec, filename) => {
+    let imagen = null
+
+    filename ? imagen = filename : imagen = img
+
     const data = await request(
         `UPDATE proyects SET title = "${title}",
         link = "${link}",
         logo = "${logo}",
-        img = "${img}",
+        img = "${imagen}",
         tec = "${tec}"
         WHERE id = ${id}    
     `)

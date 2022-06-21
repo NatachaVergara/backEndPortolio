@@ -17,10 +17,10 @@ const allProyectsController = async (req, res) => {
 //Me tre solo la imagen por por el path directamente de aws, no necesita ir al modelo
 const proyectImgControler = async (req, res) => {
     console.log(req.params)
-    const {path} = req.params
+    const { path } = req.params
     const readStream = uploadImgs.getFileStream(path)
     readStream.pipe(res)
-    
+
 }
 
 // const findProyectController = async (req, res) => {
@@ -34,16 +34,16 @@ const proyectImgControler = async (req, res) => {
 // };
 
 const createProyectController = async (req, res) => {
-    const { title, link, logo,  tec } = req.body
+    const { title, link, logo, tec } = req.body
     console.log('Put controller: ')
-    const file = req.file 
+    const file = req.file
     const image = await uploadImgs.uploadFile(file)
     const img = image.Key
     console.log("Controller image: ", img)
-    console.log('req.body', title, link, logo, tec)   
+    console.log('req.body', title, link, logo, tec)
 
     try {
-        const proyect = await model.createProyect( title, link, logo, img, tec )
+        const proyect = await model.createProyect(title, link, logo, img, tec)
         return res.status(201).send(proyect)
     } catch (error) {
         console.log(error)
@@ -56,23 +56,25 @@ const createProyectController = async (req, res) => {
 //Controller
 const updateProyectController = async (req, res) => {
     const { id } = req.params
-    const { title, link, logo, tec, image  } = req.body
+    const { title, link, logo, tec, image } = req.body
     console.log('Put controller: ')
-    console.log('req.body', title, link, logo, tec)    
+    console.log('req.body', title, link, logo, tec)
     image ? console.log('imagen', image) : 'no hay image'
     let filename = null
     req.file ? filename = req.file.filename : null
     filename ? console.log('req.file ', filename) : 'no hay file'
-   
-    
-    // try {
-         
-    //     const proyect = await model.updateProyect( id, title, link, logo, image, tec, filename)
-    //     return res.status(200).send(proyect)
-    // } catch (error) {
-    //     console.log(error)
-    //     return res.status(500).send(error)
-    // }
+
+
+
+
+    try {
+        filename ? await uploadImgs.updateFile(filename) : null
+        const proyect = await model.updateProyect(id, title, link, logo, image, tec, filename)
+        return res.status(200).send(proyect)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
 };
 
 
