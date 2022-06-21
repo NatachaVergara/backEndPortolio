@@ -18,7 +18,7 @@ const allProyectsController = async (req, res) => {
 const proyectImgControler = async (req, res) => {
     console.log(req.params)
     const {path} = req.params
-    const readStream = getFileStream(path)
+    const readStream = uploadImgs.getFileStream(path)
     readStream.pipe(res)
     
 }
