@@ -60,7 +60,8 @@ const updateProyectController = async (req, res) => {
     console.log('Put controller: ')
     console.log('req.body', title, link, logo, tec)    
     image ? console.log('imagen', image) : 'no hay image'
-    const filename = req.file.filename
+    const filename = null
+    req.file ? filename = req.file.filename : null
     filename ? console.log('req.file ', filename) : 'no hay file'
    
     
