@@ -55,17 +55,18 @@ const createProyectController = async (req, res) => {
 
 //Controller
 const updateProyectController = async (req, res) => {
-    // const { id } = req.params
+    const { id } = req.params
     const { title, link, logo, tec, image  } = req.body
     console.log('Put controller: ')
-    console.log('req.body', title, link, logo, tec)
-    
+    console.log('req.body', title, link, logo, tec)    
     image ? console.log('imagen', image) : 'no hay image'
-    req.file ? console.log('req.file ', req.file) : 'no hay file'
-
-
+    const filename = req.file.filename
+    filename ? console.log('req.file ', filename) : 'no hay file'
+   
+    
     // try {
-    //     const proyect = await model.updateProyect( id, title, link, logo, img, tec)
+         
+    //     const proyect = await model.updateProyect( id, title, link, logo, image, tec, filename)
     //     return res.status(200).send(proyect)
     // } catch (error) {
     //     console.log(error)
@@ -73,23 +74,26 @@ const updateProyectController = async (req, res) => {
     // }
 };
 
-const deleteProyectController = async (req, res) => {
-    const { path } = req.params
 
-    try {
-        const img = await uploadImgs.deleteImg(path)
-        const proyect = await model.deleteProyect(img)
-        return res.status(200).send(proyect)
-    } catch (error) {
-        return res.status(500).send(error)
-    }
-};
+
+
+// const deleteProyectController = async (req, res) => {
+//     const { path } = req.params
+
+//     try {
+//         const img = await uploadImgs.deleteImg(path)
+//         const proyect = await model.deleteProyect(img)
+//         return res.status(200).send(proyect)
+//     } catch (error) {
+//         return res.status(500).send(error)
+//     }
+// };
 
 module.exports = {
     allProyectsController,
     // findProyectController,
     createProyectController,
     updateProyectController,
-    deleteProyectController,
+    //deleteProyectController,
     proyectImgControler
 }
