@@ -45,6 +45,7 @@ const updateFile = async (fileKey) => {
   console.log("put", fileKey)
   const updateParams = {
     Key: fileKey,
+    
     Bucket: bucketName
   }
   await s3.putObject(updateParams).promise();

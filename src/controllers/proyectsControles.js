@@ -56,25 +56,26 @@ const createProyectController = async (req, res) => {
 //Controller
 const updateProyectController = async (req, res) => {
     const { id } = req.params
-    const { title, link, logo, tec, image } = req.body
+    const { title, link, logo, tec, imagen } = req.body
+    
+
     console.log('Put controller: ')
-    console.log('req.body', title, link, logo, tec)
-    image ? console.log('imagen', image) : 'no hay image'
-    // let filename = null
-    // req.file ? filename = req.file.filename : null
-    // filename ? console.log('req.file ', filename) : 'no hay file'
+    console.log('req.body', title, link, logo, tec, imagen)
 
-    let file = null
-    req.file ? file = req.file.filename : null
-    let path = null
-    file ? path = await uploadImgs.updateFile(file) : null
-    console.log(path)
+    //elimino la imagen de mi bucket solo si viene del front un archivo 
+    req.file ? await uploadImgs.deleteFile(imagen) : null
+    //creo un archivo null
+    let  file = null
+    //si viene un file del front que se cargue la info, y si no que quede vacio
+    req.file ? file = req.file : null
+    //envio el file a mi s3.js
+    const image = await uploadImgs.uploadFile(file)
+    //creo una variable
+    let img = null
 
+    img.Key ? img =  image.Key : img = imagen
 
-    // let img = null
-
-    // path ? img = path.Key : img = image
-
+    console.log(img)
     // try {
     //     const proyect = await model.updateProyect(id, title, link, logo, img, tec)
     //     return res.status(200).send(proyect)
