@@ -44,8 +44,7 @@ exports.getFileStream = getFileStream
 const updateFile = async (fileKey) => {
   console.log("put", fileKey)
   const updateParams = {
-    Key: fileKey,
-    
+    Key: fileKey,    
     Bucket: bucketName
   }
   await s3.putObject(updateParams).promise();
