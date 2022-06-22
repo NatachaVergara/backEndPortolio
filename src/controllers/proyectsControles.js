@@ -69,7 +69,8 @@ const updateProyectController = async (req, res) => {
     //si viene un file del front que se cargue la info, y si no que quede vacio
     req.file ? file = req.file : null
     //envio el file a mi s3.js
-    const image = await uploadImgs.uploadFile(file)
+    const image = null
+    req.file ? image = await uploadImgs.uploadFile(file) : null
     //creo una variable
     let img = null
     let key = image.Key
