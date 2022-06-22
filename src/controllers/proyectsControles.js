@@ -68,17 +68,20 @@ const updateProyectController = async (req, res) => {
     req.file ? file = req.file.filename : null
     let path = null
     file ? path = await uploadImgs.updateFile(file) : null
-    let img = null
+    console.log(path)
 
-    path ? img = path.Key : img = image
 
-    try {
-        const proyect = await model.updateProyect(id, title, link, logo, img, tec)
-        return res.status(200).send(proyect)
-    } catch (error) {
-        console.log(error)
-        return res.status(500).send(error)
-    }
+    // let img = null
+
+    // path ? img = path.Key : img = image
+
+    // try {
+    //     const proyect = await model.updateProyect(id, title, link, logo, img, tec)
+    //     return res.status(200).send(proyect)
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).send(error)
+    // }
 };
 
 
