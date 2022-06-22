@@ -42,7 +42,7 @@ exports.getFileStream = getFileStream
 
 // Delete File from S3
 const updateFile = async (fileKey) => {
-  console.log("DeleteFileKey", fileKey)
+  console.log("put", fileKey)
   const updateParams = {
     Key: fileKey,
     Bucket: bucketName

@@ -65,7 +65,7 @@ const updateProyectController = async (req, res) => {
     // filename ? console.log('req.file ', filename) : 'no hay file'
 
     let file = null
-    req.file ? file = req.file : null
+    req.file ? file = req.file.filename : null
     let path = null
     file ? path = await uploadImgs.updateFile(file) : null
     let img = null
