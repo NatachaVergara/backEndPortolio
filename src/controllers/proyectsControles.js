@@ -72,8 +72,9 @@ const updateProyectController = async (req, res) => {
     const image = await uploadImgs.uploadFile(file)
     //creo una variable
     let img = null
+    let key = image.Key
 
-    img.Key ? img =  image.Key : img = imagen
+    key ? img = key : img = imagen
 
     console.log(img)
     // try {
