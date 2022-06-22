@@ -47,7 +47,7 @@ const updateFile = async (fileKey) => {
     Key: fileKey,
     Bucket: bucketName
   }
-  await s3.listObjects(updateParams).promise();
+  await s3.putObject(updateParams).promise();
 
 }
 exports.updateFile = updateFile
