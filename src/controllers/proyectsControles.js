@@ -35,7 +35,7 @@ const proyectImgControler = async (req, res) => {
 
 const createProyectController = async (req, res) => {
     const { title, link, logo, tec } = req.body
-    console.log('Put controller: ')
+    console.log('Create controller: ')
     const file = req.file
     const image = await uploadImgs.uploadFile(file)
     const img = image.Key
@@ -71,8 +71,8 @@ const updateProyectController = async (req, res) => {
         img = img.Key
         console.log('req.file', img)
     } else { // si no viene ningun archivo desde el front que se guarde en mi variable img, el path ya existente
-        img = image
-        console.log('path', img)
+        img = imagenPath
+        console.log('path del else', img)
     }
 
     try {
