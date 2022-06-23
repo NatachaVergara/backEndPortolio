@@ -55,7 +55,8 @@ const updateProyect = async (id, title, link, logo, img, tec) => {
 }
 
 const deleteProyect = async (path) => {
-    const data = await request(` DELETE FROM proyects WHERE img = '${path}' `)
+    console.log('model path ', path)
+    const data = await request(` DELETE FROM proyects WHERE img = "${path}" `)
     const fulldata = await request(`SELECT * FROM proyects`)
 
     return {
