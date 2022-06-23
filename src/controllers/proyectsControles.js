@@ -76,7 +76,7 @@ const updateProyectController = async (req, res) => {
     }
 
     try {
-        const proyect = await model.updateProyect(id, title, link, logo, image, tec)
+        const proyect = await model.updateProyect(id, title, link, logo, img, tec)
         return res.status(200).send(proyect)
     } catch (error) {
         console.log(error)
