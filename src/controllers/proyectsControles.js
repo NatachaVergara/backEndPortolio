@@ -91,13 +91,14 @@ const updateProyectController = async (req, res) => {
 const deleteProyectController = async (req, res) => {
     const { path } = req.params
     console.log('PATH Delete', path)
-    // try {
-    //     const proyect = await model.deleteProyect(img)
-    //     await uploadImgs.deleteImg(img)
-    //     return res.status(200).send(proyect)
-    // } catch (error) {
-    //     return res.status(500).send(error)
-    // }
+    
+    try {
+        const proyect = await model.deleteProyect(path)
+        await uploadImgs.deleteImg(path)
+        return res.status(200).send(proyect)
+    } catch (error) {
+        return res.status(500).send(error)
+    }
 };
 
 module.exports = {
