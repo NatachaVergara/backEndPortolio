@@ -62,14 +62,14 @@ const updateProyectController = async (req, res) => {
     console.log('req.file', req.file)
 
     let img = ''
-    
+
     //Si del front viene un archivo que elimine la imagen existente en mi bucket y que me cree una nueva y se guearde en la variable img
-    if (req.file !== undefined) {           
+    if (req.file !== undefined) {
         let file = req.file
         img = await uploadImgs.uploadFile(file)
         img = img.Key
         console.log('req.file del if', img)
-        await uploadImgs.deleteFile(imagenPath)  
+        await uploadImgs.deleteFile(imagenPath)
     } else { // si no viene ningun archivo desde el front que se guarde en mi variable img, el path ya existente
         img = imagenPath
         console.log('path del else', img)
@@ -88,23 +88,23 @@ const updateProyectController = async (req, res) => {
 
 
 
-// const deleteProyectController = async (req, res) => {
-//     const { path } = req.params
-
-//     try {
-//         const img = await uploadImgs.deleteImg(path)
-//         const proyect = await model.deleteProyect(img)
-//         return res.status(200).send(proyect)
-//     } catch (error) {
-//         return res.status(500).send(error)
-//     }
-// };
+const deleteProyectController = async (req, res) => {
+    const { img } = req.params
+    console.log('PATH Delete', img)
+    // try {
+    //     const proyect = await model.deleteProyect(img)
+    //     await uploadImgs.deleteImg(img)
+    //     return res.status(200).send(proyect)
+    // } catch (error) {
+    //     return res.status(500).send(error)
+    // }
+};
 
 module.exports = {
     allProyectsController,
     // findProyectController,
     createProyectController,
     updateProyectController,
-    //deleteProyectController,
+    deleteProyectController,
     proyectImgControler
 }
