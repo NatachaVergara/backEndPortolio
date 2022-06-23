@@ -56,16 +56,16 @@ const createProyectController = async (req, res) => {
 
 const updateProyectController = async (req, res) => {
     const { id } = req.params
-    const { title, link, logo, tec, image } = req.body
+    const { title, link, logo, tec, image, imagenPath } = req.body
     console.log('Put controller: ')
-    console.log('req.body', id, title, link, logo, tec, image)
+    console.log('req.body', id, title, link, logo, tec, image, imagenPath)
     console.log('req.file', req.file)
 
     let img = ''
     
     //Si del front viene un archivo que elimine la imagen existente en mi bucket y que me cree una nueva y se guearde en la variable img
     if (req.file !== undefined) {
-        await uploadImgs.deleteFile(image)      
+        await uploadImgs.deleteFile(imagenPath)      
         let file = req.file
         img = await uploadImgs.uploadFile(file)
         img = img.Key
