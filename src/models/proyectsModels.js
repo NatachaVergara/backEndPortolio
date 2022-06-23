@@ -36,21 +36,21 @@ const createProyect = async (title, link, logo, img, tec) => {
 const updateProyect = async (id, title, link, logo, image, tec) => {
     console.log('update modelo', id, title, link, logo, image, tec)
 
-    // const data = await request(
-    //     `UPDATE proyects SET title = "${title}",
-    //     link = "${link}",
-    //     logo = "${logo}",
-    //     img = "${image}",
-    //     tec = "${tec}"
-    //     WHERE id = ${id}    
-    // `)
-    // const fulldata = await request(`SELECT * FROM proyects`)
-    // return {
-    //     data,
-    //     fulldata: [...fulldata],
-    //     update: data.affectedRows ? true : false,
-    //     message: `The proyect has been updated`
-    // }
+    const data = await request(
+        `UPDATE proyects SET title = "${title}",
+        link = "${link}",
+        logo = "${logo}",
+        img = "${image}",
+        tec = "${tec}"
+        WHERE id = ${id}    
+    `)
+    const fulldata = await request(`SELECT * FROM proyects`)
+    return {
+        data,
+        fulldata: [...fulldata],
+        update: data.affectedRows ? true : false,
+        message: `The proyect has been updated`
+    }
 
 }
 

@@ -64,16 +64,16 @@ const updateProyectController = async (req, res) => {
     let img = ''
     
     //Si del front viene un archivo que elimine la imagen existente en mi bucket y que me cree una nueva y se guearde en la variable img
-    // if (req.file !== undefined) {           
-    //     let file = req.file
-    //     img = await uploadImgs.uploadFile(file)
-    //     img = img.Key
-    //     console.log('req.file del if', img)
-    //     await uploadImgs.deleteFile(imagenPath)  
-    // } else { // si no viene ningun archivo desde el front que se guarde en mi variable img, el path ya existente
-    //     img = imagenPath
-    //     console.log('path del else', img)
-    // }
+    if (req.file !== undefined) {           
+        let file = req.file
+        img = await uploadImgs.uploadFile(file)
+        img = img.Key
+        console.log('req.file del if', img)
+        await uploadImgs.deleteFile(imagenPath)  
+    } else { // si no viene ningun archivo desde el front que se guarde en mi variable img, el path ya existente
+        img = imagenPath
+        console.log('path del else', img)
+    }
 
     // try {
     //     const proyect = await model.updateProyect(id, title, link, logo, image, tec)
