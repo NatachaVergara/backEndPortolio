@@ -75,13 +75,13 @@ const updateProyectController = async (req, res) => {
         console.log('path del else', img)
     }
 
-    // try {
-    //     const proyect = await model.updateProyect(id, title, link, logo, image, tec)
-    //     return res.status(200).send(proyect)
-    // } catch (error) {
-    //     console.log(error)
-    //     return res.status(500).send(error)
-    // }
+    try {
+        const proyect = await model.updateProyect(id, title, link, logo, image, tec)
+        return res.status(200).send(proyect)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
 
 }
 
