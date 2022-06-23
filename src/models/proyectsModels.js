@@ -60,7 +60,7 @@ const deleteProyect = async (path) => {
     const fulldata = await request(`SELECT * FROM proyects`)
 
     return {
-        id,
+        path,
         fulldata: [...fulldata],
         deleted: data.affectedRows ? true : false,
         message: "The proyect has been deleted"
