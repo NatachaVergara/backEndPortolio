@@ -53,39 +53,37 @@ const createProyectController = async (req, res) => {
 };
 
 
-//Controller
-// const updateProyectController = async (req, res) => {
-//     const { id } = req.params
-//     const { title, link, logo, tec, imagen } = req.body
+
+const updateProyectController = async (req, res) => {
+    const { id } = req.params
+    const { title, link, logo, tec, imagen } = req.body
+    console.log('Put controller: ')
+    console.log('req.body', id, title, link, logo, tec, imagen)
+    console.log('req.file', req.file)
+
+    let img = ''
     
+    //Si del front viene un archivo que elimine la imagen existente en mi bucket y que me cree una nueva y se guearde en la variable img
+    if (req.file) {
+       await uploadImgs.deleteImg(imagen)
+        let file = req.file
+        img = await uploadImgs.uploadFile(file)
+        img = img.Key
+        console.log(img)
+    } else { // si no viene ningun archivo desde el front que se guarde en mi variable img, el path ya existente
+        img = imagen
+        console.log(img)
+    }
 
-//     console.log('Put controller: ')
-//     console.log('req.body', title, link, logo, tec, imagen)
+    // try {
+    //     const proyect = await model.updateProyect(id, title, link, logo, img, tec)
+    //     return res.status(200).send(proyect)
+    // } catch (error) {
+    //     console.log(error)
+    //     return res.status(500).send(error)
+    // }
 
-//     //elimino la imagen de mi bucket solo si viene del front un archivo 
-//     req.file ? await uploadImgs.deleteFile(imagen) : null
-//     //creo un archivo null
-//     let  file = null
-//     //si viene un file del front que se cargue la info, y si no que quede vacio
-//     req.file ? file = req.file : null
-//     //envio el file a mi s3.js
-//     const image = null
-//     req.file ? image = await uploadImgs.uploadFile(file) : null
-//     //creo una variable
-//     let img = null
-//     let key = image.Key
-
-//     key ? img = key : img = imagen
-
-//     console.log(img)
-//     // try {
-//     //     const proyect = await model.updateProyect(id, title, link, logo, img, tec)
-//     //     return res.status(200).send(proyect)
-//     // } catch (error) {
-//     //     console.log(error)
-//     //     return res.status(500).send(error)
-//     // }
-// };
+}
 
 
 
@@ -106,7 +104,7 @@ module.exports = {
     allProyectsController,
     // findProyectController,
     createProyectController,
-    // updateProyectController,
+    updateProyectController,
     //deleteProyectController,
     proyectImgControler
 }
