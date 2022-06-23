@@ -10,7 +10,7 @@ router.get('/', controller.allProyectsController)
 router.get('/:path', controller.proyectImgControler)
 router.post('/', upload.single('image'), controller.createProyectController)
 router.put('/:path', upload.single('image'), controller.updateProyectController)
-//router.delete('/:path', controller.deleteProyectController)
+router.delete('/:path', controller.deleteProyectController)
 
 
 
