@@ -29,7 +29,6 @@ exports.uploadFile = uploadFile
 
 // downloads a file from s3
 function getFileStream(fileKey) {
-  console.log('getFilestrem', fileKey)
   const downloadParams = {
     Key: fileKey,
     Bucket: bucketName
@@ -40,8 +39,7 @@ function getFileStream(fileKey) {
 exports.getFileStream = getFileStream
 
 // Delete File from S3
-const updateFile = async (fileKey) => {
-  console.log("put", fileKey)
+const updateFile = async (fileKey) => { 
   const updateParams = {
     Key: fileKey,    
     Bucket: bucketName

@@ -94,15 +94,12 @@ const deleteProyectController = async (req, res) => {
     
     try {
         const proyect = await model.deleteProyect(path)
-        await uploadImgs.deleteImg(path)
+        await uploadImgs.deleteFile(path)
         return res.status(200).send(proyect)
-        
+
     } catch (error) {
         console.log(error)
-        return res.status(500).send({
-            error,
-            message: proyect.message
-        })
+        return res.status(500).send(error)
     }
 };
 
