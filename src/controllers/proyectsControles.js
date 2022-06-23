@@ -90,8 +90,7 @@ const updateProyectController = async (req, res) => {
 
 const deleteProyectController = async (req, res) => {
     const { path } = req.params
-    console.log('PATH Delete', path)
-    
+       
     try {
         const proyect = await model.deleteProyect(path)
         await uploadImgs.deleteFile(path)
