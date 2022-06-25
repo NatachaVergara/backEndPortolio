@@ -16,6 +16,7 @@ const proyectsRouter = require('./src/routes/proyectsRoutes')
 const contactoRouter = require('./src/routes/contactoRoutes')
 const footerRouter = require('./src/routes/footerRoutes')
 const imageRouter = require('./src/routes/imagesRoutes')
+const slidersRouter = require('./src/routes/sliderRoutes')
 
 /***************** */
 const corsOptions = {
@@ -45,6 +46,8 @@ app.use('/proyects', proyectsRouter)
 app.use('/contacto', contactoRouter)
 app.use('/footer', footerRouter)
 app.use('/upload', imageRouter)
+app.use('/upload', slidersRouter)
+
 
 
 

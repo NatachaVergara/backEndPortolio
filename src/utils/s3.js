@@ -38,16 +38,16 @@ function getFileStream(fileKey) {
 }
 exports.getFileStream = getFileStream
 
-// Delete File from S3
-const updateFile = async (fileKey) => { 
-  const updateParams = {
-    Key: fileKey,    
-    Bucket: bucketName
-  }
-  await s3.putObject(updateParams).promise();
+// // Delete File from S3
+// const updateFile = async (fileKey) => { 
+//   const updateParams = {
+//     Key: fileKey,    
+//     Bucket: bucketName
+//   }
+//   await s3.putObject(updateParams).promise();
 
-}
-exports.updateFile = updateFile
+// }
+// exports.updateFile = updateFile
 
 
 

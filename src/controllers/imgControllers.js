@@ -57,7 +57,7 @@ const deleteImgController = async (req, res) => {
     try {
          await deleteFile(path)
          const img = await uploadImgs.deleteImg(path)
-        return res.status(200).send(img)
+         return res.status(200).send(img)
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)
