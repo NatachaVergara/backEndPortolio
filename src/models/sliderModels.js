@@ -9,7 +9,13 @@ let sliders
 //Obtengo todas las imagenes de la DB
 const getSlidersModel = async () => {
     sliders = await request(` SELECT * FROM slider`)
-    return [...sliders]
+
+    if(sliders.length > 0) {
+        return [...sliders]
+    }else{
+        return 'No hay sliders disponibles'
+    }
+   
 }
 
 
@@ -22,7 +28,6 @@ const createSliderModel = async (path) => {
 
 
     return {
-        id: slider.length ? true : false,
         sliders: [...sliders],
         message: 'Nueva slider agregada satisfactoriamente'
     }
@@ -37,7 +42,6 @@ const updateSliderModel = async (path, nuevoPath) => {
     sliders = await request(` SELECT * FROM slider`);
 
     return {
-        path: slider.length ? true : false,
         sliders: [...sliders],
         message: 'Slider actualizada satisfactoriamente'
     }
