@@ -48,7 +48,7 @@ const updateSliderModel = async (path, nuevoPath) => {
 const deleteSliderModel = async path => {
     console.log('Path modelo', path);
 
-    slider = await request(`DELETE FROM slider WHERE path = ${path}`);
+    slider = await request(`DELETE FROM slider WHERE path = '${path}'`);
     sliders = await request(` SELECT * FROM slider`);
 
     return {
