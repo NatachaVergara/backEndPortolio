@@ -63,8 +63,8 @@ const updateImgController = async (req, res) => {
 
     try {
         const img = await model.updateImg(path, newPath)
-        console.log(img)
-        
+        console.log(img.update)
+
         if (img.update) {
             await deleteFile(path)
             return res.status(200).send(img)

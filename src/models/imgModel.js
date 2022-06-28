@@ -30,14 +30,21 @@ const createImg = async (file) => {
 const updateImg = async (oldPath, newPath) => {
     console.log('old', oldPath, 'new', newPath)
 
-    const img = await request(`UPDATE skill_img SET  path = "${newPath}", upload_date = NOW() WHERE path =" ${oldPath}"`)
-    const imagenes = await request(`SELECT * FROM  skill_img`)
+    try {
+        const img = await request(`UPDATE skill_img SET  path = "${newPath}", upload_date = NOW() WHERE path =" ${oldPath}"`)
+        const imagenes = await request(`SELECT * FROM  skill_img`)
 
-    return {
-        update: img.affectedRows ? true : false,
-        imagenes: [...imagenes],
-        message: `Imagen actualizada satisfactoriamente`
+        return {
+            update: img.affectedRows ? true : false,
+            imagenes: [...imagenes],
+            message: `Imagen actualizada satisfactoriamente`
+        }
+    } catch (error) {
+        console.log(error)
+        return error
     }
+
+
 }
 
 
