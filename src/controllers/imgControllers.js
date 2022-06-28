@@ -55,8 +55,8 @@ const updateImgController = async (req, res) => {
     console.log('Controler File ', req.file)
     //Lo voy a utilizar para eliminarlo de aws y encontrarlo en mi db
     console.log('Controler Params oldPath ', req.params)
-    const {path} = req.params
-    const file = req.file 
+    const { path } = req.params
+    const file = req.file
     // creo el nuevo path
     const image = await uploadFile(file)
     const newPath = image.Key
