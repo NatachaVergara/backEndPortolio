@@ -51,10 +51,6 @@ const createImgController = async (req, res) => {
 //Elimino el path en aws y creo un path nuevo con el cual ctualizo la imagen en la base de datos
 
 const updateImgController = async (req, res) => {
-    //Lo voy a utilizar para crear el nuevoPath
-    console.log('Controler File ', req.file)
-    //Lo voy a utilizar para eliminarlo de aws y encontrarlo en mi db
-    console.log('Controler Params oldPath ', req.params)
     const { path } = req.params
     const file = req.file
     // creo el nuevo path
@@ -63,7 +59,7 @@ const updateImgController = async (req, res) => {
 
     try {
         const img = await model.updateImg(path, newPath)
-        console.log(img.update)
+        console.log('was delete?: ', img.img)
 
         if (img.update) {
             await deleteFile(path)
@@ -71,7 +67,7 @@ const updateImgController = async (req, res) => {
         } else {
             await deleteFile(newPath)
             return res.status(304).send('Ha ocurrido un error')
-            
+
         }
 
     } catch (error) {

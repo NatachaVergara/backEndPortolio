@@ -28,13 +28,14 @@ const createImg = async (file) => {
 
 
 const updateImg = async (oldPath, newPath) => {
-    console.log('old', oldPath, 'new', newPath)
+    console.log('oldPath', oldPath, 'newPath', newPath)
 
     try {
-        const img = await request(`UPDATE skill_img SET  path = "${newPath}", upload_date = NOW() WHERE path =" ${oldPath}"`)
+        const img = await request(`UPDATE skill_img SET  path = "${newPath}", upload_date = NOW() WHERE path = "${oldPath}"`)
         const imagenes = await request(`SELECT * FROM  skill_img`)
 
         return {
+            img,
             update: img.affectedRows ? true : false,
             imagenes: [...imagenes],
             message: `Imagen actualizada satisfactoriamente`
