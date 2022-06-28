@@ -63,12 +63,15 @@ const updateImgController = async (req, res) => {
 
     try {
         const img = await model.updateImg(path, newPath)
-
+        console.log(img)
+        
         if (img.update) {
             await deleteFile(path)
             return res.status(200).send(img)
         } else {
+            await deleteFile(newPath)
             return res.status(304).send('Ha ocurrido un error')
+            
         }
 
     } catch (error) {

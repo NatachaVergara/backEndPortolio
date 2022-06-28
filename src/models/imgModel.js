@@ -29,10 +29,8 @@ const createImg = async (file) => {
 
 const updateImg = async (oldPath, newPath) => {
     console.log('old', oldPath, 'new', newPath)
-    const img = await request(`UPDATE skill_img 
-    SET  path = "${newPath}"     
-    WHERE path =" ${oldPath}"    
-    `)
+
+    const img = await request(`UPDATE skill_img SET  path = "${newPath}", upload_date = NOW() WHERE path =" ${oldPath}"`)
     const imagenes = await request(`SELECT * FROM  skill_img`)
 
     return {
