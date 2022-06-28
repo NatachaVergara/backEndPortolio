@@ -52,9 +52,10 @@ const createImgController = async (req, res) => {
 
 const updateImgController = async (req, res) => {
     //Lo voy a utilizar para crear el nuevoPath
-    console.log(req.file)
+    console.log('Controler File ', req.file)
     //Lo voy a utilizar para eliminarlo de aws y encontrarlo en mi db
-    console.log('oldPath', req.params)
+    console.log('Controler Params oldPath ', req.params)
+
     // const file = req.file 
     //creo el nuevo path
     // const image = await uploadFile(file)
