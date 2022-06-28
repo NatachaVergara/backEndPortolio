@@ -27,6 +27,21 @@ const createImg = async (file) => {
 }
 
 
+const updateImg = async (oldPath, newPath) => {
+    const img = await request(`  UPDATE skill_img SET 
+    path = "${newPath}",
+    upload_date = NOW()    
+    WHERE path =" ${oldPath}"    
+    `)
+    const imagenes = await request(`SELECT * FROM  skill_img`)
+
+    return {
+        update: img.affectedRows ? true : false,
+        imagenes: [...imagenes],
+        message: `Imagen actualizada satisfactoriamente`
+    }
+}
+
 
 const deleteImg = async (path) => {
     const img = await request(`DELETE FROM skill_img WHERE path = "${path}" `)
@@ -43,5 +58,6 @@ const deleteImg = async (path) => {
 module.exports = {
     getImgs,
     createImg,
+    updateImg,
     deleteImg
 }
