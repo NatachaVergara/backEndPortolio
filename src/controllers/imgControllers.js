@@ -56,25 +56,25 @@ const updateImgController = async (req, res) => {
     //Lo voy a utilizar para eliminarlo de aws y encontrarlo en mi db
     console.log('Controler Params oldPath ', req.params)
 
-    // const file = req.file 
-    //creo el nuevo path
-    // const image = await uploadFile(file)
-    // const newPath = image.Key
+    const file = req.file 
+    // creo el nuevo path
+    const image = await uploadFile(file)
+    const newPath = image.Key
 
-    // try {
-    //     const img = await model.updateImg(oldPath, newPath)
+    try {
+        const img = await model.updateImg(oldPath, newPath)
 
-    //     if (img.update) {
-    //         await deleteFile(oldPath)
-    //         return res.status(200).send(img)
-    //     } else {
-    //         return res.status(304).send('Ha ocurrido un error')
-    //     }
+        if (img.update) {
+            await deleteFile(oldPath)
+            return res.status(200).send(img)
+        } else {
+            return res.status(304).send('Ha ocurrido un error')
+        }
 
-    // } catch (error) {
-    //     console.log(error)
-    //     return res.status(500).send(error)
-    // }
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
 
 
 
