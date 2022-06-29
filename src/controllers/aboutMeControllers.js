@@ -1,5 +1,6 @@
-
 const modelo = require('../models/aboutMeModels')
+const s3 = require('../utils/s3')
+
 
 //Obtengo desde mi db la informacion aboutMe
 export const getAboutMeController = async (req, res) => {}
