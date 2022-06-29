@@ -66,27 +66,24 @@ const updateSlidercontroller = async (req, res) => {
     const { path } = req.params
     //El image es la nueva imagen a guardar
     const file = req.file
-    console.log(`Update params: ${req.params}`)
     console.log(`Update path:  ${path} `)
-    console.log(`Update req.file: ${req.file}`)
     console.log(`Update file: ${file}`)
 
     try {
         //Creo la nueva imagen que quiero guardar en mi storage
         const image = await s3.uploadFile(file)
         const nuevoPath = image.Key
-        //Elimino la imagen que quiero reeemplazar de mi storage
-        await s3.deleteFile(path)
         //Envio al modelo, el path a reemplazar y el nuevoPath a guardar
         slider = await modelo.updateSliderModel(path, nuevoPath)
 
         if (slider) {
+            //Elimino la imagen que quiero reeemplazar de mi storage
+            await s3.deleteFile(path)
             return res.status(200).send(slider)
         } else {
             //Elimino la imagen que quiero reeemplazar de mi storage
-            await s3.deleteFile(path)
+            await s3.deleteFile(nuevoPath)
             return res.status(304).send('El slider no pudo ser actualizo')
-
         }
 
     } catch (error) {
