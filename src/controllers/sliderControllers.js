@@ -83,7 +83,10 @@ const updateSlidercontroller = async (req, res) => {
         if (slider) {
             return res.status(200).send(slider)
         } else {
+            //Elimino la imagen que quiero reeemplazar de mi storage
+            await s3.deleteFile(path)
             return res.status(304).send('El slider no pudo ser actualizo')
+
         }
 
     } catch (error) {
