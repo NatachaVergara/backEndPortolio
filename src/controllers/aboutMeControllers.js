@@ -38,7 +38,14 @@ const getAboutMeController = async (req, res) => {
 const createAboutMeController = async (req, res) => {
     console.log(req.file)
     console.log(req.body)
-    
+
+    try {
+        return res.status(200)
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
+
 }
 
 //Actualizo los datos de mi registro aboutMe
