@@ -55,6 +55,7 @@ const createAboutMeController = async (req, res) => {
 
     } catch (error) {
         console.log(error)
+        await s3.deleteFile(path)
         return res.status(500).send(error)
     }
 

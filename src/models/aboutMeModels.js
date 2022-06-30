@@ -18,7 +18,7 @@ const createAboutMe = async (path, texto, titulo) => {
 
     return {
         created: registro.insertId ? true : false,
-        registro: [...registro]
+        registros: [...registros]
     }
 }
 //Actualizo el registro
