@@ -27,12 +27,12 @@ const getAboutMeController = async (req, res) => {
 }
 
 //Obtengo la imagen directamente desde aws
-// const getAboutMeImgController = async (req, res) => {
-
-
-
-
-// }
+const getAboutMeImgController = async (req, res) => {
+    console.log(req.params)
+    const { path } = req.params
+    const readStream = getFileStream(path)
+    readStream.pipe(res)
+ }
 
 //La tabla aboutMe va a tener 1 solo registro
 const createAboutMeController = async (req, res) => {
@@ -69,6 +69,6 @@ const createAboutMeController = async (req, res) => {
 
 module.exports = {
     getAboutMeController,
-    // getAboutMeImgController
+    getAboutMeImgController,
     createAboutMeController
 }
