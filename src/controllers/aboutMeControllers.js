@@ -11,7 +11,10 @@ const getAboutMeController = async (req, res) => {
         if (registros.length > 0) {
             return res.status(200).send(registros)
         } else {
-            return res.status(204).send({ message: 'No hay registros' })
+            return res.status(204).send({
+                registros,
+                message: 'No hay registros'
+            })
         }
 
     } catch (error) {
