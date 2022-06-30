@@ -5,7 +5,7 @@ let registros
 
 
 //Obtengo el registro
-export const getAboutMe = async () => {
+const getAboutMe = async () => {
     registros = await request(`SELECT * FROM aboutMe`)
     return registros
 }
@@ -15,3 +15,7 @@ export const getAboutMe = async () => {
 //export const updateAboutMe = async () => { }
 // //Elimino el registro
 // export const deleteAboutMe = async () => {}
+
+module.exports = {
+    getAboutMe
+}

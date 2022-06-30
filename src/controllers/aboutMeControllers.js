@@ -4,7 +4,7 @@ const modelo = require('../models/aboutMeModels')
 let registro
 let registros
 //Obtengo desde mi db la informacion aboutMe
-export const getAboutMeController = async (req, res) => {
+ const getAboutMeController = async (req, res) => {
 
     try {
         registros = await modelo.getAboutMe()
@@ -24,13 +24,17 @@ export const getAboutMeController = async (req, res) => {
 }
 
 //Obtengo la imagen directamente desde aws
-//export const getAboutMeImgController = async (req, res) => {}
+// const getAboutMeImgController = async (req, res) => {}
 
 //La tabla aboutMe va a tener 1 solo registro
-//export const createAboutMeController = async (req, res) => {}
+// const createAboutMeController = async (req, res) => {}
 
 //Actualizo los datos de mi registro aboutMe
-//export const updateAboutMeController = async (req, res) => {}
+// const updateAboutMeController = async (req, res) => {}
 
 // //Elimino mi resgistro (no va a estar activo)
-// export const deleteAboutMeController = async (req, res) => {}
+//  const deleteAboutMeController = async (req, res) => {}
+
+module.exports ={
+    getAboutMeController
+}
