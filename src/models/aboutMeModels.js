@@ -5,10 +5,14 @@ let registros
 
 
 //Obtengo el registro
-export const getAboutMe = async () => { }
+export const getAboutMe = async () => {
+
+
+
+ }
 //Creo el registro
-export const createAboutMe = async () => { }
+//export const createAboutMe = async () => { }
 //Actualizo el registro 
-export const updateAboutMe = async () => { }
+//export const updateAboutMe = async () => { }
 // //Elimino el registro
 // export const deleteAboutMe = async () => {}
