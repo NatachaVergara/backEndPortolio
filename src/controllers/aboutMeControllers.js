@@ -27,10 +27,19 @@ const getAboutMeController = async (req, res) => {
 }
 
 //Obtengo la imagen directamente desde aws
-// const getAboutMeImgController = async (req, res) => {}
+// const getAboutMeImgController = async (req, res) => {
+   
+
+
+
+// }
 
 //La tabla aboutMe va a tener 1 solo registro
-// const createAboutMeController = async (req, res) => {}
+const createAboutMeController = async (req, res) => {
+    console.log(req.file)
+    console.log(req.body)
+    
+}
 
 //Actualizo los datos de mi registro aboutMe
 // const updateAboutMeController = async (req, res) => {}
@@ -39,5 +48,7 @@ const getAboutMeController = async (req, res) => {
 //  const deleteAboutMeController = async (req, res) => {}
 
 module.exports = {
-    getAboutMeController
+    getAboutMeController,
+    // getAboutMeImgController
+    createAboutMeController
 }
