@@ -48,7 +48,7 @@ app.use('/contacto', contactoRouter)
 app.use('/footer', footerRouter)
 app.use('/upload', imageRouter)
 app.use('/upload', slidersRouter)
-//app.use('/aboutme', aboutMeRouter)
+app.use('/aboutme', aboutMeRouter)
 
 
 

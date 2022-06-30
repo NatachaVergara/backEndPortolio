@@ -1,18 +1,17 @@
 const { request } = require('../db/request')
 
-let resgistro
+let registro
 let registros
 
 
 //Obtengo el registro
 export const getAboutMe = async () => {
-
-
-
- }
+    registros = await request(`SELECT * FROM aboutMe`)
+    return registros
+}
 //Creo el registro
 //export const createAboutMe = async () => { }
-//Actualizo el registro 
+//Actualizo el registro
 //export const updateAboutMe = async () => { }
 // //Elimino el registro
 // export const deleteAboutMe = async () => {}

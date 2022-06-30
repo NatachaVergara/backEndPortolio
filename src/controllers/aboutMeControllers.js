@@ -1,9 +1,27 @@
-//const modelo = require('../models/aboutMeModels')
+const modelo = require('../models/aboutMeModels')
 //const s3 = require('../utils/s3')
 
-
+let registro
+let registros
 //Obtengo desde mi db la informacion aboutMe
-//export const getAboutMeController = async (req, res) => {}
+export const getAboutMeController = async (req, res) => {
+
+    try {
+        registros = await modelo.getAboutMe()
+        if (registros.length > 0) {
+            return res.status(200).send(registros)
+        } else {
+            return res.status(304).send('No hay registros')
+        }
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
+
+
+
+}
 
 //Obtengo la imagen directamente desde aws
 //export const getAboutMeImgController = async (req, res) => {}
