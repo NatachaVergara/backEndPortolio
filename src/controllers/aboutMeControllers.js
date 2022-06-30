@@ -4,14 +4,14 @@ const modelo = require('../models/aboutMeModels')
 let registro
 let registros
 //Obtengo desde mi db la informacion aboutMe
- const getAboutMeController = async (req, res) => {
+const getAboutMeController = async (req, res) => {
 
     try {
         registros = await modelo.getAboutMe()
         if (registros.length > 0) {
             return res.status(200).send(registros)
         } else {
-            return res.status(304).send('No hay registros')
+            return res.status(204).send({ message: 'No hay registros' })
         }
 
     } catch (error) {
@@ -35,6 +35,6 @@ let registros
 // //Elimino mi resgistro (no va a estar activo)
 //  const deleteAboutMeController = async (req, res) => {}
 
-module.exports ={
+module.exports = {
     getAboutMeController
 }
