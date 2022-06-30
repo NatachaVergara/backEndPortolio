@@ -1,5 +1,5 @@
 const modelo = require('../models/aboutMeModels')
-//const s3 = require('../utils/s3')
+const s3 = require('../utils/s3')
 
 let registro
 let registros
@@ -28,7 +28,7 @@ const getAboutMeController = async (req, res) => {
 
 //Obtengo la imagen directamente desde aws
 // const getAboutMeImgController = async (req, res) => {
-   
+
 
 
 
@@ -38,9 +38,21 @@ const getAboutMeController = async (req, res) => {
 const createAboutMeController = async (req, res) => {
     console.log(req.file)
     console.log(req.body)
+    const { texto, titulo } = req.body
+    const file = req.file
+    const img = await s3.uploadFile(file)
+    const path = img.Key
 
     try {
-        return res.status(200)
+        registro = await modelo.createAboutMe(path, texto, titulo)
+
+        if (registro.created) {
+            return res.status(200).send(registro)
+        } else {
+            await s3.deleteFile(path)
+            return res.status(204).send('No se pudo crear registro')
+        }
+
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)
