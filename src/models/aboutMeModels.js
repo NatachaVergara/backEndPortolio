@@ -43,7 +43,7 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
 // //Elimino el registro
 const deleteAboutMe = async (path) => {
 
-    registro = await request(`DELETE FROM aboutMe path = "${path}" `)
+    registro = await request(`DELETE FROM aboutMe WHERE path = "${path}" `)
     registros = await request(`SELECT * FROM aboutMe`)
 
     return {
