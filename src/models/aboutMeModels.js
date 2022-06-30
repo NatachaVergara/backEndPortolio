@@ -41,10 +41,21 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
     }
 }
 // //Elimino el registro
-// export const deleteAboutMe = async () => {}
+const deleteAboutMe = async (path) => {
+
+    registro = await request(`DELETE FROM aboutMe path = "${path}" `)
+    registros = await request(`SELECT * FROM aboutMe`)
+
+    return {
+        deleted: registro.affectedRows ? true : false,
+        registros: [...registros]
+    }
+
+}
 
 module.exports = {
     getAboutMe,
     createAboutMe,
-    updateAboutMe
+    updateAboutMe,
+    deleteAboutMe
 }

@@ -92,11 +92,32 @@ const updateAboutMeController = async (req, res) => {
 }
 
 // //Elimino mi resgistro (no va a estar activo)
-//  const deleteAboutMeController = async (req, res) => {}
+const deleteAboutMeController = async (req, res) => {
+    const { path } = req.params;
+
+    try {
+        registro = await modelo.deleteAboutMe(path)
+
+        if (registro.deleted) {
+            await s3.deleteFile(path)
+            return res.status(200).send(registro)
+        } else {
+            return res.status(304).send('Registro no eliminado')
+        }
+
+
+    } catch (error) {
+        console.log(error)
+        return res.status(500).send(error)
+    }
+
+
+}
 
 module.exports = {
     getAboutMeController,
     getAboutMeImgController,
     createAboutMeController,
-    updateAboutMeController
+    updateAboutMeController,
+    deleteAboutMeController
 }

@@ -10,7 +10,7 @@ router.get('/', controller.getAboutMeController)
 router.get('/:path', controller.getAboutMeImgController)
 router.post('/', upload.single('image'), controller.createAboutMeController)
 router.put('/:path', upload.single('image'), controller.updateAboutMeController)
-// router.delete('/:path', controller.deleteAboutMeController)
+router.delete('/:path', controller.deleteAboutMeController)
 
 
 
