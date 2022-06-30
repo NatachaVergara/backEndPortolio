@@ -30,7 +30,7 @@ const getAboutMeController = async (req, res) => {
 const getAboutMeImgController = async (req, res) => {
     console.log(req.params)
     const { path } = req.params
-    const readStream = getFileStream(path)
+    const readStream = s3.getFileStream(path)
     readStream.pipe(res)
  }
 
