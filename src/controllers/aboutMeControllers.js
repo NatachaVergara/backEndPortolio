@@ -28,16 +28,16 @@ const getAboutMeController = async (req, res) => {
 
 //Obtengo la imagen directamente desde aws
 const getAboutMeImgController = async (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     const { path } = req.params
     const readStream = s3.getFileStream(path)
     readStream.pipe(res)
- }
+}
 
 //La tabla aboutMe va a tener 1 solo registro
 const createAboutMeController = async (req, res) => {
-    console.log(req.file)
-    console.log(req.body)
+    // console.log(req.file)
+    // console.log(req.body)
     const { texto, titulo } = req.body
     const file = req.file
     const img = await s3.uploadFile(file)
@@ -62,7 +62,34 @@ const createAboutMeController = async (req, res) => {
 }
 
 //Actualizo los datos de mi registro aboutMe
-// const updateAboutMeController = async (req, res) => {}
+const updateAboutMeController = async (req, res) => {
+    const { path } = req.params
+    const { texto, titulo } = req.body
+
+    //Creo un nuevo path en base al req.file que entra
+    const file = req.file
+    const img = await s3.uploadFile(file)
+    const newPath = img.Key
+
+    try {
+        registro = await modelo.updateAboutMe(path, newPath, texto, titulo)
+
+        if (registro.update) {
+            await s3.deleteFile(path)
+            return res.status(200).send(registro)
+        } else {
+            await s3.deleteFile(newPath)
+            return res.status(304).send('No se pudo actualizar registro')
+        }
+
+    } catch (error) {
+        console.log(error)
+        await s3.deleteFile(newPath)
+        return res.status(500).send(error)
+    }
+
+
+}
 
 // //Elimino mi resgistro (no va a estar activo)
 //  const deleteAboutMeController = async (req, res) => {}
@@ -70,5 +97,6 @@ const createAboutMeController = async (req, res) => {
 module.exports = {
     getAboutMeController,
     getAboutMeImgController,
-    createAboutMeController
+    createAboutMeController,
+    updateAboutMeController
 }

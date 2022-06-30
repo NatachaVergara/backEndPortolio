@@ -22,11 +22,29 @@ const createAboutMe = async (path, texto, titulo) => {
     }
 }
 //Actualizo el registro
-//export const updateAboutMe = async () => { }
+const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
+    console.log('Modelo Update: ', oldPath, newPath, texto, titulo)
+
+    registro = await request(`
+    UPDATE aboutMe SET 
+    path = "${newPath}",
+    texto = "${texto}",
+    titulo = "${titulo}",
+    update_date = NOW()
+    WHERE path = "${oldPath}"    
+    `)
+    registros = await request(`SELECT * FROM aboutMe`)
+
+    return {
+        update: registro.affectedRows ? true : false,
+        registros: [...registros]
+    }
+}
 // //Elimino el registro
 // export const deleteAboutMe = async () => {}
 
 module.exports = {
     getAboutMe,
-    createAboutMe
+    createAboutMe,
+    updateAboutMe
 }
