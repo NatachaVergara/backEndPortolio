@@ -3,27 +3,16 @@ const s3 = require('../utils/s3')
 
 let registro
 let registros
-//Obtengo desde mi db la informacion aboutMe
+//Obtengo desde mi db el registro de aboutMe
 const getAboutMeController = async (req, res) => {
 
     try {
         registros = await modelo.getAboutMe()
-        if (registros.length > 0) {
-            return res.status(200).send(registros)
-        } else {
-            return res.status(204).send({
-                registros,
-                message: 'No hay registros'
-            })
-        }
-
+        return res.status(200).send(registros)
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)
     }
-
-
-
 }
 
 //Obtengo la imagen directamente desde aws
@@ -50,7 +39,7 @@ const createAboutMeController = async (req, res) => {
             return res.status(200).send(registro)
         } else {
             await s3.deleteFile(path)
-            return res.status(204).send('No se pudo crear registro')
+            return res.status(204).send(registro.message)
         }
 
     } catch (error) {
@@ -58,7 +47,6 @@ const createAboutMeController = async (req, res) => {
         await s3.deleteFile(path)
         return res.status(500).send(error)
     }
-
 }
 
 //Actualizo los datos de mi registro aboutMe
@@ -79,7 +67,7 @@ const updateAboutMeController = async (req, res) => {
             return res.status(200).send(registro)
         } else {
             await s3.deleteFile(newPath)
-            return res.status(304).send('No se pudo actualizar registro')
+            return res.status(304).send(registro.message)
         }
 
     } catch (error) {
@@ -87,8 +75,6 @@ const updateAboutMeController = async (req, res) => {
         await s3.deleteFile(newPath)
         return res.status(500).send(error)
     }
-
-
 }
 
 // //Elimino mi resgistro (no va a estar activo)
@@ -102,7 +88,7 @@ const deleteAboutMeController = async (req, res) => {
             await s3.deleteFile(path)
             return res.status(200).send(registro)
         } else {
-            return res.status(304).send('Registro no eliminado')
+            return res.status(304).send(registro.message)
         }
 
 
@@ -110,8 +96,6 @@ const deleteAboutMeController = async (req, res) => {
         console.log(error)
         return res.status(500).send(error)
     }
-
-
 }
 
 module.exports = {

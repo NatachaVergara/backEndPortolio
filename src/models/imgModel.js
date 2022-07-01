@@ -1,27 +1,28 @@
 const { request } = require('../db/request')
 
+let registro
+let registros
+
 const getImgs = async () => {
-    const imgs = await request(`SELECT * FROM  skill_img`)
-    return {
-        imgs,
-        cantRegistros: imgs.length,
-    }
+    registros = await request(`SELECT * FROM  skill_img`)
+    return registros
+
 }
 
 const createImg = async (file) => {
     console.log(`Modelo: ${file}`)
 
-    const img = await request(`
+    registro = await request(`
         INSERT INTO skill_img(path , upload_date)
         VALUES ('${file}', NOW()) `)
 
-    const imagenes = await request(`SELECT * FROM  skill_img`)
+    registros = await request(`SELECT * FROM  skill_img`)
 
 
     return {
-        id: img.insertId ? true : false,
-        imagenes: [...imagenes],
-        message: `Nueva agregada satisfactoriamente`
+        created: registro.insertId ? true : false,
+        registros: [...registros],
+        message: created ? 'Se ha creado el registro' : 'No se ha creado el registro'
     }
 
 }
@@ -30,33 +31,29 @@ const createImg = async (file) => {
 const updateImg = async (oldPath, newPath) => {
     console.log('oldPath', oldPath, 'newPath', newPath)
 
-    try {
-        const img = await request(`UPDATE skill_img SET  path = "${newPath}", upload_date = NOW() WHERE path = "${oldPath}"`)
-        const imagenes = await request(`SELECT * FROM  skill_img`)
 
-        return {
-            img,
-            update: img.affectedRows ? true : false,
-            imagenes: [...imagenes],
-            message: `Imagen actualizada satisfactoriamente`
-        }
-    } catch (error) {
-        console.log(error)
-        return error
+    registro = await request(`UPDATE skill_img SET  path = "${newPath}", upload_date = NOW() WHERE path = "${oldPath}"`)
+    registros = await request(`SELECT * FROM  skill_img`)
+
+    return {
+        update: registro.affectedRows ? true : false,
+        registros: [...registros],
+        message: created ? 'Se ha actualizado' : 'No se pudo actualizar'
     }
+
 
 
 }
 
 
 const deleteImg = async (path) => {
-    const img = await request(`DELETE FROM skill_img WHERE path = "${path}" `)
-    const imagenes = await request(`SELECT * FROM skill_img`)
+    registro = await request(`DELETE FROM skill_img WHERE path = "${path}" `)
+    registros = await request(`SELECT * FROM skill_img`)
 
     return {
-        imagenes: [...imagenes],
-        deleted: img.affectedRows ? true : false,
-        message: "Imagen eliminada satisfactoriamente"
+        deleted: registro.affectedRows ? true : false,
+        registros: [...registros],
+        message: deleted ? 'Se eliminado exitosamente' : 'No se pudo eliminar'
     }
 }
 

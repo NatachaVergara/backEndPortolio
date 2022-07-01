@@ -2,16 +2,15 @@ const model = require('../models/imgModel')
 
 const { uploadFile, getFileStream, deleteFile } = require('../utils/s3')
 
+let registro
+let registros
+
+
 //Me trae todas las imagenes de mi DB
 const imgsController = async (req, res) => {
     try {
-        const img = await model.getImgs()
-        if (img) {
-            return res.status(201).send(img)
-        } else {
-            return res.status(204).send('Imagenes no disponibles')
-        }
-
+        registros = await model.getImgs()
+        return res.status(201).send(registros)
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)
@@ -35,15 +34,17 @@ const createImgController = async (req, res) => {
 
 
     try {
-        const img = await model.createImg(path)
+        registro = await model.createImg(path)
 
-        if (img) {
-            return res.status(201).send(img)
+        if (registro.created) {
+            return res.status(201).send(registro)
         } else {
-            return res.status(304).send('La imagen no pudo ser guardada')
+            await deleteFile(path)
+            return res.status(304).send(registro.message)
         }
     } catch (error) {
         console.log(error)
+        await deleteFile(path)
         return res.status(500).send('Error ', error)
     }
 }
@@ -58,26 +59,19 @@ const updateImgController = async (req, res) => {
     const newPath = image.Key
 
     try {
-        const img = await model.updateImg(path, newPath)
-        console.log('was delete?: ', img.img)
-
-        if (img.update) {
+        registro = await model.updateImg(path, newPath)
+        if (registro.update) {
             await deleteFile(path)
-            return res.status(200).send(img)
+            return res.status(200).send(registro)
         } else {
             await deleteFile(newPath)
-            return res.status(304).send('Ha ocurrido un error')
-
+            return res.status(304).send(registro.message)
         }
-
     } catch (error) {
         console.log(error)
+        await deleteFile(newPath)
         return res.status(500).send(error)
     }
-
-
-
-
 }
 
 
@@ -88,9 +82,15 @@ const deleteImgController = async (req, res) => {
     console.log(path)
 
     try {
-        await deleteFile(path)
-        const img = await model.deleteImg(path)
-        return res.status(200).send(img)
+
+        registro = await model.deleteImg(path)
+
+        if (registro.deleted) {
+            await deleteFile(path)
+            return res.status(200).send(img)
+        } else {
+            return res.status(304).send(registro.message)
+        }
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)

@@ -7,7 +7,7 @@ let registros
 //Obtengo el registro
 const getAboutMe = async () => {
     registros = await request(`SELECT * FROM aboutMe`)
-    return registros
+    return { registros: [...registros] }
 }
 //Creo el registro
 const createAboutMe = async (path, texto, titulo) => {
@@ -18,7 +18,8 @@ const createAboutMe = async (path, texto, titulo) => {
 
     return {
         created: registro.insertId ? true : false,
-        registros: [...registros]
+        registros: [...registros],
+        message: created ? 'Se ha creado el registro' : 'No se ha creado el registro'
     }
 }
 //Actualizo el registro
@@ -37,7 +38,8 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
 
     return {
         update: registro.affectedRows ? true : false,
-        registros: [...registros]
+        registros: [...registros],
+        message: created ? 'Se ha actualizado' : 'No se pudo actualizar'
     }
 }
 // //Elimino el registro
@@ -48,7 +50,8 @@ const deleteAboutMe = async (path) => {
 
     return {
         deleted: registro.affectedRows ? true : false,
-        registros: [...registros]
+        registros: [...registros],
+        message: deleted ? 'Se eliminado exitosamente' : 'No se pudo eliminar'
     }
 
 }
