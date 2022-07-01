@@ -10,7 +10,7 @@ let registros
 const imgsController = async (req, res) => {
     try {
         registros = await model.getImgs()
-        return res.status(201).send(registros)
+        return res.status(200).send(registros)
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)

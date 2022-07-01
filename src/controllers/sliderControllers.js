@@ -3,28 +3,20 @@ const modelo = require('../models/sliderModels')
 //traer las funciones del archivo s3.js
 
 const s3 = require('../utils/s3')
-let sliders
-let slider
+
+
+let registros
 
 
 //obtiene todas las imagenes de la DB
 const getSlidersController = async (req, res) => {
     try {
-
-        sliders = await modelo.getSlidersModel()
-        if (sliders.length > 0) {
-            return res.status(200).send(sliders)
-        } else {
-            return res.status(204).send('Sliders no disponibles')
-        }
-
-
+        registros = await modelo.getSlidersModel()
+        return res.status(200).send(registros)
     } catch (error) {
         console.log(error)
         return res.status(500).send(error)
     }
-
-
 }
 
 //obtener una imagen de slider desde aws, no es necesario acceder a la db propia
@@ -44,51 +36,52 @@ const createSliderController = async (req, res) => {
 
 
     try {
-        slider = await modelo.createSliderModel(path)
-        if (slider) {
-            return res.status(200).send(slider)
+        registros = await modelo.createSliderModel(path)
+        if (registros.created) {
+            return res.status(201).send(registros)
         } else {
-            return res.status(304).send(`La imagen no pudo ser guardada`)
+            await s3.deleteFile(path)
+            return res.status(304).send(registros)
         }
-
 
     } catch (error) {
         console.log(error)
+        await s3.deleteFile(path)
         return res.status(500).send('Error ', error)
     }
 
 }
 
 
-//actualiar la imagen en la db y aws
+//actualizar la imagen en la db y aws
 const updateSlidercontroller = async (req, res) => {
     //El path es la imagen que quiero reempalazar
     const { path } = req.params
-    //El image es la nueva imagen a guardar
+    //Creo la nueva imagen que quiero guardar en mi storage
     const file = req.file
+    const image = await s3.uploadFile(file)
+    const nuevoPath = image.Key
     console.log(`Update path:  ${path} `)
     console.log(`Update file: ${file}`)
 
     try {
-        //Creo la nueva imagen que quiero guardar en mi storage
-        const image = await s3.uploadFile(file)
-        const nuevoPath = image.Key
         //Envio al modelo, el path a reemplazar y el nuevoPath a guardar
-        slider = await modelo.updateSliderModel(path, nuevoPath)
+        registros = await modelo.updateSliderModel(path, nuevoPath)
 
-        if (slider) {
+        if (registros.updated) {
             //Elimino la imagen que quiero reeemplazar de mi storage
             await s3.deleteFile(path)
-            return res.status(200).send(slider)
+            return res.status(200).send(registros)
         } else {
-            //Elimino la imagen que quiero reeemplazar de mi storage
+            //Elimino la imagen que se acaba de crear de mi storage
             await s3.deleteFile(nuevoPath)
-            return res.status(304).send('El slider no pudo ser actualizo')
+            return res.status(304).send(registros)
         }
 
     } catch (error) {
         console.log(error)
-        return res.status(500).send('Error ', error)
+        await s3.deleteFile(nuevoPath)
+        return res.status(500).send(error)
     }
 
 }
@@ -100,12 +93,16 @@ const deleteSlidercontroller = async (req, res) => {
     console.log(path)
 
     try {
-        slider = await modelo.deleteSliderModel(path)
-        await s3.deleteFile(path)
-        return res.status(200).send(slider)
+        registros = await modelo.deleteSliderModel(path)
+        if (registros.deleted) {
+            await s3.deleteFile(path)
+            return res.status(200).send(registros)
+        } else {
+            return res.status(304).send(registros)
+        }
     } catch (error) {
         console.log(error)
-        return res.status(500).send('Error ', error)
+        return res.status(500).send(error)
     }
 }
 

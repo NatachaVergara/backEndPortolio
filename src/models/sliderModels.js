@@ -1,20 +1,15 @@
 // conecto con mysql
 const { request } = require('../db/request')
 
-let slider
-let sliders
+let registro
+let registros
 
 
 
 //Obtengo todas las imagenes de la DB
 const getSlidersModel = async () => {
-    sliders = await request(` SELECT * FROM slider`)
-
-    if(sliders.length > 0) {
-        return [...sliders]
-    }else{
-        return 'No hay sliders disponibles'
-    }
+    registros = await request(` SELECT * FROM slider`)
+   return registros
    
 }
 
@@ -23,12 +18,13 @@ const getSlidersModel = async () => {
 const createSliderModel = async (path) => {
     console.log('Path del modelo', path)
 
-    slider = await request(`INSERT INTO slider (path) VALUES ('${path}')`);
-    sliders = await request(` SELECT * FROM slider`)
+    registro = await request(`INSERT INTO slider (path) VALUES ('${path}')`);
+    registros = await request(` SELECT * FROM slider`)
 
 
     return {
-        sliders: [...sliders],
+        created: registro.insertId ? true : false,
+        registros: [...sliders],
         message: 'Nueva slider agregada satisfactoriamente'
     }
 }
@@ -38,11 +34,12 @@ const createSliderModel = async (path) => {
 const updateSliderModel = async (path, nuevoPath) => {
     console.log('Id y Path modelo', path, nuevoPath);
 
-    slider = await request(`UPDATE slider SET path = '${nuevoPath}' WHERE path = "${path}" `);
-    sliders = await request(` SELECT * FROM slider`);
+    registro = await request(`UPDATE slider SET path = '${nuevoPath}' WHERE path = "${path}" `);
+    registros = await request(` SELECT * FROM slider`);
 
     return {
-        sliders: [...sliders],
+        updated: registro.affectedRows ? true : false,
+        registros: [...registros],
         message: 'Slider actualizada satisfactoriamente'
     }
 
@@ -52,11 +49,12 @@ const updateSliderModel = async (path, nuevoPath) => {
 const deleteSliderModel = async path => {
     console.log('Path modelo', path);
 
-    slider = await request(`DELETE FROM slider WHERE path = '${path}'`);
-    sliders = await request(` SELECT * FROM slider`);
+    registro = await request(`DELETE FROM slider WHERE path = '${path}'`);
+    registros = await request(` SELECT * FROM slider`);
 
     return {
-        sliders: [...sliders],
+        deleted: registro.affectedRows ? true : false,
+        registros: [...registros],
         message: 'Slider eliminada satisfactoriamente'
     }
 
