@@ -24,7 +24,7 @@ const createSliderModel = async (path) => {
 
     return {
         created: registro.insertId ? true : false,
-        registros: [...sliders],
+        registros: [...registros],
         message: 'Nueva slider agregada satisfactoriamente'
     }
 }
