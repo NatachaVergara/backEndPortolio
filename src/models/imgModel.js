@@ -36,9 +36,9 @@ const updateImg = async (oldPath, newPath) => {
     registros = await request(`SELECT * FROM  skill_img`)
 
     return {
-        update: registro.affectedRows ? true : false,
+        updated: registro.affectedRows ? true : false,
         registros: [...registros],
-        message: created ? 'Se ha actualizado' : 'No se pudo actualizar'
+        message: updated ? 'Se ha actualizado' : 'No se pudo actualizar'
     }
 
 

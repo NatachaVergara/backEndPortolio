@@ -40,7 +40,7 @@ const createImgController = async (req, res) => {
             return res.status(201).send(registro)
         } else {
             await deleteFile(path)
-            return res.status(304).send(registro.message)
+            return res.status(304).send(registro)
         }
     } catch (error) {
         console.log(error)
@@ -60,12 +60,12 @@ const updateImgController = async (req, res) => {
 
     try {
         registro = await model.updateImg(path, newPath)
-        if (registro.update) {
+        if (registro.updated) {
             await deleteFile(path)
             return res.status(200).send(registro)
         } else {
             await deleteFile(newPath)
-            return res.status(304).send(registro.message)
+            return res.status(304).send(registro)
         }
     } catch (error) {
         console.log(error)
@@ -87,9 +87,9 @@ const deleteImgController = async (req, res) => {
 
         if (registro.deleted) {
             await deleteFile(path)
-            return res.status(200).send(img)
+            return res.status(200).send(registro)
         } else {
-            return res.status(304).send(registro.message)
+            return res.status(304).send(registro)
         }
     } catch (error) {
         console.log(error)

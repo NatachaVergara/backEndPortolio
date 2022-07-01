@@ -7,7 +7,7 @@ let registros
 //Obtengo el registro
 const getAboutMe = async () => {
     registros = await request(`SELECT * FROM aboutMe`)
-    return { registros: [...registros] }
+    return registros
 }
 //Creo el registro
 const createAboutMe = async (path, texto, titulo) => {
@@ -37,9 +37,9 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
     registros = await request(`SELECT * FROM aboutMe`)
 
     return {
-        update: registro.affectedRows ? true : false,
+        updated: registro.affectedRows ? true : false,
         registros: [...registros],
-        message: created ? 'Se ha actualizado' : 'No se pudo actualizar'
+        message: updated ? 'Se ha actualizado' : 'No se pudo actualizar'
     }
 }
 // //Elimino el registro

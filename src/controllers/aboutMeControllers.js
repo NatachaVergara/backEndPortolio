@@ -39,7 +39,7 @@ const createAboutMeController = async (req, res) => {
             return res.status(200).send(registro)
         } else {
             await s3.deleteFile(path)
-            return res.status(204).send(registro.message)
+            return res.status(204).send(registro)
         }
 
     } catch (error) {
@@ -62,12 +62,12 @@ const updateAboutMeController = async (req, res) => {
     try {
         registro = await modelo.updateAboutMe(path, newPath, texto, titulo)
 
-        if (registro.update) {
+        if (registro.updated) {
             await s3.deleteFile(path)
             return res.status(200).send(registro)
         } else {
             await s3.deleteFile(newPath)
-            return res.status(304).send(registro.message)
+            return res.status(304).send(registro)
         }
 
     } catch (error) {
@@ -88,7 +88,7 @@ const deleteAboutMeController = async (req, res) => {
             await s3.deleteFile(path)
             return res.status(200).send(registro)
         } else {
-            return res.status(304).send(registro.message)
+            return res.status(304).send(registro)
         }
 
 
