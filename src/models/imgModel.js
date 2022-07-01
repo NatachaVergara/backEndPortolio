@@ -22,7 +22,7 @@ const createImg = async (file) => {
     return {
         created: registro.insertId ? true : false,
         registros: [...registros],
-        message: created ? 'Se ha creado el registro' : 'No se ha creado el registro'
+        message: 'Se ha creado el registro'
     }
 
 }
@@ -38,7 +38,7 @@ const updateImg = async (oldPath, newPath) => {
     return {
         updated: registro.affectedRows ? true : false,
         registros: [...registros],
-        message: updated ? 'Se ha actualizado' : 'No se pudo actualizar'
+        message:'Se ha actualizado'
     }
 
 
@@ -53,7 +53,7 @@ const deleteImg = async (path) => {
     return {
         deleted: registro.affectedRows ? true : false,
         registros: [...registros],
-        message: deleted ? 'Se eliminado exitosamente' : 'No se pudo eliminar'
+        message: 'Se eliminado exitosamente'
     }
 }
 
