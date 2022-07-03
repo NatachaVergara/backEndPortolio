@@ -1,42 +1,41 @@
 const { request } = require('../db/request')
 
+let registro
+let registros
+
 const allProyects = async () => {
-    const data = await request(`SELECT * FROM proyects`)
-    return {
-        idData: data ? true : false,
-        cantRegistros: data.length,
-        data: [...data]
-    }
+    registros = await request(`SELECT * FROM proyects`)
+    return registros
 }
 
-const findProyect = async (id) => {
-    const data = await request(`SELECT * FROM proyects WHERE id = ${id}`)
+// const findProyect = async (id) => {
+//     registros = await request(`SELECT * FROM proyects WHERE id = ${id}`)
 
-    return {
-        isData: data[0] ? true : false,
-        data: data ? data : []
-    }
-}
+//     return {
+//         registros: registros[0] ? true : false,
+//         registros: registros ? registros : []
+//     }
+// }
 
 const createProyect = async (title, link, logo, img, tec) => {
     console.log(img)
-    const data = await request(
+    registro = await request(
         `INSERT INTO proyects(title, link, logo, img, tec )
         VALUES("${title}","${link}", "${logo}","${img}", "${tec}")`
     )
+    registros = await request(`SELECT * FROM proyects`)
 
     return {
-        id: data.insertId,
-        proyect: { title, link, logo, img, tec },
-        data,
-        message: `New proyect created successfully`
+        created: registro.insertId ? true : false,
+        registros: [...registros],
+        message: 'Se ha creado el registro'
     }
 }
 
 const updateProyect = async (id, title, link, logo, img, tec) => {
     console.log('update modelo', id, title, link, logo, img, tec)
 
-    const data = await request(
+    registro = await request(
         `UPDATE proyects SET title = "${title}",
         link = "${link}",
         logo = "${logo}",
@@ -44,31 +43,30 @@ const updateProyect = async (id, title, link, logo, img, tec) => {
         tec = "${tec}"
         WHERE id = ${id}    
     `)
-    const fulldata = await request(`SELECT * FROM proyects`)
+    registros = await request(`SELECT * FROM proyects`)
+
     return {
-        data,
-        fulldata: [...fulldata],
-        update: data.affectedRows ? true : false,
-        message: `The proyect has been updated`
+        updated: registro.affectedRows ? true : false,
+        registros: [...registros],
+        message: 'Se ha actualizado el registro'
     }
 
 }
 
 const deleteProyect = async (path) => {
-    const data = await request(` DELETE FROM proyects WHERE img = "${path}" `)
-    const fulldata = await request(`SELECT * FROM proyects`)
+    registro = await request(` DELETE FROM proyects WHERE img = "${path}" `)
+    registros = await request(`SELECT * FROM proyects`)
 
     return {
-        path,
-        fulldata: [...fulldata],
-        deleted: data.affectedRows ? true : false,
-        message: "The proyect has been deleted"
+        deleted: registro.affectedRows ? true : false,
+        registros: [...registros],
+        message: 'Se ha eliminado el registro'
     }
 }
 
 module.exports = {
     allProyects,
-    findProyect,
+    // findProyect,
     createProyect,
     updateProyect,
     deleteProyect
