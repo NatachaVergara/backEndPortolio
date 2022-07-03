@@ -80,13 +80,13 @@ const updateProyectController = async (req, res) => {
     console.log('req.file', req.file)
 
     let img = ''
-
+    let newPath = ''
     //Si del front viene un archivo que elimine la imagen existente en mi bucket y que me cree una nueva y se guearde en la variable img
     if (req.file !== undefined) {
         let file = req.file
         img = await s3.uploadFile(file)
         img = img.Key
-        let newPath = img.Key
+        newPath = img.Key
         console.log('req.file del if', img)
 
     } else { // si no viene ningun archivo desde el front que se guarde en mi variable img, el path ya existente
