@@ -20,9 +20,8 @@ module.exports.sendMail = ({from, subject, text}) => new Promise((res, rej) => {
     let mailOptions = {
         from,
         to: ['ntchvergara@gmail.com', 'ntchvergara@yahoo.com.ar'],
-        subject,
-        text
-    
+        subject: 'Mensaje Porfolio: ', subject,
+        text    
     }
     
     transporter.sendMail(mailOptions, function(err, data) {
