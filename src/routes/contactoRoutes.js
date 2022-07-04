@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
         console.log(error)
         return res.status(500).send({ 
             sended: false,
-            msg: 'Por un error de conexió no se pudo enviar su mensaje' })
+            msg: 'Por un error de conexión no se pudo enviar su mensaje' })
     }
 })
 
