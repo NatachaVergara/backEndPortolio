@@ -32,9 +32,6 @@ module.exports.sendMail = ({from, subject, text}) => new Promise((res, rej) => {
             res(true)
         }
     })
-
-
-
 })
 
 
