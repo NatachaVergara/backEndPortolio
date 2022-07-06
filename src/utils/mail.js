@@ -19,7 +19,7 @@ module.exports.sendMail = ({from, subject, text}) => new Promise((res, rej) => {
 
     let mailOptions = {
         from: from,
-        to: ['ntchvergara@gmail.com', 'ntchvergara@yahoo.com.ar'],
+        to: from,
         subject,
         text    
     }
