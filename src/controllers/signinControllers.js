@@ -43,7 +43,7 @@ const updateUserController = async (req, res) => {
         if (user.update) {
             return res.status(200).send(user)
         } else {
-            return res.status(304).send(user.data)
+            return res.status(304).send(user.users)
         }
 
 

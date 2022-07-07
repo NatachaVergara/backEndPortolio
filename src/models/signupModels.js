@@ -10,7 +10,7 @@ const signUp = async (email, password, type, nombre, apellido) => {
     } else {
         const hasedPassword = hashPassword(password)
         const data = await request(
-            `INSERT INTO users(email, password, type, nombre, apellido, createdDate, updateDate )
+            `INSERT INTO users(email, password, type, nombre, apellido, created, updated )
                 VALUES("${email}", "${hasedPassword}", "${type}", "${nombre}", "${apellido}", NOW(), NOW())
             `)
 

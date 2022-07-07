@@ -45,13 +45,14 @@ console.log(id, email, nombre, apellido)
             SET email = "${email}",            
             nombre = "${nombre}",
             apellido = "${apellido}", 
-            updateDate = NOW()
+            updated = NOW()
             
             WHERE email = ${id}`
     )
+    const users = await request(`SELECT * FROM users`)
 
     return {
-        data,
+        users,
         update: data.affectedRows ? true : false
 
     }
