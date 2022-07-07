@@ -39,7 +39,7 @@ const allUsers = async () => {
 
 
 const updateUser = async (id, email, nombre, apellido) => {
-console.log(id, email, nombre, apellido)
+    console.log(id, email, nombre, apellido)
     const data = await request(
         `UPDATE users
             SET email = "${email}",            
@@ -47,7 +47,8 @@ console.log(id, email, nombre, apellido)
             apellido = "${apellido}", 
             updated = NOW()
             
-            WHERE email = ${id}`
+            WHERE id = ${id}
+            `
     )
     const users = await request(`SELECT * FROM users`)
 
