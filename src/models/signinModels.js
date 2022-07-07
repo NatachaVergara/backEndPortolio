@@ -38,13 +38,13 @@ const allUsers = async () => {
 }
 
 
-const updateUser = async (id, email,  nombre, apellido) => {
-
+const updateUser = async (id, email, nombre, apellido) => {
+console.log(id, email, nombre, apellido)
     const data = await request(
         `UPDATE users
             SET email = "${email}",            
-            nombre= "${nombre}",
-            apellido= "${apellido}", 
+            nombre = "${nombre}",
+            apellido = "${apellido}", 
             updateDate = NOW()
             
             WHERE email = ${id}`
