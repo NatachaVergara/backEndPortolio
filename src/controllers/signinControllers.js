@@ -29,7 +29,7 @@ const signInController = async (req, res) => {
 const usersControllers = async (req, res) => {
     try {
         const users = await allUsers()
-        return res.send(users)
+        return res.status(200).send(users)
     } catch (error) {
         return res.status(500).send(`Se produjo un error:   ${error}`)
     }
@@ -38,11 +38,12 @@ const usersControllers = async (req, res) => {
 
 const updateUserController = async (req, res) => {
     const { id } = req.params
-    const { email, password } = req.body
-    console.log(id, email, password)
+    const { email, password, nombre, apellido } = req.body
+    console.log(id, email, password, nombre, apellido)
+    
     try {
-        const user = await updateUser(id, email, password)
-        return res.send(user)
+        const user = await updateUser(id, email, password, nombre, apellido)
+        return res.status(200).send(user)
     } catch (error) {
         return res.status(500).send(`Se produjo un error:   ${error}`)
     }

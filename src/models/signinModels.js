@@ -9,7 +9,9 @@ const signIn = async (email, password) => {
         email,
         password,
         id,
-        type
+        type,
+        nombre,
+        apellido
     FROM users 
     WHERE email = "${email}" `)
 
@@ -36,12 +38,16 @@ const allUsers = async () => {
 }
 
 
-const updateUser = async (id, email, password) => {
+const updateUser = async (id, email, password, nombre, apellido) => {
 
     const data = await request(
         `UPDATE users
             SET email = "${email}",
-            password = "${password}"
+            password = "${password}",
+            nombre= "${nombre}",
+            apellido= "${apellido}", 
+            updateDate = NOW()
+            
             WHERE email = ${id}`
     )
 
