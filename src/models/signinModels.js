@@ -38,12 +38,11 @@ const allUsers = async () => {
 }
 
 
-const updateUser = async (id, email, password, nombre, apellido) => {
+const updateUser = async (id, email,  nombre, apellido) => {
 
     const data = await request(
         `UPDATE users
-            SET email = "${email}",
-            password = "${password}",
+            SET email = "${email}",            
             nombre= "${nombre}",
             apellido= "${apellido}", 
             updateDate = NOW()

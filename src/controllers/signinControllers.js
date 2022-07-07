@@ -39,10 +39,10 @@ const usersControllers = async (req, res) => {
 const updateUserController = async (req, res) => {
     const { id } = req.params
     const { email, password, nombre, apellido } = req.body
-    console.log(id, email, password, nombre, apellido)
+    console.log(id, email, nombre, apellido)
     
     try {
-        const user = await updateUser(id, email, password, nombre, apellido)
+        const user = await updateUser(id, email, nombre, apellido)
         return res.status(200).send(user)
     } catch (error) {
         return res.status(500).send(`Se produjo un error:   ${error}`)
