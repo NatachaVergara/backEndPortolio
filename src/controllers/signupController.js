@@ -6,7 +6,11 @@ const signUpControllers = async (req, res) => {
     console.log(req.body)
     try {
         const users = await signUp(email, password, type, nombre, apellido)
-        return res.status(201).send(users)
+        if(users.id){
+            return res.status(201).send(users)
+        }else{
+            return res.status(304).send(users)
+        }
 
     } catch (error) {
         return res.status(500).send(`Se produjo un error,   ${error}`)
