@@ -34,7 +34,7 @@ const signIn = async (email, password) => {
 
 const allUsers = async () => {
     const data = await request(`SELECT * FROM users`)
-    return { data }
+    return data 
 }
 
 
@@ -45,8 +45,7 @@ const updateUser = async (id, email, nombre, apellido) => {
             SET email = "${email}",            
             nombre = "${nombre}",
             apellido = "${apellido}", 
-            updated = NOW()
-            
+            updated = NOW()            
             WHERE id = ${id}
             `
     )
@@ -65,9 +64,9 @@ const deleteUser = async (id) => {
         `DELETE FROM users 
             WHERE id = ${id}`
     )
-
+    const users = await request(`SELECT * FROM users`)    
     return {
-        id,
+        users,
         deleted: data.affectedRows ? true : false
     }
 }
