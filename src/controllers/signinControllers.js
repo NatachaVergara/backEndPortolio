@@ -23,9 +23,6 @@ const signInController = async (req, res) => {
 }
 
 
-
-
-
 const usersControllers = async (req, res) => {
     try {
         const users = await allUsers()
@@ -38,7 +35,7 @@ const usersControllers = async (req, res) => {
 
 const updateUserController = async (req, res) => {
     const { id } = req.params
-    const { email, password, nombre, apellido } = req.body
+    const { email, nombre, apellido } = req.body
     console.log(id, email, nombre, apellido)
     
     try {
