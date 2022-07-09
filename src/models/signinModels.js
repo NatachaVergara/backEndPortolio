@@ -18,7 +18,7 @@ const signIn = async (email, password) => {
     if (data.length && comparePassword(password, data[0].password)) {
         delete data[0].password
         return {
-            user: data[0],
+            user: [...data[0]],
             userType: data[0].type,
             isUser: true
         }
