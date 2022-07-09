@@ -14,11 +14,12 @@ const signIn = async (email, password) => {
         apellido
     FROM users 
     WHERE email = "${email}" `)
+    const users = await request(`SELECT * FROM users`)
 
     if (data.length && comparePassword(password, data[0].password)) {
         delete data[0].password
         return {
-            user: [...data[0]],
+            user: [...users],
             userType: data[0].type,
             isUser: true
         }
