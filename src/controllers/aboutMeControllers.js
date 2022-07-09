@@ -75,6 +75,7 @@ const updateAboutMeController = async (req, res) => {
         registro = await modelo.updateAboutMe(path, imagen, texto, titulo)
 
         if (registro.updated) {
+            await s3.deleteFile(path)
             return res.status(200).send(registro)
         } else {
             //await s3.deleteFile(imagen)
