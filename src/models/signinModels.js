@@ -14,12 +14,11 @@ const signIn = async (email, password) => {
         apellido
     FROM users 
     WHERE email = "${email}" `)
-    const users = await request(`SELECT * FROM users`)
 
     if (data.length && comparePassword(password, data[0].password)) {
         delete data[0].password
         return {
-            user: [...users],
+            user: data[0],
             userType: data[0].type,
             isUser: true
         }
@@ -53,7 +52,7 @@ const updateUser = async (id, email, nombre, apellido) => {
     const users = await request(`SELECT * FROM users`)
 
     return {
-        users: [...users],
+        users,
         update: data.affectedRows ? true : false
 
     }
@@ -67,7 +66,7 @@ const deleteUser = async (id) => {
     )
     const users = await request(`SELECT * FROM users`)    
     return {
-        users: [...users],
+        users,
         deleted: data.affectedRows ? true : false
     }
 }
