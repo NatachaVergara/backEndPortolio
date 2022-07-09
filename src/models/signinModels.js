@@ -17,11 +17,11 @@ const signIn = async (email, password) => {
 
     if (data.length && comparePassword(password, data[0].password)) {
         delete data[0].password
-        return [{
-            user: data[0],
+        return {
+            user: [...data[0]],
             userType: data[0].type,
             isUser: true
-        }]
+        }
     } else {
         return {
             message: 'Usuario no encontrado. ¿El email o password son correctos?',
@@ -34,7 +34,7 @@ const signIn = async (email, password) => {
 
 const allUsers = async () => {
     const data = await request(`SELECT * FROM users`)
-    return data
+    return data 
 }
 
 
@@ -64,9 +64,9 @@ const deleteUser = async (id) => {
         `DELETE FROM users 
             WHERE id = ${id}`
     )
-    const users = await request(`SELECT * FROM users`)
+    const users = await request(`SELECT * FROM users`)    
     return {
-        users,
+        users: [...users],
         deleted: data.affectedRows ? true : false
     }
 }
