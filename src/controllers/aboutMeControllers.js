@@ -53,28 +53,44 @@ const createAboutMeController = async (req, res) => {
 const updateAboutMeController = async (req, res) => {
     const { path } = req.params
     const { texto, titulo } = req.body
-
-    //Creo un nuevo path en base al req.file que entra
-    const file = req.file
-    const img = await s3.uploadFile(file)
-    const newPath = img.Key
+    console.log('req.body y params', path, texto, titulo)
+    console.log('req.file', req.file)
 
     try {
-        registro = await modelo.updateAboutMe(path, newPath, texto, titulo)
-
-        if (registro.updated) {
-            await s3.deleteFile(path)
-            return res.status(200).send(registro)
-        } else {
-            await s3.deleteFile(newPath)
-            return res.status(304).send(registro)
-        }
-
+        return res.status(200).send('ok')
     } catch (error) {
-        console.log(error)
-        await s3.deleteFile(newPath)
         return res.status(500).send(error)
     }
+
+    // let imagen = ''
+    //Creo un nuevo path en base al req.file que entra
+    // if (req.file !== undefined) {
+    //     const file = req.file
+    //     let img = await s3.uploadFile(file)
+    //     imagen = img.Key
+    // } else {
+    //     imagen = path
+    // }
+
+    // console.log('req.body y params',path, texto, titulo )
+    // console.log('Imagen en controlar',imagen)
+
+    // try {
+    //     registro = await modelo.updateAboutMe(path, imagen, texto, titulo)
+
+    //     if (registro.updated) {
+    //         await s3.deleteFile(path)
+    //         return res.status(200).send(registro)
+    //     } else {
+    //         await s3.deleteFile(imagen)
+    //         return res.status(304).send(registro)
+    //     }
+
+    // } catch (error) {
+    //     console.log(error)
+    //     await s3.deleteFile(imagen)
+    //     return res.status(500).send(error)
+    // }
 }
 
 // //Elimino mi resgistro (no va a estar activo)
