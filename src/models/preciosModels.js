@@ -1,12 +1,12 @@
 const { request } = require('../db/request')
 
 let registro
-let registros = await request(`SELECT * FROM precios`)
+let registros 
 
 
 
 const getPrecios = async () => {
-    registros
+    registros = await request(`SELECT * FROM precios`)
     return registros
 }
 
@@ -17,7 +17,7 @@ const createPrecio = async (titulo, precio, dominio, hosting, almacenamiento, li
         `INSERT INTO precios (titulo, precio, dominio, hosting, almacenamiento, libre, telefono)
         VALUES ( "${titulo}", ${precio}, ${dominio}, ${hosting}, "${almacenamiento}", "${libre}", ${telefono})`
     )
-    registros;
+    registros = await request(`SELECT * FROM precios`);
 
 
     return {
@@ -41,7 +41,7 @@ const updatePrecio = async (id, titulo, precio, dominio, hosting, almacenamiento
     telefono = ${telefono}
     WHERE id = ${id}
     `);
-    registros;
+    registros = await request(`SELECT * FROM precios`);
 
     return {
         updated: registro.affectedRows ? true : false,
@@ -54,7 +54,7 @@ const updatePrecio = async (id, titulo, precio, dominio, hosting, almacenamiento
 
 const deletePrecios = async (id) => {
     registro = await request(`DELETE FROM precios WHERE id = ${id}`);
-    registros;
+    registros = await request(`SELECT * FROM precios`);
 
     return {
         deleted: registro.affectedRows ? true : false,
