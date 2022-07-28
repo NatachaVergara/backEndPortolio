@@ -82,7 +82,7 @@ const updateAboutMeController = async (req, res) => {
                 res.status(200).send(registro)
             }
 
-         //   return res.status(200).send(registro)
+         
         } else {
             //await s3.deleteFile(imagen)
             return res.status(304).send(registro)
