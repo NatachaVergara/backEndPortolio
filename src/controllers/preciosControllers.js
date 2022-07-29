@@ -15,9 +15,10 @@ const createPrecio = async (req, res) => {
     const { titulo, precio, dominio, hosting, almacenamiento, libre, telefono } = req.body
     try {
         registros = await modelo.createPrecio(titulo, precio, dominio, hosting, almacenamiento, libre, telefono)
-        registros.created ? res.status(200).send(registros) : res.status(204).send(registros)
+        registros.created ?  res.status(200).send(registros) : res.status(204).send(registros)
 
     } catch (error) {
+        console.log(error)
         return res.status(500).send(error)
     }
 }
@@ -31,7 +32,9 @@ const updatePrecio = async (req, res) => {
         registros.updated ? res.status(200).send(registros) : res.status(204).send(registros)
 
     } catch (error) {
+        console.log(error)
         return res.status(500).send(error)
+
     }
 
 }
@@ -40,16 +43,11 @@ const deletePrecio = async (req, res) => {
     const { id } = req.params
     try {
         registros = await modelo.deletePrecios(id)
-
         registros.deleted ? res.status(200).send(registros) : res.status(204).send(registros)
-
-
     } catch (error) {
+        console.log(error)
         return res.status(500).send(error)
     }
-
-
-
 }
 
 module.exports = {
