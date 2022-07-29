@@ -30,7 +30,7 @@ const createPrecio = async (titulo, precio, dominio, hosting, almacenamiento, li
 
 
 const updatePrecio = async (id, titulo, precio, dominio, hosting, almacenamiento, libre, telefono) => {
-    registros = await request(`
+    registro = await request(`
     UPDATE precios SET 
     titulo = "${titulo}", 
     precio = ${precio}, 
