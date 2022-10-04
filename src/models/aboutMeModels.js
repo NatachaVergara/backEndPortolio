@@ -1,7 +1,7 @@
 const { request } = require('../db/request')
 
-let registro
-let registros
+
+
 
 
 //Obtengo el registro
@@ -12,9 +12,9 @@ const getAboutMe = async () => {
 //Creo el registro
 const createAboutMe = async (path, texto, titulo) => {
     console.log('Modelo', path, texto, titulo)
-    registro = await request(`INSERT INTO aboutme (path, texto, titulo, create_date, update_date) VALUES ("${path}", "${texto}", "${titulo}", NOW(), NOW())`)
+    let registro = await request(`INSERT INTO aboutme (path, texto, titulo, create_date, update_date) VALUES ("${path}", "${texto}", "${titulo}", NOW(), NOW())`)
 
-    registros = await request(`SELECT * FROM aboutMe`)
+    let registros = await request(`SELECT * FROM aboutMe`)
 
     return {
         created: registro.insertId ? true : false,
@@ -26,7 +26,7 @@ const createAboutMe = async (path, texto, titulo) => {
 const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
     console.log('Modelo Update: ', oldPath, newPath, texto, titulo)
 
-    registro = await request(`
+    let registro = await request(`
     UPDATE aboutme SET 
     path = "${newPath}",
     texto = "${texto}",
@@ -34,7 +34,7 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
     update_date = NOW()
     WHERE path = "${oldPath}"    
     `)
-    registros = await request(`SELECT * FROM aboutMe`)
+    let registros = await request(`SELECT * FROM aboutMe`)
 
     return {
         updated: registro.affectedRows ? true : false,
@@ -45,8 +45,8 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
 // //Elimino el registro
 const deleteAboutMe = async (path) => {
 
-    registro = await request(`DELETE FROM aboutme WHERE path = "${path}" `)
-    registros = await request(`SELECT * FROM aboutme`)
+    let registro = await request(`DELETE FROM aboutme WHERE path = "${path}" `)
+    let registros = await request(`SELECT * FROM aboutme`)
 
     return {
         deleted: registro.affectedRows ? true : false,

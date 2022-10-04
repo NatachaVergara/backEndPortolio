@@ -1,10 +1,5 @@
 const { request } = require('../db/request')
 
-
-
-
-
-
 const getPrecios = async () => {
     let registros = await request(`SELECT * FROM precios`)
     return registros

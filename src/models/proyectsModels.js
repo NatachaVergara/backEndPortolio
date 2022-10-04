@@ -1,6 +1,6 @@
 const { request } = require('../db/request')
 
-let registro
+
 
 
 const allProyects = async () => {
@@ -19,7 +19,7 @@ const allProyects = async () => {
 
 const createProyect = async (title, link, logo, img, tec) => {
     console.log(img)
-    registro = await request(
+    let registro = await request(
         `INSERT INTO proyects(title, link, logo, img, tec )
         VALUES("${title}","${link}", "${logo}","${img}", "${tec}")`
     )
@@ -35,7 +35,7 @@ const createProyect = async (title, link, logo, img, tec) => {
 const updateProyect = async (id, title, link, logo, img, tec) => {
     console.log('update modelo', id, title, link, logo, img, tec)
 
-    registro = await request(
+    let registro = await request(
         `UPDATE proyects SET title = "${title}",
         link = "${link}",
         logo = "${logo}",
@@ -54,7 +54,7 @@ const updateProyect = async (id, title, link, logo, img, tec) => {
 }
 
 const deleteProyect = async (path) => {
-    registro = await request(` DELETE FROM proyects WHERE img = "${path}" `)
+    let registro = await request(` DELETE FROM proyects WHERE img = "${path}" `)
     let registros = await request(`SELECT * FROM proyects`)
 
     return {
