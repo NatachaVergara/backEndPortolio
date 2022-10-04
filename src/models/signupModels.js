@@ -20,7 +20,6 @@ const signUp = async (email, password, type, nombre, apellido) => {
         }
     }
 
-
 }
 
 
