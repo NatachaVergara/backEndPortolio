@@ -7,7 +7,10 @@ module.exports.request = (query) => new Promise((res,rej) => {
         host: config.HOST,
         user: config.USER,
         password: config.PASSWORD,
-        database: config.DB
+        database: config.DB,
+        ssl:{
+            rejectUnauthorized:false
+        }
     })
 
     connection.query(query, (error,data,field) =>{
