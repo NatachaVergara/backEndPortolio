@@ -6,13 +6,13 @@ let registros
 
 //Obtengo el registro
 const getAboutMe = async () => {
-    registros = await request(`SELECT * FROM aboutMe`)
+    registros = await request(`SELECT * FROM aboutme`)
     return registros
 }
 //Creo el registro
 const createAboutMe = async (path, texto, titulo) => {
     console.log('Modelo', path, texto, titulo)
-    registro = await request(`INSERT INTO aboutMe (path, texto, titulo, create_date, update_date) VALUES ("${path}", "${texto}", "${titulo}", NOW(), NOW())`)
+    registro = await request(`INSERT INTO aboutme (path, texto, titulo, create_date, update_date) VALUES ("${path}", "${texto}", "${titulo}", NOW(), NOW())`)
 
     registros = await request(`SELECT * FROM aboutMe`)
 
@@ -27,7 +27,7 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
     console.log('Modelo Update: ', oldPath, newPath, texto, titulo)
 
     registro = await request(`
-    UPDATE aboutMe SET 
+    UPDATE aboutme SET 
     path = "${newPath}",
     texto = "${texto}",
     titulo = "${titulo}",
@@ -45,8 +45,8 @@ const updateAboutMe = async (oldPath, newPath, texto, titulo) => {
 // //Elimino el registro
 const deleteAboutMe = async (path) => {
 
-    registro = await request(`DELETE FROM aboutMe WHERE path = "${path}" `)
-    registros = await request(`SELECT * FROM aboutMe`)
+    registro = await request(`DELETE FROM aboutme WHERE path = "${path}" `)
+    registros = await request(`SELECT * FROM aboutme`)
 
     return {
         deleted: registro.affectedRows ? true : false,
