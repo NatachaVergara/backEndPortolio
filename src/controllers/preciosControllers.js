@@ -15,7 +15,7 @@ const createPrecio = async (req, res) => {
     const { titulo, precio, dominio, hosting, almacenamiento, libre, telefono } = req.body
     try {
         registros = await modelo.createPrecio(titulo, precio, dominio, hosting, almacenamiento, libre, telefono)
-        registros.created ?  res.status(200).send(registros) : res.status(204).send(registros)
+        registros.created ?  res.status(201).send(registros) : res.status(204).send(registros)
 
     } catch (error) {
         console.log(error)
