@@ -9,7 +9,7 @@ const signUpControllers = async (req, res) => {
         if(users.id){
             return res.status(201).send(users)
         }else{
-            return res.status(304).send(users)
+            return res.status(304)
         }
 
     } catch (error) {
